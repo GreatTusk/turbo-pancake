@@ -11,6 +11,11 @@ namespace rl
         scene::node::set_unique_name(this, name::character::enemy);
     }
 
+    /*void Enemy::_ready()
+    {
+        Character::_ready();
+    }*/
+
     void Enemy::_bind_methods()
     {
     }

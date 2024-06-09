@@ -68,6 +68,7 @@ namespace rl::inline constants
         {
             constexpr inline auto Level1{ "res://scenes/levels/level1.tscn" };
             constexpr inline auto Player{ "res://scenes/characters/player.tscn" };
+            constexpr inline auto Enemy{ "res://scenes/characters/enemy.tscn" };
             constexpr inline auto Bullet{ "res://scenes/projectiles/bullet.tscn" };
         }
 

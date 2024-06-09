@@ -6,13 +6,13 @@
 
 namespace rl
 {
-    class Player : public Character
+    class Player final : public Character
     {
         GDCLASS(Player, Character);
 
     public:
         Player();
-        ~Player() = default;
+        ~Player() override = default;
 
         void _ready() override;
 

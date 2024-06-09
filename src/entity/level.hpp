@@ -7,6 +7,7 @@
 #include <godot_cpp/classes/sprite2d.hpp>
 
 #include "core/constants.hpp"
+#include "entity/character/enemy.hpp"
 #include "entity/character/player.hpp"
 #include "entity/controller/player_controller.hpp"
 #include "entity/projectile/projectile_spawner.hpp"
@@ -20,7 +21,12 @@ namespace godot
 
 namespace rl
 {
+    // The compiler doesn't know what Player is, so it throws an error without this line. Player
+    // must be defined before declaring a Player*:
     class Player;
+
+    // So for Enemy
+    // class Enemy;
 
     class Level : public godot::Node2D
     {
@@ -51,6 +57,8 @@ namespace rl
         godot::Node* m_background{ nullptr };
         ProjectileSpawner* m_projectile_spawner{ memnew(rl::ProjectileSpawner) };
         Player* m_player{ nullptr };
+        // Add the enemy
+        Enemy* m_enemy{ nullptr };
         godot::RigidBody2D* m_physics_box{ nullptr };
     };
 }

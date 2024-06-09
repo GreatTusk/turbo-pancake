@@ -127,7 +127,7 @@ namespace rl::inline utils
         template <typename... Args>
         static inline void print(spdlog::format_string_t<Args...> fmt, Args&&... args)
         {
-            std::string msg{ fmt::format(fmt, std::forward<Args>(args)...) };
+            const std::string msg{ fmt::format(fmt, std::forward<Args>(args)...) };
             ERR_PRINT_ED(msg.data());
         }
     };

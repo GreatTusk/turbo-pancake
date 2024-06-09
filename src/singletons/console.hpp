@@ -81,9 +81,8 @@ namespace rl
             stdout_sink->set_level(spdlog::level::info);
             callbk_sink->set_level(spdlog::level::debug);
 
-            m_logger = std::unique_ptr<spdlog::logger>(
-                new spdlog::logger{ "custom_callback_logger",
-                                    { stdout_sink, stderr_sink, callbk_sink } });
+            m_logger = std::make_unique<spdlog::logger>(
+                spdlog::logger{ "custom_callback_logger", { stdout_sink, stderr_sink, callbk_sink } });
 
             using namespace std::chrono_literals;
             spdlog::flush_every(0.25s);

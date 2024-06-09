@@ -16,7 +16,7 @@ namespace rl::inline utils
 
     godot::MainLoop* engine::main_loop()
     {
-        auto engine{ engine::get() };
+        const auto engine{ engine::get() };
         return engine->get_main_loop();
     }
 
@@ -28,7 +28,7 @@ namespace rl::inline utils
 
     godot::Window* engine::root_window()
     {
-        auto tree{ engine::scene_tree() };
+        const auto tree{ engine::scene_tree() };
         return tree->get_root();
     }
 

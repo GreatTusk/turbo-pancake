@@ -11,7 +11,7 @@
 
 namespace rl
 {
-    class Projectile : public godot::RigidBody2D
+    class Projectile final : public godot::RigidBody2D
     {
         GDCLASS(Projectile, godot::RigidBody2D);
 

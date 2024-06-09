@@ -15,6 +15,8 @@
 #include "util/input.hpp"
 #include "util/io.hpp"
 
+// #include "character/enemy.hpp"
+
 namespace rl
 {
     Level::Level()
@@ -32,6 +34,13 @@ namespace rl
         m_player = player_scene.instantiate();
         m_player->set_controller(memnew(PlayerController));
 
+        // Following the player example, preload the enemy
+        /*resource::preload::packed_scene<Enemy> enemy_scene{ path::scene::Enemy };
+        m_enemy = enemy_scene.instantiate();*/
+        // No need to add a controller I guess
+
+        // Add the enemy to the level
+        this->add_child(m_enemy);
         this->add_child(m_player);
         this->add_child(m_projectile_spawner);
 

@@ -13,7 +13,7 @@
 
 namespace rl
 {
-    void CharacterController::_process(double delta_time)
+    void CharacterController::_process(const double delta_time)
     {
         if (engine::editor_active())
             return;

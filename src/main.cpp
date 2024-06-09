@@ -10,7 +10,6 @@ namespace rl
     {
         resource::preload::packed_scene<Level> level{ path::scene::Level1 };
         resource::preload::packed_scene<MainDialog> dialog{ path::ui::MainDialog };
-
         m_active_level = level.instantiate();
         runtime_assert(m_active_level != nullptr);
         m_main_dialog = dialog.instantiate();

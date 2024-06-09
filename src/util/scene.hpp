@@ -66,7 +66,7 @@ namespace rl::inline utils
                 requires std::derived_from<TNode, godot::Node>
             static inline godot::Node* root_node(TNode* node)
             {
-                godot::SceneTree* scene_tree{ tree::get(node) };
+                const godot::SceneTree* scene_tree{ tree::get(node) };
                 godot::Window* root_window{ scene_tree->get_root() };
                 godot::Node* root_node{ gdcast<godot::Node>(root_window) };
                 return root_node;
@@ -120,11 +120,11 @@ namespace rl::inline utils
                 using object_t = TObj;
 
                 /* Pack as preload from path. */
-                packed_scene(godot::String resource_load_path)
+                explicit packed_scene(const godot::String& resource_load_path)
                 {
                     godot::ResourceLoader* resource_loader{ resource::loader::get() };
 
-                    bool file_access_success{ resource_loader->exists(resource_load_path) };
+                    const bool file_access_success{ resource_loader->exists(resource_load_path) };
                     runtime_assert(file_access_success);
 
                     if (file_access_success)
@@ -135,7 +135,7 @@ namespace rl::inline utils
                 }
 
                 /* Pack from existing instance. */
-                packed_scene(godot::Node* node)
+                explicit packed_scene(godot::Node* node)
                 {
                     m_packed_resource = scene::packer::pack(node);
                     initialized = m_packed_resource.is_valid();

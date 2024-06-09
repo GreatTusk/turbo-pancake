@@ -6,7 +6,6 @@
 namespace rl
 {
     Player::Player()
-        : Character()
     {
         scene::node::set_unique_name(this, name::character::player);
     }

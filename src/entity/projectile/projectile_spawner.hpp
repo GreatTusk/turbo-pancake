@@ -20,7 +20,7 @@ namespace rl
 
     public:
         ProjectileSpawner() = default;
-        ~ProjectileSpawner() = default;
+        ~ProjectileSpawner() override = default;
 
         Projectile* spawn_projectile();
 

@@ -10,7 +10,7 @@ namespace rl
 
     public:
         Camera();
-        ~Camera() = default;
+        ~Camera() override = default;
 
     protected:
         static void _bind_methods()

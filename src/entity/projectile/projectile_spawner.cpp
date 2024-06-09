@@ -6,15 +6,13 @@ namespace rl
     [[nodiscard]]
     Projectile* ProjectileSpawner::spawn_projectile()
     {
-        auto elapsed{ clock_t::now() - m_prev_spawn_time };
+        const auto elapsed{ clock_t::now() - m_prev_spawn_time };
         if (elapsed < m_spawn_delay)
             return nullptr;
-        else
-        {
-            Projectile* projectile{ m_scene.instantiate() };
-            m_prev_spawn_time = clock_t::now();
-            return projectile;
-        }
+
+        Projectile* projectile{ m_scene.instantiate() };
+        m_prev_spawn_time = clock_t::now();
+        return projectile;
     }
 
     [[property]]

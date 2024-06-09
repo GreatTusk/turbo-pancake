@@ -12,6 +12,7 @@ namespace rl
 
     public:
         Enemy();
+        // void _ready() override;
 
         using Character::_ready;
 
