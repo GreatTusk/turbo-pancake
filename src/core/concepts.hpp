@@ -13,7 +13,7 @@ namespace godot
     class Object;
 }
 
-namespace rl::inline utils
+namespace tp::inline utils
 {
     template <auto S>
     concept CompileTimeStr = std::same_as<decltype(S), std::string_view> ||

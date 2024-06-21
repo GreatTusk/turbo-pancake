@@ -1,0 +1,7 @@
+Godot Engine v4.2.2.stable.official.15073afe3 - https://godotengine.org
+Vulkan API 1.3.277 - Forward+ - Using Vulkan Device #0: NVIDIA - NVIDIA GeForce RTX 3070
+ 
+USER WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2209)
+USER ERROR: Resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:492)

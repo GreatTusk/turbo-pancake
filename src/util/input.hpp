@@ -6,7 +6,7 @@ namespace godot
     class Input;
 }
 
-namespace rl::inline utils
+namespace tp::inline utils
 {
     namespace input
     {
@@ -14,9 +14,7 @@ namespace rl::inline utils
         {
             constexpr inline auto move_left{ "move_left" };
             constexpr inline auto move_right{ "move_right" };
-            constexpr inline auto move_up{ "move_up" };
-            constexpr inline auto move_down{ "move_down" };
-            constexpr inline auto shoot{ "shoot" };
+            constexpr inline auto jump{ "jump" };
         }
 
         struct map

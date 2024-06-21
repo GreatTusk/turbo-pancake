@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="turbo_pancake" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--debug --verbose --path C:\Users\F776\source\repos\godot-roguelite\project" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$ProjectFileDir$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="turbo_pancake" TARGET_NAME="turbo_pancake" CONFIG_NAME="msvc-debug" RUN_PATH="$PROJECT_DIR$/extern/godot-engine/bin/godot.windows.editor.dev.x86_64.exe">
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

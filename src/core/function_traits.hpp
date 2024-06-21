@@ -18,18 +18,18 @@
   #define stdcall __cdecl
 #endif
 
-namespace rl::inline utils
+namespace tp::inline utils
 {
     namespace detail
     {
         template <typename H>
-        void to_arg_vec_impl(std::vector<godot::String>& s, H&& h)
+        void to_arg_vec_impl(std::vector<godot::String>& s, [[maybe_unused]] H&& h)
         {
             s.push_back(typeid(decltype(h)).name());
         }
 
         template <typename H, typename... T>
-        void to_arg_vec_impl(std::vector<godot::String>& s, H&& h, T&&... t)
+        void to_arg_vec_impl(std::vector<godot::String>& s, [[maybe_unused]] H&& h, T&&... t)
         {
             s.push_back(typeid(decltype(h)).name());
             to_arg_vec_impl(s, std::forward<T>(t)...);
@@ -92,7 +92,7 @@ namespace rl::inline utils
     struct function_traits
         : public function_traits<decltype(&std::remove_reference_t<TCallable>::operator())>
     {
-        inline static const std::string_view class_name{};
+        static constexpr std::string_view class_name{};
     };
 
     // leaves function signature untouched if

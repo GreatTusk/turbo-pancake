@@ -1,6 +1,6 @@
 ﻿cmake_minimum_required(VERSION 3.20)
 
-set(GDEXTENSION_LIB_NAME roguelite)
+set(GDEXTENSION_LIB_NAME turbo_pancake)
 set(GDEXTENSION_LIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/project/bin")
 
 option(

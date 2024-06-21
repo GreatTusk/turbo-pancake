@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://dacleof2k6jy4"]
+
+[ext_resource type="Texture2D" uid="uid://pipprkjqw0lc" path="res://assets/Traps/Saw/On (38x38).png" id="1_b7dbv"]
+
+[sub_resource type="GDScript" id="GDScript_wduj1"]
+script/source = "extends Node2D
+
+func _on_saw_body_entered(body: CharacterBody2D):	
+	body.die()
+	
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wttq1"]
+atlas = ExtResource("1_b7dbv")
+region = Rect2(0, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btrgg"]
+atlas = ExtResource("1_b7dbv")
+region = Rect2(38, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgei5"]
+atlas = ExtResource("1_b7dbv")
+region = Rect2(76, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhwtw"]
+atlas = ExtResource("1_b7dbv")
+region = Rect2(114, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydwqr"]
+atlas = ExtResource("1_b7dbv")
+region = Rect2(152, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2vw"]
+atlas = ExtResource("1_b7dbv")
+region = Rect2(190, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6or3u"]
+atlas = ExtResource("1_b7dbv")
+region = Rect2(228, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fnm5"]
+atlas = ExtResource("1_b7dbv")
+region = Rect2(266, 0, 38, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hh36x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wttq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btrgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgei5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhwtw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydwqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6or3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fnm5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0af33"]
+radius = 19.2354
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tnbpv"]
+radius = 17.0
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_wduj1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hh36x")
+autoplay = "default"
+frame = 7
+frame_progress = 0.0509994
+
+[node name="Saw" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saw"]
+shape = SubResource("CircleShape2D_0af33")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_tnbpv")
+debug_color = Color(0.493823, 0.583258, 3.85046e-07, 0.42)
+
+[connection signal="body_entered" from="Saw" to="." method="_on_saw_body_entered"]

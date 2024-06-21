@@ -7,7 +7,7 @@
 
 #include "core/concepts.hpp"
 
-namespace rl::inline utils
+namespace tp::inline utils
 {
     template <VariantCompatible T>
     struct variant_traits

@@ -2,7 +2,7 @@
 
 #include <godot_cpp/classes/os.hpp>
 
-namespace rl::inline utils
+namespace tp::inline utils
 {
     struct os
     {

@@ -29,7 +29,7 @@
     node_property<class_name, prop_type, &class_name::get_##prop_name, \
                   &class_name::set_##prop_name>::add(#prop_name)
 
-namespace rl::inline utils
+namespace tp::inline utils
 {
     template <auto Method>
         requires std::is_member_function_pointer_v<decltype(Method)>
@@ -94,7 +94,7 @@ namespace rl::inline utils
             else
             {
                 const typename traits_t::arg_types_nocvref func_args{};
-                std::vector<godot::String> vec_strs = rl::detail::to_arg_vec(func_args);
+                std::vector<godot::String> vec_strs = tp::detail::to_arg_vec(func_args);
                 std::tuple arg_types_str{ detail::arg_vec_to_tuple<tup_size>(vec_strs) };
 
                 std::apply(
@@ -133,10 +133,10 @@ namespace rl::inline utils
             add()
             {
                 if (class_name.empty())
-                    class_name = rl::to<std::string>(object_t::get_class_static());
+                    class_name = tp::to<std::string>(object_t::get_class_static());
                 else
                 {
-                    std::string temp_name = rl::to<std::string>(object_t::get_class_static());
+                    std::string temp_name = tp::to<std::string>(object_t::get_class_static());
                     runtime_assert(class_name == temp_name);
                 }
 
@@ -185,7 +185,7 @@ namespace rl::inline utils
                 static_assert(std::is_same_v<decltype(signal_owner), decltype(m_signal_owner)>);
 
                 m_signal_owner = signal_owner;
-                const std::string class_name = rl::to<std::string>(m_signal_owner->get_class());
+                const std::string class_name = tp::to<std::string>(m_signal_owner->get_class());
                 runtime_assert(m_signal_owner->has_signal(signal_name.data()));
             }
 

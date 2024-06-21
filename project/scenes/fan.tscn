@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://d15s2kvaeeycu"]
+
+[ext_resource type="Texture2D" uid="uid://r23nyv5odwa" path="res://assets/Traps/Fan/Off.png" id="1_j32nu"]
+[ext_resource type="Texture2D" uid="uid://c3ro1521jp6tf" path="res://assets/Traps/Fan/On (24x8).png" id="2_pwxow"]
+[ext_resource type="AudioStream" uid="uid://c02n57flye840" path="res://assets/SFX/Gimmicks/SmallFan.wav" id="4_x4skv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nme5"]
+atlas = ExtResource("2_pwxow")
+region = Rect2(0, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j2kq"]
+atlas = ExtResource("2_pwxow")
+region = Rect2(24, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bfdy"]
+atlas = ExtResource("2_pwxow")
+region = Rect2(48, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqki8"]
+atlas = ExtResource("2_pwxow")
+region = Rect2(72, 0, 24, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xrk0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j32nu")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nme5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j2kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bfdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqki8")
+}],
+"loop": true,
+"name": &"on",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmbc5"]
+size = Vector2(25, 38)
+
+[node name="Fan" type="Fan"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2xrk0")
+animation = &"on"
+autoplay = "on"
+frame_progress = 0.568971
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -14)
+shape = SubResource("RectangleShape2D_bmbc5")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("4_x4skv")
+bus = &"SFX"

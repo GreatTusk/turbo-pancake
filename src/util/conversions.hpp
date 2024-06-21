@@ -12,7 +12,7 @@
 
 #include "core/assert.hpp"
 
-namespace rl::inline utils
+namespace tp::inline utils
 {
     /** Converts std string types to godot::String at compile time */
     template <typename TStr>

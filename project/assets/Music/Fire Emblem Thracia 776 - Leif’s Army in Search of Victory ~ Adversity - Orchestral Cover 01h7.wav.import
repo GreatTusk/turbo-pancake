@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dybhism7pj1wx"
+path="res://.godot/imported/Fire Emblem Thracia 776 - Leif’s Army in Search of Victory ~ Adversity - Orchestral Cover 01h7.wav-8b72c60615f8d948b483dcfcef8bf4f3.sample"
+
+[deps]
+
+source_file="res://assets/Music/Fire Emblem Thracia 776 - Leif’s Army in Search of Victory ~ Adversity - Orchestral Cover 01h7.wav"
+dest_files=["res://.godot/imported/Fire Emblem Thracia 776 - Leif’s Army in Search of Victory ~ Adversity - Orchestral Cover 01h7.wav-8b72c60615f8d948b483dcfcef8bf4f3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

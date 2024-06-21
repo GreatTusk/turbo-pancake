@@ -3,28 +3,33 @@
 #include <cstdint>
 #include <string>
 
-namespace rl::inline constants
+namespace tp::inline constants
 {
     namespace name
     {
-        namespace level
+        namespace trampoline
         {
-            constexpr inline auto level1{ "Level1" };
-            constexpr inline auto physics_box{ "PhysicsBox" };
+            constexpr inline auto area2d{ "Area2D" };
+            constexpr inline auto sprite{ "AnimatedSprite2D" };
+            constexpr inline auto sfx_player{ "SFX/AudioStreamPlayer2D" };
+
+            namespace animation
+            {
+                constexpr inline auto launch{ "launch" };
+            }
         }
 
-        namespace dialog
+        namespace ui
         {
-            constexpr inline auto console{ "ConsolePanel" };
-            constexpr inline auto canvas_layer{ "MainCanvasLayer" };
-
+            constexpr inline auto score_label{ "../../CanvasLayer/Score" };
         }
 
         namespace character
         {
-            constexpr inline auto player{ "Player" };
-            constexpr inline auto enemy{ "Enemy" };
-            constexpr inline auto firing_pt{ "FiringPoint" };
+            namespace voice_lines
+            {
+                constexpr inline auto find{ "VoiceLines/Find/Find_1" };
+            }
         }
 
     }
@@ -38,9 +43,9 @@ namespace rl::inline constants
         constexpr inline auto character_move{ "character_move" };
         constexpr inline auto character_rotate{ "character_rotate" };
         constexpr inline auto character_shoot{ "character_shoot" };
-        constexpr inline auto body_entered{ "body_entered" };
-        constexpr inline auto body_exited{ "body_exited" };
-        constexpr inline auto signal_example{ "custom_signal_example" };
+        constexpr inline auto body_entered{ "_on_area_2d_body_entered" };
+        constexpr inline auto body_exited{ "_on_area_2d_body_exited" };
+        constexpr inline auto animation_finished{ "_on_animation_finished" };
     }
 
     enum class LayerID : uint32_t {
@@ -69,6 +74,7 @@ namespace rl::inline constants
         {
             constexpr inline auto Level1{ "res://scenes/levels/level1.tscn" };
             constexpr inline auto Player{ "res://scenes/characters/player.tscn" };
+            constexpr inline auto Enemy{ "res://scenes/characters/enemy.tscn" };
             constexpr inline auto Bullet{ "res://scenes/projectiles/bullet.tscn" };
         }
 

@@ -5,7 +5,7 @@
 
 #include "util/input.hpp"
 
-namespace rl::inline utils
+namespace tp::inline utils
 {
     godot::InputMap* input::map::get()
     {
@@ -43,7 +43,7 @@ namespace rl::inline utils
         return input_map->load_from_project_settings();
     }
 
-    void input::use_accumulated_inputs(bool enable)
+    void input::use_accumulated_inputs(const bool enable)
     {
         auto input{ godot::Input::get_singleton() };
         return input->set_use_accumulated_input(enable);

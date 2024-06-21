@@ -11,7 +11,7 @@ namespace godot
     class Window;
 }
 
-namespace rl::inline utils
+namespace tp::inline utils
 {
     struct engine
     {

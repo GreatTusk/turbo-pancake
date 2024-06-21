@@ -1,0 +1,145 @@
+[gd_scene load_steps=17 format=3 uid="uid://bofjiwm58bvlp"]
+
+[ext_resource type="Texture2D" uid="uid://cnqjmsap6ayf" path="res://assets/Traps/Rock Head/Blink (42x42).png" id="1_q5sf2"]
+[ext_resource type="Texture2D" uid="uid://88d812235ovl" path="res://assets/Traps/Rock Head/Bottom Hit (42x42).png" id="2_tyeyy"]
+[ext_resource type="Texture2D" uid="uid://btg8xxer26pe6" path="res://assets/Traps/Rock Head/Idle.png" id="3_m7s8v"]
+[ext_resource type="Script" path="res://Scripts/Obstacles-enemies/RigidBody2D.gd" id="4_y87xp"]
+[ext_resource type="AudioStream" uid="uid://ch7nlq6a2vgxe" path="res://assets/sounds/explosion.wav" id="5_wo8s6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juftl"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irw7i"]
+atlas = ExtResource("1_q5sf2")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2krw"]
+atlas = ExtResource("1_q5sf2")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikeeb"]
+atlas = ExtResource("1_q5sf2")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuksu"]
+atlas = ExtResource("1_q5sf2")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob3te"]
+atlas = ExtResource("2_tyeyy")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86tut"]
+atlas = ExtResource("2_tyeyy")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsggk"]
+atlas = ExtResource("2_tyeyy")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k4cf"]
+atlas = ExtResource("2_tyeyy")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mjq63"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irw7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2krw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikeeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuksu")
+}],
+"loop": false,
+"name": &"blink",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob3te")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86tut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsggk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k4cf")
+}],
+"loop": false,
+"name": &"bottom_hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_m7s8v")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lo03s"]
+size = Vector2(32, 25)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+freeze = true
+contact_monitor = true
+script = ExtResource("4_y87xp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_juftl")
+debug_color = Color(0, 0.623159, 0.540019, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mjq63")
+animation = &"idle"
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="PlayerColission" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(0, 10)
+scale = Vector2(0.9, 0.5)
+shape = SubResource("RectangleShape2D_lo03s")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="PlayerDetection" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, 54)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_lo03s")
+debug_color = Color(0.562697, 0.558971, 0, 0.42)
+
+[node name="DirectDetection" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="PlayerDetection2" type="CollisionShape2D" parent="DirectDetection"]
+position = Vector2(0, 54)
+scale = Vector2(1, 3)
+shape = SubResource("RectangleShape2D_lo03s")
+debug_color = Color(0.930364, 2.9071e-05, 0.657066, 0.42)
+
+[node name="BlinkTimer" type="Timer" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 17)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wo8s6")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="DirectDetection" to="." method="_on_direct_detection_body_entered"]
+[connection signal="body_exited" from="DirectDetection" to="." method="_on_direct_detection_body_exited"]
+[connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]
