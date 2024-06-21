@@ -3,7 +3,6 @@ extends CharacterBody2D
 # Child nodes
 @onready var die_lines = $VoiceLines/Die/Die_1
 @onready var jump_lines = $VoiceLines/Jump/Jump_1
-#@onready var hurt_lines = $VoiceLines/Hurt/Hurt_1
 @onready var fall_lines = $VoiceLines/FallToFloor/Landing_1
 @onready var respawn_lines = $VoiceLines/Respawn/Respawn_1
 @onready var jump_cooldown_timer = $Timers/JumpCooldownTimer
@@ -45,7 +44,7 @@ signal respawn
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 # 600
-var gravity = ProjectSettings.get("physics/2d/default_gravity")
+#var gravity = ProjectSettings.get("physics/2d/default_gravity")
 
 enum STATES {
 	GROUND,
@@ -126,7 +125,7 @@ func air_movement(delta) -> void:
 		animated_sprites.play("fall")
 		
 	var direction = Input.get_axis("move_left", "move_right")
-	if direction:
+	if direction != 0:
 		animated_sprites.flip_h = direction < 0
 		velocity.x = move_toward(self.velocity.x, direction * MAX_SPEED_X, ACC * delta)
 	else:

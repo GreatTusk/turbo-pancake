@@ -1,6 +1,5 @@
-[gd_scene load_steps=16 format=3 uid="uid://sa73a42qxj5b"]
+[gd_scene load_steps=15 format=3 uid="uid://sa73a42qxj5b"]
 
-[ext_resource type="Script" path="res://Scripts/main.gd" id="1_22am8"]
 [ext_resource type="PackedScene" uid="uid://bwrot7viv34ju" path="res://Scenes/neptune.tscn" id="1_r475v"]
 [ext_resource type="TileSet" uid="uid://vptcadldwt6f" path="res://Scenes/main.tres" id="4_bkjap"]
 [ext_resource type="PackedScene" uid="uid://mkxeqvc338kv" path="res://Scenes/apple.tscn" id="4_yg62e"]
@@ -19,7 +18,6 @@
 distance = -1.0
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_22am8")
 
 [node name="CaveParallaxBackground" parent="." instance=ExtResource("8_04tqh")]
 position = Vector2(33, -88)
@@ -825,5 +823,3 @@ position = Vector2(1981, 111)
 
 [node name="RockHead11" parent="Enemies/RockHeads" instance=ExtResource("7_p24f0")]
 position = Vector2(2078, 73)
-
-[connection signal="body_entered" from="WorldBorder" to="Player" method="_on_world_border_entered"]

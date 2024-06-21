@@ -37,7 +37,7 @@ func _physics_process(delta):
 				self.gravity_scale = 1
 				self.call_deferred("set", "freeze", true)
 				change_state(STATES.AIR)
-				
+
 func _on_detection_area_body_entered(body):
 	set_physics_process(true)
 	blink_timer.start()
@@ -45,7 +45,7 @@ func _on_detection_area_body_entered(body):
 func _on_detection_area_body_exited(body):
 	blink_timer.stop()
 	animated_sprite_2d.play("idle")
-	
+
 func _on_blink_timer_timeout():
 	animated_sprite_2d.play("blink")
 
@@ -56,6 +56,6 @@ func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite_2d.animation == "bottom_hit":
 		animated_sprite_2d.play("idle")
 
-func _on_hit_area_body_entered(body: CharacterBody2D):
-	if body.is_on_ground():
-		body.die()
+func _on_hit_area_body_entered(body: Player):
+	#if body.is_on_ground():
+	body.die()

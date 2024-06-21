@@ -103,6 +103,8 @@ namespace tp
         [[signal_slot]] void _on_dying_sfx_finished();
         [[signal_slot]] void _on_respawn_animation_finished();
 
+        godot::Vector2 get_respawn_pos() const;
+        void set_respawn_pos(godot::Vector2 pos);
         static const char* state_to_string(States state);
 
     protected:
