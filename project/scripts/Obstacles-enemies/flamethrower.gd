@@ -1,13 +1,14 @@
 extends Node2D
 
-	
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 func _on_player_finder_body_entered(body):
-	$AnimatedSprite2D.play("on")
+	animated_sprite_2d.play("on")
 
 
 func _on_player_finder_body_exited(body):
-	$AnimatedSprite2D.play("off")
+	animated_sprite_2d.play("off")
 
 
-func _on_area_2d_body_entered(body: CharacterBody2D):
+func _on_area_2d_body_entered(body: Player):
 	body.die()
