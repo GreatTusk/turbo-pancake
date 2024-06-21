@@ -24,11 +24,46 @@ namespace tp::inline constants
             constexpr inline auto score_label{ "../../CanvasLayer/Score" };
         }
 
-        namespace character
+        namespace player
         {
-            namespace voice_lines
+            namespace animations
             {
-                constexpr inline auto find{ "VoiceLines/Find/Find_1" };
+                constexpr inline auto double_jump{ "double_jump" };
+                constexpr inline auto jump{ "jump" };
+                constexpr inline auto wall_jump{ "wall_jump" };
+                constexpr inline auto disappearing{ "disappearing" };
+                constexpr inline auto appearing{ "appearing" };
+                constexpr inline auto idle{ "idle" };
+                constexpr inline auto run{ "run" };
+                constexpr inline auto fall{ "fall" };
+            }
+
+            namespace nodes
+            {
+                constexpr inline auto main{ "../../Main" };
+                constexpr inline auto world_border{ "WorldBorder" };
+                constexpr inline auto jump_cooldown{ "Timers/JumpCooldownTimer" };
+                constexpr inline auto left_ray{ "RayCastLeft" };
+                constexpr inline auto right_ray{ "RayCastRight" };
+                constexpr inline auto down_ray_1{ "RayCastDown1" };
+                constexpr inline auto down_ray_2{ "RayCastDown2" };
+                constexpr inline auto collision_shape{ "CollisionShape2D" };
+                constexpr inline auto animated_sprites{ "AnimatedSprite2D" };
+                constexpr inline auto animation_label{ "CanvasLayer/Control/Animation" };
+                constexpr inline auto velocity_label{ "CanvasLayer/Control/Velocity" };
+                constexpr inline auto state_label{ "CanvasLayer/Control/State" };
+                constexpr inline auto die_sfx{ "VoiceLines/Die/Die_1" };
+                constexpr inline auto jump_sfx{ "VoiceLines/Jump/Jump_1" };
+                constexpr inline auto landing_sfx{ "VoiceLines/FallToFloor/Landing_1" };
+                constexpr inline auto respawn_sfx{ "VoiceLines/Respawn/Respawn_1" };
+            }
+
+            namespace signals
+            {
+                constexpr inline auto world_border{ "_on_world_border_entered" };
+                constexpr inline auto respawn_finished{ "_on_respawn_animation_finished" };
+                constexpr inline auto dying_sfx_finished{ "_on_dying_sfx_finished" };
+                constexpr inline auto respawn{ "_on_respawn" };
             }
         }
 
