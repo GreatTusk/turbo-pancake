@@ -11,6 +11,7 @@
 #include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/node2d.hpp>
 
+#include "core/attributes.hpp"
 #include "util/bind.hpp"
 
 namespace tp
@@ -24,9 +25,8 @@ namespace tp
         Fan() = default;
         ~Fan() override = default;
 
-        void connect_signal();
-        void _on_area_2d_body_entered(godot::CharacterBody2D* body);
-        void _on_area_2d_body_exited(godot::CharacterBody2D* body);
+        [[signal_slot]] void _on_area_2d_body_entered(godot::CharacterBody2D* body);
+        [[signal_slot]] void _on_area_2d_body_exited(godot::CharacterBody2D* body);
         // Overriding from Node
         void _ready() override;
         void _process(double delta) override;
@@ -36,11 +36,7 @@ namespace tp
 
     private:
         // Pointers to the children of this node
-        godot::Area2D* area_2d{ nullptr };
-        godot::AnimatedSprite2D* sprite_2d{ nullptr };
         godot::AudioStreamPlayer2D* sfx_player{ nullptr };
-        // Pointer to the character body that is colliding, if any
-        godot::CharacterBody2D* collider{ nullptr };
     };
 
 }

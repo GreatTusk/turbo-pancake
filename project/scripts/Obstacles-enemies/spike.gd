@@ -1,4 +1,6 @@
 extends Node2D
 
-func _on_area_2d_body_entered(body: Player):
+func _on_area_2d_body_entered(body):
 	body.die()
+#func _on_area_2d_body_entered(body: Player):
+	#body.die()

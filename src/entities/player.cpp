@@ -40,7 +40,7 @@ namespace tp
         landing_sfx = this->get_node<godot::AudioStreamPlayer>(name::player::nodes::landing_sfx);
         respawn_sfx = this->get_node<godot::AudioStreamPlayer>(name::player::nodes::respawn_sfx);
 
-        godot::Area2D* world_border = main->get_node<godot::Area2D>(name::player::nodes::world_border);
+        auto* world_border = main->get_node<godot::Area2D>(name::player::nodes::world_border);
         world_border->connect("body_entered",
                               godot::Callable(this, name::player::signals::world_border));
         animated_sprites->connect("animation_finished",
@@ -254,7 +254,8 @@ namespace tp
 
     bool Player::is_on_ground() const
     {
-        return down_ray_1->is_colliding() || down_ray_2->is_colliding();
+        return (down_ray_1->is_colliding() || down_ray_2->is_colliding()) && get_velocity().y == 0.0f;
+        // return this->is_on_floor();
     }
 
     void Player::_on_world_border_entered(CharacterBody2D* player)

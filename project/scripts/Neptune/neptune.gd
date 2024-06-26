@@ -1,19 +1,20 @@
 extends CharacterBody2D
-
 # Child nodes
-@onready var die_lines = $VoiceLines/Die/Die_1
-@onready var jump_lines = $VoiceLines/Jump/Jump_1
-@onready var fall_lines = $VoiceLines/FallToFloor/Landing_1
-@onready var respawn_lines = $VoiceLines/Respawn/Respawn_1
-@onready var jump_cooldown_timer = $Timers/JumpCooldownTimer
-@onready var animated_sprites = $AnimatedSprite2D
-@onready var left_cast = $RayCastLeft
-@onready var right_cast = $RayCastRight
-@onready var ray_cast_down_1 = $RayCastDown1
-@onready var ray_cast_down_2 = $RayCastDown2
-@onready var collision_shape_2d = $CollisionShape2D
+@onready var die_lines := $VoiceLines/Die/Die_1
+@onready var jump_lines := $VoiceLines/Jump/Jump_1
+@onready var fall_lines := $VoiceLines/FallToFloor/Landing_1
+@onready var respawn_lines := $VoiceLines/Respawn/Respawn_1
+@onready var find_line = $VoiceLines/Find/Find_1
+@onready var jump_cooldown_timer := $Timers/JumpCooldownTimer
+@onready var animated_sprites := $AnimatedSprite2D
+@onready var left_cast := $RayCastLeft
+@onready var right_cast := $RayCastRight
+@onready var ray_cast_down_1 := $RayCastDown1
+@onready var ray_cast_down_2 := $RayCastDown2
+@onready var collision_shape_2d := $CollisionShape2D
 
 # Player consts
+const JUMP_OFF_WALL: float = 10000.0
 const JUMP_VEL: float = -200.0
 const WALL_VEL: float = 120.0
 const WALL_FRICTION: float = 0.1
@@ -24,67 +25,65 @@ const ACC: float = 400.0
 const AIR_ACC_Y: float = 620.0
 const GROUND_DEC: float = 900.0
 const AIR_DEC_X: float = 450.0
-const WALL_COLL_POS_R: int = 400
-const WALL_COLL_POS_L: int = 410
-const RAYC_COLL_POS_L: int = 45
-const RAYC_COLL_POS_R: int = 40
+const WALL_COLL_POS_R: float = 400.0
+const WALL_COLL_POS_L: float = 410.0
+const RAYC_COLL_POS_L: float = 45.0
+const RAYC_COLL_POS_R: float = 40.0
 
 # Control flow vars
 var double_jump: bool = true
 var double_jump_y: float
-var current_state: STATES = STATES.GROUND
+var current_state: States = States.GROUND
+var spawn_pos: Vector2 = Vector2(-24, 259)
 
-# References to external nodes
-var main: Node2D
-var animation_label: Label
-var velocity_label: Label
-var state_label: Label
+# Using signals to communicate to the outer nodes
+signal animation_changed(animation: StringName)
+signal velocity_changed(vel: StringName)
+signal state_changed(state: StringName)
 
+# Local signal
 signal respawn
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-# 600
-#var gravity = ProjectSettings.get("physics/2d/default_gravity")
-
-enum STATES {
+enum States {
 	GROUND,
 	AIR,
 	WALL
 }
 
-func _ready():
-	# Initialize references to external nodes
-	main = get_node("../../Main")
-	position = main.get_respawn_pos()
-	animation_label = main.get_node("CanvasLayer/Control/Animation")
-	velocity_label = main.get_node("CanvasLayer/Control/Velocity")
-	state_label = main.get_node("CanvasLayer/Control/State")
-	respawn.connect(Callable(self, "_on_respawn"))
+func _ready() -> void:
+	# Connect signals to external nodes
+	var main: Node2D = get_node("../../Main")
+	self.connect("animation_changed", Callable(main.get_node("CanvasLayer/Control/Animation"), "_on_animation_changed"))
+	self.connect("velocity_changed", Callable(main.get_node("CanvasLayer/Control/Velocity"), "_on_velocity_changed"))
+	self.connect("state_changed", Callable(main.get_node("CanvasLayer/Control/State"), "_on_state_changed"))
+	# Connect own signal
+	self.respawn.connect(Callable(self, "_on_respawn"))
+	position = spawn_pos
 	
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	# Debug: print on screen the animation, velocity and state
-	self.animation_label.set_text(animated_sprites.animation)
-	self.velocity_label.set_text(str(self.velocity))
-	self.state_label.set_text(str(STATES.keys()[current_state]))
+	emit_signal("animation_changed", animated_sprites.animation)
+	emit_signal("velocity_changed", str(self.velocity))
+	emit_signal("state_changed", str(States.keys()[current_state]))
 	
 	match current_state:
-		STATES.GROUND:
+		States.GROUND:
 			if not is_on_ground():
-				change_state(STATES.AIR)
+				change_state(States.AIR)
 			ground_movement(delta)
-		STATES.AIR:
+		States.AIR:
 			if is_on_ground():
-				change_state(STATES.GROUND)
+				change_state(States.GROUND)
 			# If colliding on wall, pressing either direction, and has not chnaged direction (which would get the player off the wall)
 			elif is_coll_wall() and holding_x_direction() and !changed_direction():
-				change_state(STATES.WALL)
+				change_state(States.WALL)
 			air_movement(delta)
-		STATES.WALL:
+		States.WALL:
 			# Not pressing against a wall nor holding any direction, nor changed direction
 			if not holding_x_direction() or !is_coll_wall() or changed_direction():
-				change_state(STATES.AIR)
+				change_state(States.AIR)
 			elif is_on_ground():
-				change_state(STATES.GROUND)
+				change_state(States.GROUND)
 			wall_movement(delta)
 	move_and_slide()
 
@@ -108,7 +107,6 @@ func ground_movement(delta) -> void:
 func air_movement(delta) -> void:
 	# Fall faster if going down
 	velocity.y = move_toward(velocity.y, MAX_SPEED_Y, AIR_ACC_Y * delta)
-	#velocity.y += ((gravity + ACC) * delta) if velocity.y < 0 else ((gravity + ACC) * delta * 1.5)
 	adjust_hitbox()
 	
 	if Input.is_action_just_pressed("jump") and double_jump:
@@ -142,33 +140,34 @@ func wall_movement(delta):
 		jump_cooldown_timer.start()
 		jump_lines.play()
 		# Move right or left depending on where the player is facing
-		velocity.x = WALL_VEL * (1 if animated_sprites.flip_h else -1)
+		velocity.x = WALL_VEL * (1 if animated_sprites.flip_h else -1) 
 		velocity.y = JUMP_VEL
-		change_state(STATES.AIR)
+		change_state(States.AIR)
 
-func exit_state(previous_state: STATES, new_state: STATES) -> void:
+func exit_state(previous_state: States, new_state: States) -> void:
 	match previous_state:
 		# do some cleanup
-		STATES.AIR:
+		States.AIR:
 			# If the player is not on the air anymore, reset their ability to double jump
 			double_jump = true
-			if new_state == STATES.GROUND:
+			if new_state == States.GROUND:
 				fall_lines.play()
 				
-func enter_state(new_state: STATES) -> void:
+func enter_state(new_state: States) -> void:
 	match new_state:
 		# do some logic
-		STATES.WALL: 
+		States.WALL: 
 			# Cancel the player's vertical momentum
 			velocity.y = 0
 	current_state = new_state
 
-func change_state(new_state : STATES) -> void:
+func change_state(new_state : States) -> void:
 	exit_state(current_state, new_state)
 	enter_state(new_state)
 
 func die():
 	animated_sprites.play("disappearing")
+	#self.collision_shape_2d.call_deferred("set_disabled", true);
 	# Prevent the player from moving
 	set_physics_process(false)
 	die_lines.play()
@@ -191,20 +190,20 @@ func adjust_hitbox() -> void:
 		right_cast.target_position.x = RAYC_COLL_POS_R
 		left_cast.target_position.x = RAYC_COLL_POS_R
 
-
-	
 func is_coll_wall() -> bool:
 	# Check the left or right cast depending on which way the player is facing
 	return (left_cast if animated_sprites.flip_h else right_cast).is_colliding()
 
 func is_on_ground():
-	return ray_cast_down_1.is_colliding() or ray_cast_down_2.is_colliding()
+	return (ray_cast_down_1.is_colliding() or ray_cast_down_2.is_colliding()) && self.velocity.y == 0
 
 func _on_world_border_entered(body):
 	die()
 
 func _on_respawn():
-	position = main.get_respawn_pos()
+	#collision_shape_2d.disabled = false
+	position = spawn_pos
+	velocity = Vector2.ZERO
 	animated_sprites.play("appearing")
 	respawn_lines.play()
 	
@@ -214,5 +213,18 @@ func _on_dying_sfx_finished():
 
 func _on_respawn_animation_finished():
 	if animated_sprites.animation == "appearing":
-		change_state(STATES.GROUND)
+		change_state(States.GROUND)
 		set_physics_process(true)
+
+func _on_fruit_collected():
+	find_line.play()
+
+# TODO: Introduce constants
+func _on_fan_collision(delta):
+	self.velocity.y -= 500.0 * delta
+	
+func _on_trampoline_jump():
+	self.velocity.y -= 300.0
+
+func set_respawn_pos(pos: Vector2):
+	spawn_pos = pos

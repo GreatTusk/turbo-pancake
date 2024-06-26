@@ -7,6 +7,11 @@ namespace tp::inline constants
 {
     namespace name
     {
+        namespace fan
+        {
+            constexpr inline auto sfx_player{ "SFX/AudioStreamPlayer2D" };
+        }
+
         namespace trampoline
         {
             constexpr inline auto area2d{ "Area2D" };
@@ -53,6 +58,7 @@ namespace tp::inline constants
                 constexpr inline auto velocity_label{ "CanvasLayer/Control/Velocity" };
                 constexpr inline auto state_label{ "CanvasLayer/Control/State" };
                 constexpr inline auto die_sfx{ "VoiceLines/Die/Die_1" };
+                constexpr inline auto find_sfx{ "VoiceLines/Find/Find_1" };
                 constexpr inline auto jump_sfx{ "VoiceLines/Jump/Jump_1" };
                 constexpr inline auto landing_sfx{ "VoiceLines/FallToFloor/Landing_1" };
                 constexpr inline auto respawn_sfx{ "VoiceLines/Respawn/Respawn_1" };
@@ -74,13 +80,14 @@ namespace tp::inline constants
         constexpr inline auto position_changed{ "position_changed" };
         constexpr inline auto entered_area{ "entered_area" };
         constexpr inline auto exited_area{ "exited_area" };
-        constexpr inline auto spawn_projectile{ "spawn_projectile" };
-        constexpr inline auto character_move{ "character_move" };
-        constexpr inline auto character_rotate{ "character_rotate" };
-        constexpr inline auto character_shoot{ "character_shoot" };
         constexpr inline auto body_entered{ "_on_area_2d_body_entered" };
         constexpr inline auto body_exited{ "_on_area_2d_body_exited" };
         constexpr inline auto animation_finished{ "_on_animation_finished" };
+        constexpr inline auto fruit_collected{ "fruit_score_changed" };
+        constexpr inline auto fruit_collected_player{ "fruit_collected" };
+        constexpr inline auto fan_colliding{ "fan_colliding" };
+        constexpr inline auto on_trampoline{ "on_trampoline" };
+
     }
 
     enum class LayerID : uint32_t {

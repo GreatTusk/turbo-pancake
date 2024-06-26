@@ -11,9 +11,10 @@ var initial_pos_y
 
 # Child nodes
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 @onready var ray_cast_2d = $RayCast2D
 @onready var blink_timer = $BlinkTimer
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
+
 
 func _ready():
 	initial_pos_y = global_position.y
@@ -56,6 +57,10 @@ func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite_2d.animation == "bottom_hit":
 		animated_sprite_2d.play("idle")
 
-func _on_hit_area_body_entered(body: Player):
+func _on_hit_area_body_entered(body):
 	#if body.is_on_ground():
 	body.die()
+
+#func _on_hit_area_body_entered(body: Player):
+	##if body.is_on_ground():
+	#body.die()

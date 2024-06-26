@@ -1,0 +1,148 @@
+[gd_scene load_steps=17 format=3 uid="uid://cvs2hp50inh6n"]
+
+[ext_resource type="Texture2D" uid="uid://cwnpov67uulbg" path="res://assets/Traps/Spike Head/Blink (54x52).png" id="1_20xtw"]
+[ext_resource type="Script" path="res://Scenes/spike_head.gd" id="1_evbw6"]
+[ext_resource type="Texture2D" uid="uid://bv3t4f47ndt3l" path="res://assets/Traps/Spike Head/Bottom Hit (54x52).png" id="2_vvq23"]
+[ext_resource type="Texture2D" uid="uid://brxptu2bfxqmx" path="res://assets/Traps/Spike Head/Idle.png" id="3_f0rb7"]
+[ext_resource type="Script" path="res://Scenes/DetectCast2.gd" id="5_4y0ht"]
+[ext_resource type="AudioStream" uid="uid://ch7nlq6a2vgxe" path="res://assets/sounds/explosion.wav" id="5_khclj"]
+
+[sub_resource type="Curve2D" id="Curve2D_vj3x2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 130)
+}
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg2hh"]
+atlas = ExtResource("1_20xtw")
+region = Rect2(0, 0, 54, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blutx"]
+atlas = ExtResource("1_20xtw")
+region = Rect2(54, 0, 54, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oygcs"]
+atlas = ExtResource("1_20xtw")
+region = Rect2(108, 0, 54, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpt3q"]
+atlas = ExtResource("1_20xtw")
+region = Rect2(162, 0, 54, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7thw"]
+atlas = ExtResource("2_vvq23")
+region = Rect2(0, 0, 54, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cch6t"]
+atlas = ExtResource("2_vvq23")
+region = Rect2(54, 0, 54, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7tw1"]
+atlas = ExtResource("2_vvq23")
+region = Rect2(108, 0, 54, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qve1"]
+atlas = ExtResource("2_vvq23")
+region = Rect2(162, 0, 54, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2llh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg2hh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blutx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oygcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpt3q")
+}],
+"loop": false,
+"name": &"blink",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7thw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cch6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7tw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qve1")
+}],
+"loop": false,
+"name": &"bottom_hit",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_f0rb7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[node name="SpikeHead" type="Node2D"]
+z_index = -1
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_vj3x2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 1.5708
+
+[node name="Body" type="StaticBody2D" parent="Path2D/PathFollow2D"]
+rotation = -1.5708
+collision_mask = 3
+script = ExtResource("1_evbw6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/Body"]
+sprite_frames = SubResource("SpriteFrames_v2llh")
+animation = &"blink"
+
+[node name="Shape" type="CollisionPolygon2D" parent="Path2D/PathFollow2D/Body"]
+polygon = PackedVector2Array(-7, -20, -13, -14, -20, -8, -20, 9, -13, 14, -8, 21, 9, 21, 14, 14, 21, 9, 21, -8, 14, -12, 9, -20)
+
+[node name="DetectCast2" type="RayCast2D" parent="Path2D/PathFollow2D/Body"]
+position = Vector2(-12, 0)
+target_position = Vector2(0, 130)
+collision_mask = 3
+script = ExtResource("5_4y0ht")
+
+[node name="DetectCast3" type="RayCast2D" parent="Path2D/PathFollow2D/Body"]
+position = Vector2(12, 0)
+target_position = Vector2(0, 130)
+collision_mask = 3
+script = ExtResource("5_4y0ht")
+
+[node name="FallingTimer" type="Timer" parent="Path2D/PathFollow2D/Body"]
+wait_time = 0.6
+one_shot = true
+
+[node name="AscendingTimer" type="Timer" parent="Path2D/PathFollow2D/Body"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="Path2D/PathFollow2D/Body"]
+collision_mask = 3
+
+[node name="Shape" type="CollisionPolygon2D" parent="Path2D/PathFollow2D/Body/Hitbox"]
+polygon = PackedVector2Array(-8, -21, -13, -14, -21, -8, -21, 9, -14, 14, -8, 22, 9, 22, 14, 15, 22, 9, 22, -8, 15, -13, 9, -21)
+
+[node name="StunnedTimer" type="Timer" parent="Path2D/PathFollow2D/Body"]
+wait_time = 0.6
+one_shot = true
+
+[node name="HitFloorSFX" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Body"]
+stream = ExtResource("5_khclj")
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Body/Hitbox" to="Path2D/PathFollow2D/Body" method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Path2D/PathFollow2D/Body/StunnedTimer" to="Path2D/PathFollow2D/Body" method="_on_stunned_timer_timeout"]

@@ -464,7 +464,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmiy4"]
-size = Vector2(149, 189)
+size = Vector2(134.5, 189)
 
 [node name="Player" type="Player"]
 position = Vector2(376, 108)
@@ -475,10 +475,10 @@ collision_layer = 2
 position = Vector2(407, 276)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_wrykv")
-animation = &"disappearing"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(400, 310)
+position = Vector2(407.25, 310)
 shape = SubResource("RectangleShape2D_cmiy4")
 metadata/_edit_lock_ = true
 

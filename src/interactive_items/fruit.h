@@ -23,25 +23,22 @@ namespace tp
     public:
         Fruit() = default;
         ~Fruit() override = default;
-        void connect_signal();
-        [[signal_slot]] void _on_area_2d_body_entered(const godot::CharacterBody2D* body) const;
-        // Overriding from Node
-        void _ready() override;
+        [[signal_slot]] void _on_area_2d_body_entered(const godot::CharacterBody2D* body);
         [[signal_slot]] void _on_animation_finished();
 
+        // Overriding from Node
+        void _ready() override;
         // Getters and setters
-        void set_fruit(const godot::String& p_fruit);
-        godot::String get_fruit();
+        [[property]] void set_fruit(const godot::StringName& p_fruit);
+        [[property]] godot::StringName get_fruit();
 
     protected:
         static void _bind_methods();
 
     private:
         // Pointers to the children of this node
-        godot::Area2D* area_2d{ nullptr };
         godot::AnimatedSprite2D* sprite_2d{ nullptr };
-        godot::Label* score_label{ nullptr };
-        godot::String fruit{ "Apple" };
+        [[property]] godot::StringName fruit{ "Apple" };
     };
 
 }

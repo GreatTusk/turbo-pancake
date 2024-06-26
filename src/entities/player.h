@@ -69,7 +69,7 @@ namespace tp
 
         // External nodes
 
-        godot::Node2D* main{ nullptr };
+        Node2D* main{ nullptr };
 
         // Debug
 

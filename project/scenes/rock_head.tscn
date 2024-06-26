@@ -100,7 +100,7 @@ debug_color = Color(0, 0.623159, 0.540019, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mjq63")
-animation = &"idle"
+animation = &"blink"
 
 [node name="HitArea" type="Area2D" parent="."]
 collision_mask = 2
