@@ -63,7 +63,7 @@ namespace tp
             case States::AIR:
                 if (is_on_ground())
                     change_state(States::GROUND);
-                else if (is_coll_wall() & holding_x_dir() & !changed_dir())
+                else if (is_coll_wall() && holding_x_dir() && !changed_dir())
                     change_state(States::WALL);
                 air_movement(delta);
                 break;

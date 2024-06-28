@@ -57,7 +57,6 @@ size = Vector2(25, 38)
 sprite_frames = SubResource("SpriteFrames_2xrk0")
 animation = &"on"
 autoplay = "on"
-frame_progress = 0.568971
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2

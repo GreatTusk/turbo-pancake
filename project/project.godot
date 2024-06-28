@@ -25,6 +25,10 @@ window/size/viewport_width=384
 window/size/viewport_height=216
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom_font="res://assets/fonts/PixelOperator8.ttf"
+
 [input]
 
 ui_left={

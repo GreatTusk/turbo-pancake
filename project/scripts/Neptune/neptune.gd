@@ -197,8 +197,11 @@ func is_coll_wall() -> bool:
 func is_on_ground():
 	return (ray_cast_down_1.is_colliding() or ray_cast_down_2.is_colliding()) && self.velocity.y == 0
 
-func _on_world_border_entered(body):
+func _on_kill_player():
 	die()
+
+func _on_checkpoint_triggered():
+	self.set_respawn_pos(Vector2(self.global_position.x, self.global_position.y))
 
 func _on_respawn():
 	#collision_shape_2d.disabled = false
