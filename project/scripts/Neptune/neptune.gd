@@ -34,7 +34,7 @@ const RAYC_COLL_POS_R: float = 40.0
 var double_jump: bool = true
 var double_jump_y: float
 var current_state: States = States.GROUND
-var spawn_pos: Vector2 = Vector2(-24, 259)
+var spawn_pos: Vector2
 
 # Using signals to communicate to the outer nodes
 signal animation_changed(animation: StringName)
@@ -58,6 +58,8 @@ func _ready() -> void:
 	self.connect("state_changed", Callable(main.get_node("CanvasLayer/Control/State"), "_on_state_changed"))
 	# Connect own signal
 	self.respawn.connect(Callable(self, "_on_respawn"))
+	spawn_pos = main.get_node("Checkpoints/Start").get_global_position()
+	spawn_pos.x -= 29.0
 	position = spawn_pos
 	
 func _physics_process(delta) -> void:

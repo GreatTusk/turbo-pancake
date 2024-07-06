@@ -15,8 +15,11 @@ var initial_pos_y
 @onready var blink_timer = $BlinkTimer
 @onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
+signal kill_player
 
 func _ready():
+	var player = self.get_node("../../../Player")
+	self.connect("kill_player", Callable(player, "_on_kill_player"))
 	initial_pos_y = global_position.y
 	self.set_physics_process(false)
 
@@ -59,7 +62,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_hit_area_body_entered(body):
 	#if body.is_on_ground():
-	body.die()
+	emit_signal("kill_player")
 
 #func _on_hit_area_body_entered(body: Player):
 	##if body.is_on_ground():

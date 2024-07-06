@@ -19,6 +19,12 @@ enum States {
 }
 var current_state: States = States.IDLE
 
+signal kill_player
+
+func _ready():
+	var player = self.get_tree().root.get_node("Main/Player")
+	self.connect("kill_player", Callable(player, "_on_kill_player"))
+	
 func _physics_process(delta) -> void:
 	match current_state:
 		States.IDLE:
@@ -49,7 +55,7 @@ func _on_hitbox_body_entered(body) -> void:
 		hit_floor_sfx.play()
 		offset = 1 - path_follow_2d.progress_ratio
 	elif body is CharacterBody2D:
-		body.die()
+		emit_signal("kill_player")
 
 func _on_stunned_timer_timeout() -> void:
 	hit_floor = false
