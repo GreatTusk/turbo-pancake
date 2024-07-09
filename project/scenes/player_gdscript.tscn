@@ -477,7 +477,7 @@ script = ExtResource("1_p5p1a")
 position = Vector2(407, 276)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_wrykv")
-animation = &"wall_jump"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(400, 310)
@@ -536,6 +536,10 @@ bus = &"VoiceLines"
 wait_time = 0.1
 one_shot = true
 
+[node name="BoostCooldown" type="Timer" parent="Timers"]
+wait_time = 0.35
+one_shot = true
+
 [node name="RayCastDown1" type="RayCast2D" parent="."]
 position = Vector2(340, 300)
 scale = Vector2(2, 2)
@@ -559,3 +563,4 @@ target_position = Vector2(45, -0.00012207)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_respawn_animation_finished"]
 [connection signal="finished" from="VoiceLines/Die/Die_1" to="." method="_on_dying_sfx_finished"]
+[connection signal="timeout" from="Timers/BoostCooldown" to="." method="_on_boost_cooldown_timeout"]

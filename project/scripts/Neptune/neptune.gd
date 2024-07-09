@@ -12,6 +12,8 @@ extends CharacterBody2D
 @onready var ray_cast_down_1 := $RayCastDown1
 @onready var ray_cast_down_2 := $RayCastDown2
 @onready var collision_shape_2d := $CollisionShape2D
+@onready var boost_cooldown_timer := $Timers/BoostCooldown
+
 
 # Player consts
 const JUMP_OFF_WALL: float = 10000.0
@@ -29,14 +31,17 @@ const WALL_COLL_POS_R: float = 400.0
 const WALL_COLL_POS_L: float = 410.0
 const RAYC_COLL_POS_L: float = 45.0
 const RAYC_COLL_POS_R: float = 40.0
+const BOOST_IMPULSE: float = 320.0
 
 # Control flow vars
 var double_jump: bool = true
 var double_jump_y: float
 var current_state: States = States.GROUND
 var spawn_pos: Vector2
+var can_boost: bool = true
+var gravity := MAX_SPEED_Y
 
-# Using signals to communicate to the outer nodes
+# Using signals to communicate to outer nodes
 signal animation_changed(animation: StringName)
 signal velocity_changed(vel: StringName)
 signal state_changed(state: StringName)
@@ -106,9 +111,12 @@ func ground_movement(delta) -> void:
 		animated_sprites.play("idle")
 		self.velocity.x = move_toward(self.velocity.x, 0, GROUND_DEC * delta)
 	
+	if Input.is_action_just_pressed("boost") && boost_cooldown_timer.is_stopped():
+		boost()
+
 func air_movement(delta) -> void:
 	# Fall faster if going down
-	velocity.y = move_toward(velocity.y, MAX_SPEED_Y, AIR_ACC_Y * delta)
+	velocity.y = move_toward(velocity.y, gravity, AIR_ACC_Y * delta)
 	adjust_hitbox()
 	
 	if Input.is_action_just_pressed("jump") and double_jump:
@@ -117,6 +125,7 @@ func air_movement(delta) -> void:
 		velocity.y = DOUBLE_JUMP_VEL
 		double_jump = false
 		double_jump_y = self.position.y
+		can_boost = true
 	# If not double jumping and moving upwards
 	elif velocity.y < 0 and animated_sprites.animation != "double_jump":
 		animated_sprites.play("jump")
@@ -130,7 +139,10 @@ func air_movement(delta) -> void:
 		velocity.x = move_toward(self.velocity.x, direction * MAX_SPEED_X, ACC * delta)
 	else:
 		self.velocity.x = move_toward(self.velocity.x, 0, AIR_DEC_X * delta)
-	
+		
+	if Input.is_action_just_pressed("boost") && can_boost && boost_cooldown_timer.is_stopped():
+		boost()
+		
 func wall_movement(delta):
 	animated_sprites.play("wall_jump")
 	# Simulate friction when on a wall
@@ -152,12 +164,16 @@ func exit_state(previous_state: States, new_state: States) -> void:
 		States.AIR:
 			# If the player is not on the air anymore, reset their ability to double jump
 			double_jump = true
+			if new_state == States.WALL:
+				can_boost = true
 			if new_state == States.GROUND:
 				fall_lines.play()
 				
 func enter_state(new_state: States) -> void:
 	match new_state:
 		# do some logic
+		States.GROUND:
+			can_boost = true
 		States.WALL: 
 			# Cancel the player's vertical momentum
 			velocity.y = 0
@@ -196,8 +212,18 @@ func is_coll_wall() -> bool:
 	# Check the left or right cast depending on which way the player is facing
 	return (left_cast if animated_sprites.flip_h else right_cast).is_colliding()
 
+func boost() -> void:
+	#self.velocity = Vector2.ZERO
+	self.velocity.x = (-1 if animated_sprites.flip_h else 1) * BOOST_IMPULSE 
+	respawn_lines.play()
+	animated_sprites.play("jump")
+	can_boost = false
+	gravity = 0.0
+	boost_cooldown_timer.start()
+
 func is_on_ground():
-	return (ray_cast_down_1.is_colliding() or ray_cast_down_2.is_colliding()) && self.velocity.y == 0
+	#return (ray_cast_down_1.is_colliding() or ray_cast_down_2.is_colliding()) && self.velocity.y == 0
+	return is_on_floor()
 
 func _on_kill_player():
 	die()
@@ -233,3 +259,6 @@ func _on_trampoline_jump():
 
 func set_respawn_pos(pos: Vector2):
 	spawn_pos = pos
+
+func _on_boost_cooldown_timeout():
+	gravity = MAX_SPEED_Y
