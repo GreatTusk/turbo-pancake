@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbjvwvbxcm7qf"]
+
+[ext_resource type="Script" path="res://Scenes/Score.gd" id="1_pvsn7"]
+[ext_resource type="Script" path="res://Scenes/Animation.gd" id="2_q2h3o"]
+[ext_resource type="Script" path="res://Scenes/Velocity.gd" id="3_2p8jw"]
+[ext_resource type="Script" path="res://Scenes/State.gd" id="4_43bav"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 2
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -14.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "0"
+script = ExtResource("1_pvsn7")
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 41.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Animation" type="Label" parent="Control"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("2_q2h3o")
+metadata/_edit_use_anchors_ = true
+
+[node name="Velocity" type="Label" parent="Control"]
+layout_mode = 0
+offset_top = 23.0
+offset_right = 40.0
+offset_bottom = 46.0
+script = ExtResource("3_2p8jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="State" type="Label" parent="Control"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 63.0
+script = ExtResource("4_43bav")
+metadata/_edit_use_anchors_ = true
