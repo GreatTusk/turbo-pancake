@@ -85,8 +85,8 @@ namespace tp::inline constants
         constexpr inline auto animation_finished{ "_on_animation_finished" };
         constexpr inline auto fruit_collected{ "fruit_score_changed" };
         constexpr inline auto fruit_collected_player{ "fruit_collected" };
-        constexpr inline auto fan_colliding{ "fan_colliding" };
-        constexpr inline auto on_trampoline{ "on_trampoline" };
+        constexpr inline auto fan_colliding{ "fan_collided" };
+        constexpr inline auto on_trampoline{ "jumped_on" };
 
     }
 

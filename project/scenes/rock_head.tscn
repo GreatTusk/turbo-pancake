@@ -90,6 +90,8 @@ animations = [{
 size = Vector2(32, 25)
 
 [node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 5
+collision_mask = 4
 freeze = true
 contact_monitor = true
 script = ExtResource("4_y87xp")
@@ -132,6 +134,7 @@ debug_color = Color(0.930364, 2.9071e-05, 0.657066, 0.42)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 17)
+collision_mask = 4
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_wo8s6")

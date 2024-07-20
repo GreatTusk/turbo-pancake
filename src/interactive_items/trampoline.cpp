@@ -12,9 +12,6 @@ namespace tp
         auto* area_2d = this->get_node<godot::Area2D>(name::trampoline::area2d);
         area_2d->connect("body_entered", godot::Callable(this, event::body_entered));
 
-        auto* player = this->get_node<godot::CharacterBody2D>("../../../Main/Player");
-        this->connect(event::on_trampoline, godot::Callable(player, "_on_trampoline_jump"));
-
         sprite_2d = this->get_node<godot::AnimatedSprite2D>(name::trampoline::sprite);
         sfx_player = this->get_node<godot::AudioStreamPlayer2D>(name::trampoline::sfx_player);
         // This is necessary to connect the built-in signal "body_entered" from the Area2D to this node

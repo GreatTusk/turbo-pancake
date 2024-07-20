@@ -24,10 +24,11 @@ namespace tp
         area_2d->connect("body_exited", godot::Callable(this, event::body_exited));
 
         // Getting pointers to external nodes to connect signals
-        auto* score_label = this->get_node<godot::Label>(name::ui::score_label);
-        this->connect(event::fruit_collected, godot::Callable(score_label, "_on_fruit_collected"));
-        auto* player = this->get_node<godot::CharacterBody2D>("../../../Main/Player");
-        this->connect(event::fruit_collected_player, godot::Callable(player, "_on_fruit_collected"));
+        // Deprecated
+        // auto* score_label = this->get_node<godot::Label>(name::ui::score_label);
+        // this->connect(event::fruit_collected, godot::Callable(score_label, "_on_fruit_collected"));
+        // auto* player = this->get_node<godot::CharacterBody2D>("../../../Main/Player");
+        // this->connect(event::fruit_collected_player, godot::Callable(player, "_on_fruit_collected"));
 
         // Sprite2D is used on methods, so its pointer is stored in the class for easy access
         sprite_2d = this->get_node<godot::AnimatedSprite2D>(name::trampoline::sprite);

@@ -1,0 +1,2 @@
+class_name StartCheckpoint
+extends Node2D
