@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://5w3cd35bd1bj"
+path="res://.godot/imported/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav-89f4318d76d9c09c18c5871f43f988e0.sample"
+
+[deps]
+
+source_file="res://assets/Music/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav"
+dest_files=["res://.godot/imported/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav-89f4318d76d9c09c18c5871f43f988e0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

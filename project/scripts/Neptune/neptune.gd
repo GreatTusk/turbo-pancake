@@ -46,6 +46,9 @@ var spawn_pos: Vector2:
 var can_boost: bool = true
 var gravity := MAX_SPEED_Y
 
+var animation_finished: bool = false
+var spawn_sfx_finished: bool = false
+
 # Using signals to communicate to outer nodes
 signal animation_changed(animation: StringName)
 signal velocity_changed(vel: StringName)
@@ -62,10 +65,14 @@ enum States {
 
 func _ready() -> void:
 	# Connect own signal
-	#self.respawn.connect(Callable(self, "_on_respawn"))
 	self.respawn.connect(_on_respawn)
+	self.set_physics_process(false)
+	spawn()
+	await animated_sprites.animation_finished
+	self.set_physics_process(true)
 	
 func _physics_process(delta: float) -> void:
+	
 	# Debug: print on screen the animation, velocity and state
 	self.animation_changed.emit(animated_sprites.animation)
 	self.velocity_changed.emit(str(self.velocity))
@@ -163,14 +170,14 @@ func wall_movement(delta: float) -> void:
 		change_state(States.AIR)
 
 func exit_state(previous_state: States, new_state: States) -> void:
+	# do some cleanup
 	match previous_state:
-		# do some cleanup
 		States.AIR:
 			# If the player is not on the air anymore, reset their ability to double jump
 			double_jump = true
 			if new_state == States.WALL:
 				can_boost = true
-			if new_state == States.GROUND:
+			elif new_state == States.GROUND:
 				fall_lines.play()
 				
 func enter_state(new_state: States) -> void:
@@ -219,9 +226,19 @@ func boost() -> void:
 	gravity = 0.0
 	boost_cooldown_timer.start()
 
+func set_respawn_pos(pos: Vector2) -> void:
+	spawn_pos = pos
+
 func is_on_ground() -> bool:
 	return (ray_cast_down_1.is_colliding() || ray_cast_down_2.is_colliding()) && self.velocity.y == 0
 	#return is_on_floor()
+
+func spawn() -> void:
+	self.velocity = Vector2.ZERO
+	animated_sprites.play("appearing")
+	respawn_lines.play()
+
+#region Signal handlers
 
 func _on_kill_player() -> void:
 	die()
@@ -231,18 +248,14 @@ func _on_checkpoint_triggered() -> void:
 
 func _on_respawn() -> void:
 	self.position = spawn_pos
-	self.velocity = Vector2.ZERO
-	animated_sprites.play("appearing")
-	respawn_lines.play()
+	spawn()
 	
+func _on_respawn_sfx_finished() -> void:
+	self.set_physics_process(true)
+
 func _on_dying_sfx_finished() -> void:
 	# Continuation of die(), executed once the dying sound has finished playing
 	self.respawn.emit()
-
-func _on_respawn_animation_finished() -> void:
-	if animated_sprites.animation == "appearing":
-		change_state(States.GROUND)
-		set_physics_process(true)
 
 func _on_fruit_collected() -> void:
 	find_line.play()
@@ -253,8 +266,6 @@ func _on_fan_collision(delta: float) -> void:
 func _on_trampoline_jump() -> void:
 	self.velocity.y -= TRAMPOLINE_IMPULSE
 
-func set_respawn_pos(pos: Vector2) -> void:
-	spawn_pos = pos
-
 func _on_boost_cooldown_timeout() -> void:
 	gravity = MAX_SPEED_Y
+#endregion

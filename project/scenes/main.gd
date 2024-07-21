@@ -5,6 +5,8 @@ extends Node2D
 @onready var level := $Level as Node2D
 @onready var world_border := $Level/WorldBorder as Area2D
 @onready var checkpoints := $Level/Checkpoints as Node
+@onready var level_ui := $LevelUI as CanvasLayer
+@onready var score_label := level_ui.get_node("Score") as Label
 # Scene containers
 @onready var trampolines := $Level/Props/Trampolines as Node
 @onready var fans := $Level/Props/Fans as Node
@@ -12,7 +14,7 @@ extends Node2D
 @onready var flamethrowers := $Level/Traps/Flamethrowers as Node
 @onready var enemies := $Level/Enemies as Node
 @onready var fruits := $Level/Fruits as Node
-@onready var score_label := $Level/CanvasLayer/Score as Label
+
 
 #@export var player_y_spawn_pos: float = 0.0
 
@@ -20,9 +22,9 @@ const PLAYER_HEIGHT: float = 10.0
 
 func _ready() -> void:
 	# Handle connections between the player and the level
-	player.connect("animation_changed", Callable(level.get_node("CanvasLayer/Control/Animation"), "_on_animation_changed"))
-	player.connect("velocity_changed", Callable(level.get_node("CanvasLayer/Control/Velocity"), "_on_velocity_changed"))
-	player.connect("state_changed", Callable(level.get_node("CanvasLayer/Control/State"), "_on_state_changed"))
+	player.connect("animation_changed", Callable(level_ui.get_node("Control/Animation"), "_on_animation_changed"))
+	player.connect("velocity_changed", Callable(level_ui.get_node("Control/Velocity"), "_on_velocity_changed"))
+	player.connect("state_changed", Callable(level_ui.get_node("Control/State"), "_on_state_changed"))
 	world_border.connect("kill_player", Callable(player, "_on_kill_player"))
 	
 	# Setting the player's spawn position
@@ -62,3 +64,4 @@ func _ready() -> void:
 		
 func _on_level_finished() -> void:
 	print("Finished")
+
