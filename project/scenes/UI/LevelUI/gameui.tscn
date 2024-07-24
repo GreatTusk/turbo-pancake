@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/Menu/Buttons/Back.png" id="1_a37we"]
 [ext_resource type="Script" path="res://Scenes/UI/LevelUI/gameui.gd" id="1_kj64q"]
-[ext_resource type="Script" path="res://Scenes/Score.gd" id="1_pvsn7"]
-[ext_resource type="Script" path="res://Scenes/Animation.gd" id="2_q2h3o"]
-[ext_resource type="Script" path="res://Scenes/Velocity.gd" id="3_2p8jw"]
-[ext_resource type="Script" path="res://Scenes/State.gd" id="4_43bav"]
+[ext_resource type="Script" path="res://Scripts/UI/score_label.gd" id="3_045kw"]
+[ext_resource type="Script" path="res://Scripts/UI/player_animation_label.gd" id="4_t5sm7"]
+[ext_resource type="Script" path="res://Scripts/UI/player_velocity_label.gd" id="5_ckp1w"]
+[ext_resource type="Script" path="res://Scripts/UI/player_state_label.gd" id="6_4hvj5"]
 [ext_resource type="PackedScene" uid="uid://2nmlqgkwuq0g" path="res://Scenes/UI/level_modal.tscn" id="7_khtmo"]
 [ext_resource type="PackedScene" uid="uid://bnl325vuvde6k" path="res://Scenes/UI/level_finished.tscn" id="8_umwcv"]
 
@@ -32,7 +32,7 @@ grow_horizontal = 0
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 16
 text = "0"
-script = ExtResource("1_pvsn7")
+script = ExtResource("3_045kw")
 metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="VBoxContainer" parent="."]
@@ -54,14 +54,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "SAMPLE"
 horizontal_alignment = 2
-script = ExtResource("2_q2h3o")
+script = ExtResource("4_t5sm7")
 
 [node name="Velocity" type="Label" parent="Control"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "SAMPLE"
 horizontal_alignment = 2
-script = ExtResource("3_2p8jw")
+script = ExtResource("5_ckp1w")
 metadata/_edit_use_anchors_ = true
 
 [node name="State" type="Label" parent="Control"]
@@ -70,7 +70,7 @@ theme_override_font_sizes/font_size = 8
 text = "SAMPLE
 "
 horizontal_alignment = 2
-script = ExtResource("4_43bav")
+script = ExtResource("6_4hvj5")
 metadata/_edit_use_anchors_ = true
 
 [node name="LevelModal" parent="." instance=ExtResource("7_khtmo")]
@@ -84,10 +84,5 @@ anchor_bottom = 0.5
 [node name="LevelFinished" parent="." instance=ExtResource("8_umwcv")]
 process_mode = 0
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

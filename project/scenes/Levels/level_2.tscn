@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://br21iiud372pb"]
 
-[ext_resource type="PackedScene" uid="uid://dwebwidqfamdi" path="res://Scenes/cave.tscn" id="1_5vg6l"]
+[ext_resource type="PackedScene" uid="uid://dwebwidqfamdi" path="res://Scenes/Backgrounds/cave.tscn" id="1_5vg6l"]
 [ext_resource type="PackedScene" uid="uid://dbjvwvbxcm7qf" path="res://Scenes/UI/LevelUI/gameui.tscn" id="2_8ok1a"]
-[ext_resource type="PackedScene" uid="uid://bfrx0d032inre" path="res://Scenes/player_gdscript.tscn" id="3_ixbb6"]
-[ext_resource type="TileSet" uid="uid://vptcadldwt6f" path="res://Scenes/main.tres" id="4_n1jcx"]
-[ext_resource type="PackedScene" uid="uid://26tx714323x3" path="res://Scenes/start.tscn" id="5_2xs6m"]
-[ext_resource type="PackedScene" uid="uid://mkxeqvc338kv" path="res://Scenes/apple.tscn" id="6_5cb82"]
-[ext_resource type="PackedScene" uid="uid://d074vn7exht1t" path="res://Scenes/spike.tscn" id="7_up70j"]
+[ext_resource type="PackedScene" uid="uid://bfrx0d032inre" path="res://Scenes/Player/player.tscn" id="3_ixbb6"]
+[ext_resource type="TileSet" uid="uid://vptcadldwt6f" path="res://Scenes/Tileset/tileset.tres" id="4_n1jcx"]
+[ext_resource type="PackedScene" uid="uid://26tx714323x3" path="res://Scenes/Props/start_flag.tscn" id="5_2xs6m"]
+[ext_resource type="PackedScene" uid="uid://mkxeqvc338kv" path="res://Scenes/Items/apple.tscn" id="6_5cb82"]
+[ext_resource type="PackedScene" uid="uid://d074vn7exht1t" path="res://Scenes/Obstacles/spike.tscn" id="7_up70j"]
 
 [node name="Level2" type="Node2D"]
 

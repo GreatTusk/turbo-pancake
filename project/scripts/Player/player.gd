@@ -24,17 +24,17 @@ extends CharacterBody2D
 # Player consts
 const WALL_IMPULSE: float = 120.0
 const WALL_FRICTION: float = 0.1
-# Jump impulse
+
 const JUMP_VEL: float = -187.0
 const DOUBLE_JUMP_VEL: float = JUMP_VEL * 1.2
-# XY top speeds
+
 const MAX_SPEED: float = 200.0
 const MAX_GRAVITY: float = 300.0
-# Universal acc, gravity
+
 const ACC: float = 15.0
 const AIR_ACC_X: float = 12.0
 const AIR_ACC_Y: float = 550.0
-# Deacceleration
+
 const GROUND_DEC: float = 20.0
 const AIR_DEC_X: float = 10.0
 
@@ -112,14 +112,16 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func ground_movement() -> void:
-	# Handle jump.
+	# Whether the user pressed jump or a jump had been previously buffered, jump
 	if Input.is_action_just_pressed("jump") || !jump_buffer_timer.is_stopped():
 		jump_lines.play()
 		velocity.y = JUMP_VEL
+		# Prevents the jump being re-triggered on the next frame
 		jump_buffer_timer.stop()
 		# Return - if we've jumped we're no longer in the ground
 		return
-		
+	
+	# Horizontal movement
 	var direction: float = Input.get_axis("move_left", "move_right")
 	if direction != 0.0:
 		animated_sprites.play("run")
@@ -136,13 +138,15 @@ func air_movement(delta: float) -> void:
 	# Applies gravity. It requires delta in the calculation because gravity is an acceleration
 	velocity.y = move_toward(velocity.y, gravity, AIR_ACC_Y * delta)
 	adjust_hitbox()
-
+	
+	# Vertical movement
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer.start()
+		
 		if !coyote_timer.is_stopped():
 			jump_lines.play()
 			velocity.y = JUMP_VEL
-		# Vertical movement
+		
 		if double_jump:
 			animated_sprites.play("double_jump")
 			jump_lines.play()
@@ -151,10 +155,10 @@ func air_movement(delta: float) -> void:
 			double_jump_y = self.position.y
 			can_boost = true
 			
-	# If not double jumping and moving upwards
+	# If not double jumping and going up
 	if velocity.y < 0 && animated_sprites.animation != "double_jump":
 		animated_sprites.play("jump")
-	# If affected by gravity and not double jumping, or after double jumping
+	# If falling and not double jumping, or after double jumping
 	elif velocity.y > 0 && (animated_sprites.animation != "double_jump" || self.position.y >= double_jump_y):
 		animated_sprites.play("fall")
 	
@@ -197,6 +201,7 @@ func exit_state(previous_state: States, new_state: States) -> void:
 		States.GROUND:
 			if new_state == States.AIR:
 				coyote_timer.start()
+				
 func enter_state(new_state: States) -> void:
 	match new_state:
 		# do some logic
@@ -246,10 +251,6 @@ func boost() -> void:
 
 func set_respawn_pos(pos: Vector2) -> void:
 	spawn_pos = pos
-
-#func is_on_floor() -> bool:
-	##return (ray_cast_down_1.is_colliding() || ray_cast_down_2.is_colliding()) && self.velocity.y == 0
-	#return is_on_floor()
 
 func spawn() -> void:
 	self.velocity = Vector2.ZERO

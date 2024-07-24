@@ -8,11 +8,8 @@
 
 [node name="ParallaxBackgrounds" type="Node2D"]
 position = Vector2(12, -1)
-scale = Vector2(1.5, 1.5)
 
 [node name="SnowyMountains" type="ParallaxBackground" parent="."]
-scale = Vector2(1, 1.5)
-transform = Transform2D(1, 0, 0, 1.5, 0, 0)
 scroll_base_scale = Vector2(0.2, 0.2)
 scroll_ignore_camera_zoom = true
 

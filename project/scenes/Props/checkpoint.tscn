@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnam5gof6rldu"]
 
-[ext_resource type="Script" path="res://Scripts/Props/Checkpoint.gd" id="1_mv5wd"]
-[ext_resource type="SpriteFrames" uid="uid://fxdpxdqbboq5" path="res://Scenes/checkpoint.tres" id="2_sjd8c"]
+[ext_resource type="Script" path="res://Scripts/Props/checkpoint.gd" id="1_mv5wd"]
+[ext_resource type="SpriteFrames" uid="uid://fxdpxdqbboq5" path="res://Scenes/Props/checkpoint.tres" id="2_sjd8c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5noi"]
 size = Vector2(9, 4)
