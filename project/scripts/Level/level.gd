@@ -44,6 +44,7 @@ func _ready() -> void:
 	# Setting the player's spawn position
 	var start_pos := level.get_node("Checkpoints/Start") as StartCheckpoint
 	var player_start_pos := start_pos.global_position
+	# FIXME: why * 3?
 	player.set_respawn_pos(Vector2(player_start_pos.x - PLAYER_HEIGHT * 3, player_start_pos.y - PLAYER_HEIGHT))
 	
 	# Connecting signals

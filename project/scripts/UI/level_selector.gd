@@ -4,7 +4,7 @@ extends Control
 @onready var levels_container := $Levels as GridContainer
 
 signal back_to_title_screen
-signal level_selected(level_scene_path: String)
+signal level_selected(level_scene_path: String, level_index: int)
 
 const LEVELS_PATH: String = "res://Scenes/Levels"
 
@@ -46,7 +46,7 @@ func count_files_dir(path: String) -> int:
 
 func _on_level_button_pressed(level_index: int) -> void:
 	# Emit the level's scene path to Main
-	level_selected.emit((LEVELS_PATH + "/level_%s.tscn") % level_index)
+	level_selected.emit((LEVELS_PATH + "/level_%s.tscn") % level_index, level_index)
 
 func _on_to_title_screen_pressed()  -> void:
 	back_to_title_screen.emit()

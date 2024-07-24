@@ -1035,10 +1035,6 @@ position = Vector2(816.04, 331)
 fruit = &"Banana"
 position = Vector2(962.686, 331)
 
-[node name="Banana4" parent="Level/Fruits" instance=ExtResource("18_auu4r")]
-fruit = &"Banana"
-position = Vector2(1302.04, 347)
-
 [node name="Banana5" parent="Level/Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Banana"
 position = Vector2(2424.04, 241.5)
@@ -1126,6 +1122,7 @@ position = Vector2(3376.79, 201)
 [node name="BGM" type="AudioStreamPlayer" parent="Level"]
 stream = ExtResource("19_d2wju")
 autoplay = true
+bus = &"music"
 script = ExtResource("20_2fu0e")
 
 [connection signal="body_entered" from="Level/WorldBorder" to="Level/WorldBorder" method="_on_body_entered"]

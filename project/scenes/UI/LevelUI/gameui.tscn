@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbjvwvbxcm7qf"]
+[gd_scene load_steps=10 format=3 uid="uid://dbjvwvbxcm7qf"]
 
 [ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/Menu/Buttons/Back.png" id="1_a37we"]
 [ext_resource type="Script" path="res://Scenes/UI/LevelUI/gameui.gd" id="1_kj64q"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/player_state_label.gd" id="6_4hvj5"]
 [ext_resource type="PackedScene" uid="uid://2nmlqgkwuq0g" path="res://Scenes/UI/level_modal.tscn" id="7_khtmo"]
 [ext_resource type="PackedScene" uid="uid://bnl325vuvde6k" path="res://Scenes/UI/level_finished.tscn" id="8_umwcv"]
+[ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://Scenes/UI/config_screen.tscn" id="9_6t7ff"]
 
 [node name="LevelUI" type="CanvasLayer"]
 layer = 2
@@ -83,6 +84,10 @@ anchor_bottom = 0.5
 
 [node name="LevelFinished" parent="." instance=ExtResource("8_umwcv")]
 process_mode = 0
+visible = false
+
+[node name="ConfigScreen" parent="." instance=ExtResource("9_6t7ff")]
+process_mode = 2
 visible = false
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

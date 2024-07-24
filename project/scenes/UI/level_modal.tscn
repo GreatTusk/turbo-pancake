@@ -79,5 +79,6 @@ texture_normal = ExtResource("5_0ebug")
 stretch_mode = 5
 
 [connection signal="pressed" from="Modal/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Modal/HBoxContainer/VolumeManager" to="." method="_on_volume_manager_pressed"]
 [connection signal="pressed" from="Modal/HBoxContainer/ToLevelSelector" to="." method="_on_to_level_selector_pressed"]
 [connection signal="pressed" from="Modal/HBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]
