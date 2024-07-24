@@ -1,0 +1,35 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://ekw4qaicami7"]
+
+[sub_resource type="Curve" id="Curve_6a1x4"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7h80k"]
+curve = SubResource("Curve_6a1x4")
+
+[sub_resource type="Curve" id="Curve_sfth7"]
+min_value = -1.0
+_data = [Vector2(0, -0.811639), 0.0, 0.895865, 0, 1, Vector2(1, 0.0842265), -0.124541, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p0omc"]
+curve = SubResource("Curve_sfth7")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -50.0
+radial_accel_max = 50.0
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+tangential_accel_curve = SubResource("CurveTexture_p0omc")
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_7h80k")
+anim_offset_max = 1.0

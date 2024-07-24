@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnl325vuvde6k"]
+
+[ext_resource type="Script" path="res://Scripts/UI/level_finished.gd" id="1_ji36s"]
+[ext_resource type="Texture2D" uid="uid://fg6kjsyb0rjh" path="res://assets/Menu/Buttons/Volume.png" id="3_afu1h"]
+[ext_resource type="Texture2D" uid="uid://cl31th6uhrsur" path="res://assets/Menu/Buttons/Levels.png" id="4_05ldm"]
+[ext_resource type="Texture2D" uid="uid://dg0e7n4x3hj5o" path="res://assets/Menu/Buttons/Restart.png" id="5_yn7jj"]
+
+[node name="LevelFinished" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ji36s")
+
+[node name="Modal" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -67.5
+offset_right = 112.5
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Modal"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelCompleted" type="Label" parent="Modal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0888889
+anchor_top = 0.173
+anchor_right = 0.915556
+anchor_bottom = 0.237037
+grow_horizontal = 2
+size_flags_vertical = 1
+text = "Level finished!"
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Modal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.233333
+anchor_top = 0.292593
+anchor_right = 0.766667
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VolumeManager" type="TextureButton" parent="Modal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+texture_normal = ExtResource("3_afu1h")
+stretch_mode = 5
+
+[node name="ToLevelSelector" type="TextureButton" parent="Modal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+texture_normal = ExtResource("4_05ldm")
+stretch_mode = 5
+
+[node name="RestartLevel" type="TextureButton" parent="Modal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+texture_normal = ExtResource("5_yn7jj")
+stretch_mode = 5
+
+[connection signal="pressed" from="Modal/HBoxContainer/ToLevelSelector" to="." method="_on_to_level_selector_pressed"]
+[connection signal="pressed" from="Modal/HBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]

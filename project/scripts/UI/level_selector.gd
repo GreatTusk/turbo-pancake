@@ -25,7 +25,7 @@ func _ready() -> void:
 		# Wire up their pressed signal binding the index to _on_level_button_pressed
 		level_button.pressed.connect(_on_level_button_pressed.bind(i))
 		levels_container.add_child(level_button)
-
+		
 # From https://docs.godotengine.org/en/4.0/classes/class_diraccess.html#diraccess
 func count_files_dir(path: String) -> int:
 	var dir := DirAccess.open(path)

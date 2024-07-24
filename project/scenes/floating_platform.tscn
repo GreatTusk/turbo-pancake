@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bh4fvrj13b1ox"]
+[gd_scene load_steps=13 format=3 uid="uid://bh4fvrj13b1ox"]
 
 [ext_resource type="Texture2D" uid="uid://c4y4ecubr14xk" path="res://assets/Traps/Falling Platforms/Off.png" id="1_5oyxr"]
 [ext_resource type="Script" path="res://Scenes/floating_platform.gd" id="1_ve7ww"]
 [ext_resource type="Texture2D" uid="uid://bj2ywarp6b0wh" path="res://assets/Traps/Falling Platforms/On (32x10).png" id="2_o8l0m"]
+[ext_resource type="Material" uid="uid://bg3aikph12prs" path="res://Scenes/particles/floating_platform.tres" id="4_wo3gu"]
+[ext_resource type="Texture2D" uid="uid://c2cnxu6uqh2pa" path="res://assets/Other/Dust Particle.png" id="5_xt7mx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88a5r"]
 size = Vector2(32, 5)
@@ -76,5 +78,14 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fan"]
 position = Vector2(0.5, 2.5)
 shape = SubResource("RectangleShape2D_5kbl6")
+
+[node name="AirParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 6)
+amount = 12
+process_material = ExtResource("4_wo3gu")
+texture = ExtResource("5_xt7mx")
+preprocess = 5.0
+trail_lifetime = 2.0
+trail_section_subdivisions = 16
 
 [connection signal="body_entered" from="Fan" to="." method="_on_fan_body_entered"]

@@ -2,6 +2,8 @@
 // Created by F776 on 08-06-2024.
 //
 
+#include <godot_cpp/classes/area2d.hpp>
+
 #include "core/constants.hpp"
 #include "trampoline.h"
 
@@ -14,11 +16,10 @@ namespace tp
 
         sprite_2d = this->get_node<godot::AnimatedSprite2D>(name::trampoline::sprite);
         sfx_player = this->get_node<godot::AudioStreamPlayer2D>(name::trampoline::sfx_player);
-        // This is necessary to connect the built-in signal "body_entered" from the Area2D to this node
     }
 
     [[signal_slot]]
-    void Trampoline::_on_area_2d_body_entered(godot::CharacterBody2D* body)
+    void Trampoline::_on_area_2d_body_entered(godot::Node2D* body)
     {
         sprite_2d->play(name::trampoline::animation::launch);
         sfx_player->play();

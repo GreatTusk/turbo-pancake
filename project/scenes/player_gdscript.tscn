@@ -476,7 +476,7 @@ collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_p5p1a")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
 position = Vector2(407, 276)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_wrykv")
@@ -485,13 +485,14 @@ autoplay = "appearing"
 frame = 6
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(400, 310)
 shape = SubResource("RectangleShape2D_cmiy4")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(370, 370)
+limit_left = 0
 limit_top = 0
 limit_bottom = 380
 position_smoothing_speed = 10.0
@@ -504,37 +505,31 @@ editor_draw_drag_margin = true
 
 [node name="Die_1" type="AudioStreamPlayer" parent="VoiceLines/Die"]
 stream = ExtResource("11_2pmbt")
-bus = &"VoiceLines"
 
 [node name="Jump" type="Node" parent="VoiceLines"]
 
 [node name="Jump_1" type="AudioStreamPlayer" parent="VoiceLines/Jump"]
 stream = ExtResource("12_0h6ri")
-bus = &"VoiceLines"
 
 [node name="Respawn" type="Node" parent="VoiceLines"]
 
 [node name="Respawn_1" type="AudioStreamPlayer" parent="VoiceLines/Respawn"]
 stream = ExtResource("13_bd10r")
-bus = &"VoiceLines"
 
 [node name="Find" type="Node" parent="VoiceLines"]
 
 [node name="Find_1" type="AudioStreamPlayer" parent="VoiceLines/Find"]
 stream = ExtResource("13_pti6i")
-bus = &"VoiceLines"
 
 [node name="Hurt" type="Node" parent="VoiceLines"]
 
 [node name="Hurt_1" type="AudioStreamPlayer" parent="VoiceLines/Hurt"]
 stream = ExtResource("14_5j5ae")
-bus = &"VoiceLines"
 
 [node name="FallToFloor" type="Node" parent="VoiceLines"]
 
 [node name="Landing_1" type="AudioStreamPlayer" parent="VoiceLines/FallToFloor"]
 stream = ExtResource("15_8t8v4")
-bus = &"VoiceLines"
 
 [node name="Timers" type="Node" parent="."]
 
@@ -546,17 +541,13 @@ one_shot = true
 wait_time = 0.35
 one_shot = true
 
-[node name="RayCastDown1" type="RayCast2D" parent="."]
-position = Vector2(340, 300)
-scale = Vector2(2, 2)
-target_position = Vector2(0, 55)
-collision_mask = 12
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
+wait_time = 0.15
+one_shot = true
 
-[node name="RayCastDown2" type="RayCast2D" parent="."]
-position = Vector2(460, 300)
-scale = Vector2(2, 2)
-target_position = Vector2(0, 55)
-collision_mask = 12
+[node name="JumpBufferTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(400, 310)
@@ -576,6 +567,6 @@ position = Vector2(400, 400)
 script = ExtResource("18_qks7l")
 particle = ExtResource("17_brwra")
 
+[connection signal="animation_finished" from="Sprites" to="." method="_on_respawn_animation_finished"]
 [connection signal="finished" from="VoiceLines/Die/Die_1" to="." method="_on_dying_sfx_finished"]
-[connection signal="finished" from="VoiceLines/Respawn/Respawn_1" to="." method="_on_respawn_sfx_finished"]
 [connection signal="timeout" from="Timers/BoostCooldown" to="." method="_on_boost_cooldown_timeout"]

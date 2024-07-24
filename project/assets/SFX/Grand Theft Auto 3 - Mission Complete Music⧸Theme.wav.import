@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vmq8bl8uarqc"
+path="res://.godot/imported/Grand Theft Auto 3 - Mission Complete Music⧸Theme.wav-4e5eb12724a4d7e047d685835cbffc51.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Grand Theft Auto 3 - Mission Complete Music⧸Theme.wav"
+dest_files=["res://.godot/imported/Grand Theft Auto 3 - Mission Complete Music⧸Theme.wav-4e5eb12724a4d7e047d685835cbffc51.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

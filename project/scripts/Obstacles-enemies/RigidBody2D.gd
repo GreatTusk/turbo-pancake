@@ -15,6 +15,7 @@ var initial_pos_y: float
 @onready var ray_cast_2d := $RayCast2D as RayCast2D
 @onready var blink_timer := $BlinkTimer as Timer
 @onready var audio_stream_player_2d := $AudioStreamPlayer2D as AudioStreamPlayer2D
+@onready var crush_particles := $CrushParticles as GPUParticles2D
 
 signal kill_player
 
@@ -25,6 +26,7 @@ func _ready() -> void:
 func change_state(new_state: States) -> void:
 	match new_state:
 		States.FLOOR:
+			crush_particles.emitting = true
 			animated_sprite_2d.play("bottom_hit")
 	initial_state = new_state
 

@@ -90,7 +90,7 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="SpikeHead" type="Node2D"]
+[node name="SpikeHead" type="Node2D" groups=["enemy"]]
 z_index = -1
 script = ExtResource("1_evbw6")
 
@@ -132,18 +132,18 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
+[node name="StunnedTimer" type="Timer" parent="Path2D/PathFollow2D/Body"]
+wait_time = 0.6
+one_shot = true
+
 [node name="Hitbox" type="Area2D" parent="Path2D/PathFollow2D/Body"]
 collision_mask = 14
 
 [node name="Shape" type="CollisionPolygon2D" parent="Path2D/PathFollow2D/Body/Hitbox"]
 polygon = PackedVector2Array(-8, -21, -13, -14, -21, -8, -21, 9, -14, 14, -8, 22, 9, 22, 14, 15, 22, 9, 22, -8, 15, -13, 9, -21)
 
-[node name="StunnedTimer" type="Timer" parent="Path2D/PathFollow2D/Body"]
-wait_time = 0.6
-one_shot = true
-
 [node name="HitFloorSFX" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Body"]
 stream = ExtResource("5_khclj")
 
-[connection signal="body_entered" from="Path2D/PathFollow2D/Body/Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="Path2D/PathFollow2D/Body/StunnedTimer" to="." method="_on_stunned_timer_timeout"]
+[connection signal="body_entered" from="Path2D/PathFollow2D/Body/Hitbox" to="." method="_on_hitbox_body_entered"]

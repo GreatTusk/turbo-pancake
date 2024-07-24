@@ -20,6 +20,10 @@ func _on_level_selected(level_scene_path: String) -> void:
 	var level_modal := level.get_node("LevelUI/LevelModal") as LevelModal
 	level_modal.level_selector_pressed.connect(_on_level_selector_pressed)
 	level_modal.level_restarted.connect(_on_level_restarted)
+	
+	var level_finished := level.get_node("LevelUI/LevelFinished") as LevelFinished
+	level_finished.level_selector_pressed.connect(_on_level_selector_pressed)
+	level_finished.level_restarted.connect(_on_level_restarted)
 	var main_ui := self.get_node_or_null("MainUI")
 	# Checking so this method can be reused as is when restarting a level as well
 	if main_ui:

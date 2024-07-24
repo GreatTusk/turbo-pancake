@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://d15s2kvaeeycu"]
+[gd_scene load_steps=13 format=3 uid="uid://d15s2kvaeeycu"]
 
 [ext_resource type="Texture2D" uid="uid://r23nyv5odwa" path="res://assets/Traps/Fan/Off.png" id="1_j32nu"]
+[ext_resource type="Script" path="res://Scripts/Props/fan.gd" id="1_rq0rk"]
 [ext_resource type="Texture2D" uid="uid://c3ro1521jp6tf" path="res://assets/Traps/Fan/On (24x8).png" id="2_pwxow"]
 [ext_resource type="AudioStream" uid="uid://c02n57flye840" path="res://assets/SFX/Gimmicks/SmallFan.wav" id="4_x4skv"]
+[ext_resource type="Material" uid="uid://ct6a1ky3btnb2" path="res://Scenes/particles/fan_particle_test.tres" id="5_gus1p"]
+[ext_resource type="Texture2D" uid="uid://c2cnxu6uqh2pa" path="res://assets/Other/Dust Particle.png" id="6_bx0il"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0nme5"]
 atlas = ExtResource("2_pwxow")
@@ -48,12 +51,13 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmbc5"]
-size = Vector2(25, 38)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuddk"]
+size = Vector2(23, 38.18)
 
-[node name="Fan" type="Fan"]
+[node name="Fan" type="Node2D"]
+script = ExtResource("1_rq0rk")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2xrk0")
 animation = &"on"
 autoplay = "on"
@@ -62,11 +66,23 @@ autoplay = "on"
 collision_mask = 2
 
 [node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.5, -14)
-shape = SubResource("RectangleShape2D_bmbc5")
+position = Vector2(0.5, -15)
+shape = SubResource("RectangleShape2D_yuddk")
 
 [node name="SFX" type="Node" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("4_x4skv")
 bus = &"SFX"
+
+[node name="AirParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0.5, -5)
+amount = 16
+process_material = ExtResource("5_gus1p")
+texture = ExtResource("6_bx0il")
+preprocess = 5.0
+trail_lifetime = 2.0
+trail_section_subdivisions = 16
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

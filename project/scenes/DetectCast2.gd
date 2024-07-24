@@ -3,12 +3,12 @@ extends RayCast2D
 signal first_collision
 
 func _ready() -> void:
-	self.connect("first_collision", Callable(self, "_on_first_collision"))
+	first_collision.connect(_on_first_collision)
 
 func _physics_process(_delta: float) -> void:
 	var collider: Object = self.get_collider()
 	if self.is_colliding() && (collider is FloatingPlatform or collider is TileMap):
-		emit_signal("first_collision")
+		first_collision.emit()
 
 func _on_first_collision() -> void:
 	reajust_raycast_target(self)

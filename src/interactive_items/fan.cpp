@@ -2,6 +2,7 @@
 // Created by F776 on 09-06-2024.
 //
 
+#include <godot_cpp/classes/area2d.hpp>
 
 #include "core/constants.hpp"
 #include "fan.h"
@@ -20,9 +21,6 @@ namespace tp
         auto* area_2d = this->get_node<godot::Area2D>(name::trampoline::area2d);
         area_2d->connect("body_entered", godot::Callable(this, event::body_entered));
         area_2d->connect("body_exited", godot::Callable(this, event::body_exited));
-        // auto* player = this->get_node<godot::CharacterBody2D>("../../../Main/Player");
-        // runtime_assert(player != nullptr);
-        // this->connect(event::fan_colliding, godot::Callable(player, "_on_fan_collision"));
     }
 
     [[signal_slot]]

@@ -40,8 +40,7 @@ func _physics_process(_delta: float) -> void:
 			path_follow_2d.progress_ratio = max(timer_progress(ascending_timer) - offset, 0)
 
 func player_detected() -> bool:
-	return (detect_cast_2.is_colliding() and detect_cast_2.get_collider() is PlayableCharacter ||
-	 detect_cast_3.is_colliding() and detect_cast_3.get_collider() is PlayableCharacter)
+	return (detect_cast_2.is_colliding() || detect_cast_3.is_colliding())
 
 func timer_progress(timer: Timer) -> float:
 	return timer.time_left / timer.wait_time
@@ -53,7 +52,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		hit_floor_sfx.play()
 		offset = 1 - path_follow_2d.progress_ratio
 	elif body is PlayableCharacter:
-		emit_signal("kill_player")
+		kill_player.emit()
 
 func _on_stunned_timer_timeout() -> void:
 	hit_floor = false

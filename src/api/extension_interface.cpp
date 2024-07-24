@@ -29,11 +29,11 @@ namespace tp
         if (init_level != godot::MODULE_INITIALIZATION_LEVEL_SCENE)
             return;
         // Interactive Items
-        godot::ClassDB::register_class<Trampoline>();
-        godot::ClassDB::register_class<Fan>();
+        // godot::ClassDB::register_class<Trampoline>();
+        // godot::ClassDB::register_class<Fan>();
         godot::ClassDB::register_class<Fruit>();
-        godot::ClassDB::register_class<Main>();
-        godot::ClassDB::register_class<Player>();
+        // godot::ClassDB::register_class<Main>();
+        // godot::ClassDB::register_class<Player>();
 
         initialize_static_objects();
     }

@@ -6,9 +6,7 @@
 #define TRAMPOLINE_H
 
 #include <godot_cpp/classes/animated_sprite2d.hpp>
-#include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/audio_stream_player2d.hpp>
-#include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/node2d.hpp>
 
 #include "core/attributes.hpp"
@@ -25,7 +23,7 @@ namespace tp
         Trampoline() = default;
         ~Trampoline() override = default;
 
-        [[signal_slot]] void _on_area_2d_body_entered(godot::CharacterBody2D* body);
+        [[signal_slot]] void _on_area_2d_body_entered(godot::Node2D* body);
         // Overriding from Node
         void _ready() override;
 

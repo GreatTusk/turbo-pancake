@@ -6,7 +6,7 @@
 #define FAN_H
 
 #include <godot_cpp/classes/animated_sprite2d.hpp>
-#include <godot_cpp/classes/area2d.hpp>
+
 #include <godot_cpp/classes/audio_stream_player2d.hpp>
 #include <godot_cpp/classes/character_body2d.hpp>
 #include <godot_cpp/classes/node2d.hpp>

@@ -1,21 +1,17 @@
 extends CanvasLayer
 
-@export var level_selector: PackedScene
 @onready var title_screen := $TitleScreen as TitleScreen
-
-var selector_scene: LevelSelector
+@onready var level_selector := $LevelSelector as LevelSelector
 
 func _ready() -> void:
+	#if visible on the tree: level_selector.visible = false
 	title_screen.level_selector_pressed.connect(_switch_to_level_selector)
-	selector_scene = level_selector.instantiate()
-	selector_scene.visible = false
-	selector_scene.back_to_title_screen.connect(_switch_to_title_screen)
-	self.add_child(selector_scene)
+	level_selector.back_to_title_screen.connect(_switch_to_title_screen)
 
 func _switch_to_level_selector() -> void:
 	title_screen.visible = false
-	selector_scene.visible = true
+	level_selector.visible = true
 	
 func _switch_to_title_screen() -> void:
-	selector_scene.visible = false
+	level_selector.visible = false
 	title_screen.visible = true
