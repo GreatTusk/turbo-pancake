@@ -1,22 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://60iljtrj8nmv"]
+[gd_scene load_steps=6 format=3 uid="uid://ctrk0xodqt2ld"]
 
-[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_11lnq"]
 [ext_resource type="Script" path="res://Scripts/UI/title_screen.gd" id="1_d1ilm"]
-[ext_resource type="PackedScene" uid="uid://b4uvnyh1xaqdx" path="res://Scenes/UI/level_selector.tscn" id="2_1s0gh"]
 [ext_resource type="Texture2D" uid="uid://cq4upd0evrbkm" path="res://assets/Menu/Buttons/Close.png" id="2_dgxvn"]
 [ext_resource type="Texture2D" uid="uid://1x22aqdikgvi" path="res://assets/Menu/Buttons/Settings.png" id="3_vvpga"]
 [ext_resource type="Texture2D" uid="uid://b5o3lx8fmsevx" path="res://assets/Menu/Buttons/Play.png" id="4_kylpd"]
 [ext_resource type="Texture2D" uid="uid://dpk6uuy762fh2" path="res://assets/Menu/Buttons/Leaderboard.png" id="5_ni6nw"]
-[ext_resource type="PackedScene" uid="uid://bqjnhe3iairks" path="res://Scenes/UI/moving_cave_bg.tscn" id="8_k44ks"]
-[ext_resource type="AudioStream" uid="uid://5w3cd35bd1bj" path="res://assets/Music/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav" id="9_32vjk"]
 
-[node name="MainUI" type="CanvasLayer"]
-script = ExtResource("1_11lnq")
-
-[node name="Cave" parent="." instance=ExtResource("8_k44ks")]
-scroll_speed = 5.0
-
-[node name="TitleScreen" type="Control" parent="."]
+[node name="TitleScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -32,7 +22,7 @@ grow_vertical = 2
 script = ExtResource("1_d1ilm")
 metadata/_edit_lock_ = true
 
-[node name="Title" type="Label" parent="TitleScreen"]
+[node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -44,7 +34,7 @@ text = "Frog Adventure"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExitButton" type="TextureButton" parent="TitleScreen"]
+[node name="ExitButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -57,7 +47,7 @@ grow_horizontal = 0
 texture_normal = ExtResource("2_dgxvn")
 stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -72,33 +62,27 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Settings" type="TextureButton" parent="TitleScreen/HBoxContainer"]
+[node name="Settings" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 texture_normal = ExtResource("3_vvpga")
 stretch_mode = 5
 
-[node name="Levels" type="TextureButton" parent="TitleScreen/HBoxContainer"]
+[node name="Levels" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.5
 texture_normal = ExtResource("4_kylpd")
 stretch_mode = 5
 
-[node name="Achievements" type="TextureButton" parent="TitleScreen/HBoxContainer"]
+[node name="Achievements" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 texture_normal = ExtResource("5_ni6nw")
 stretch_mode = 5
 
-[node name="LevelSelector" parent="." instance=ExtResource("2_1s0gh")]
-visible = false
-
-[node name="MainTheme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_32vjk")
-autoplay = true
-
-[connection signal="pressed" from="TitleScreen/ExitButton" to="TitleScreen" method="_on_exit_button_pressed"]
-[connection signal="pressed" from="TitleScreen/HBoxContainer/Levels" to="TitleScreen" method="_on_levels_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/Levels" to="." method="_on_levels_pressed"]

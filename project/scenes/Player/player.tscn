@@ -505,31 +505,37 @@ editor_draw_drag_margin = true
 
 [node name="Die_1" type="AudioStreamPlayer" parent="VoiceLines/Die"]
 stream = ExtResource("11_2pmbt")
+bus = &"sfx"
 
 [node name="Jump" type="Node" parent="VoiceLines"]
 
 [node name="Jump_1" type="AudioStreamPlayer" parent="VoiceLines/Jump"]
 stream = ExtResource("12_0h6ri")
+bus = &"sfx"
 
 [node name="Respawn" type="Node" parent="VoiceLines"]
 
 [node name="Respawn_1" type="AudioStreamPlayer" parent="VoiceLines/Respawn"]
 stream = ExtResource("13_bd10r")
+bus = &"sfx"
 
 [node name="Find" type="Node" parent="VoiceLines"]
 
 [node name="Find_1" type="AudioStreamPlayer" parent="VoiceLines/Find"]
 stream = ExtResource("13_pti6i")
+bus = &"sfx"
 
 [node name="Hurt" type="Node" parent="VoiceLines"]
 
 [node name="Hurt_1" type="AudioStreamPlayer" parent="VoiceLines/Hurt"]
 stream = ExtResource("14_5j5ae")
+bus = &"sfx"
 
 [node name="FallToFloor" type="Node" parent="VoiceLines"]
 
 [node name="Landing_1" type="AudioStreamPlayer" parent="VoiceLines/FallToFloor"]
 stream = ExtResource("15_8t8v4")
+bus = &"sfx"
 
 [node name="Timers" type="Node" parent="."]
 

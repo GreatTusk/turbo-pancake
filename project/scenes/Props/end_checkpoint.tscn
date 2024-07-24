@@ -67,5 +67,6 @@ trail_section_subdivisions = 16
 
 [node name="LevelCompletedSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_pcsx1")
+bus = &"sfx"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
