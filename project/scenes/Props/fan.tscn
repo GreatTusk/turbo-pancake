@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://d15s2kvaeeycu"]
 
 [ext_resource type="Texture2D" uid="uid://r23nyv5odwa" path="res://assets/Traps/Fan/Off.png" id="1_j32nu"]
-[ext_resource type="Script" path="res://Scripts/Props/fan.gd" id="1_rq0rk"]
+[ext_resource type="Script" path="res://scripts/props/fan.gd" id="1_rq0rk"]
 [ext_resource type="Texture2D" uid="uid://c3ro1521jp6tf" path="res://assets/Traps/Fan/On (24x8).png" id="2_pwxow"]
 [ext_resource type="AudioStream" uid="uid://c02n57flye840" path="res://assets/SFX/Gimmicks/SmallFan.wav" id="4_x4skv"]
-[ext_resource type="Material" uid="uid://ct6a1ky3btnb2" path="res://Scenes/particles/fan_particles.tres" id="5_gus1p"]
+[ext_resource type="Material" uid="uid://ct6a1ky3btnb2" path="res://scenes/particles/fan_particles.tres" id="5_gus1p"]
 [ext_resource type="Texture2D" uid="uid://c2cnxu6uqh2pa" path="res://assets/Other/Dust Particle.png" id="6_bx0il"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0nme5"]

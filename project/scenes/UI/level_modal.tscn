@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://2nmlqgkwuq0g"]
 
-[ext_resource type="Script" path="res://Scripts/UI/level_modal.gd" id="1_imglq"]
+[ext_resource type="Script" path="res://scripts/ui/level_modal.gd" id="1_imglq"]
 [ext_resource type="Texture2D" uid="uid://cq4upd0evrbkm" path="res://assets/Menu/Buttons/Close.png" id="2_wteai"]
 [ext_resource type="Texture2D" uid="uid://fg6kjsyb0rjh" path="res://assets/Menu/Buttons/Volume.png" id="3_rfpjf"]
 [ext_resource type="Texture2D" uid="uid://cl31th6uhrsur" path="res://assets/Menu/Buttons/Levels.png" id="4_wdytf"]

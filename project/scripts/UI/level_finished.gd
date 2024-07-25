@@ -9,7 +9,7 @@ signal level_selector_pressed
 
 var current_level: int
 
-func _ready():
+func _ready() -> void:
 	previous_level.disabled = current_level == 1
 
 func _on_restart_level_pressed() -> void:

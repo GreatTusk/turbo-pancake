@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://d0ouuj65mnivp"]
 
 [ext_resource type="Texture2D" uid="uid://brmjdiwta3vrw" path="res://assets/Traps/Trampoline/Idle.png" id="1_emew2"]
-[ext_resource type="Script" path="res://Scripts/Props/trampoline.gd" id="1_khqgw"]
+[ext_resource type="Script" path="res://scripts/props/trampoline.gd" id="1_khqgw"]
 [ext_resource type="Texture2D" uid="uid://dq8b6lumnawwq" path="res://assets/Traps/Trampoline/Jump (28x28).png" id="1_tj6ed"]
 [ext_resource type="AudioStream" uid="uid://dgxy8jx3ip4qo" path="res://assets/SFX/Gimmicks/Springs.wav" id="3_k1foo"]
 

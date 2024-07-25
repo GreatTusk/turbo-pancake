@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://q7iculvtpi17"]
 
-[ext_resource type="Script" path="res://Scripts/UI/music_slider.gd" id="1_h6i6d"]
-[ext_resource type="Script" path="res://Scripts/UI/config_screen.gd" id="1_y5n1k"]
+[ext_resource type="Script" path="res://scripts/ui/music_slider.gd" id="1_h6i6d"]
+[ext_resource type="Script" path="res://scripts/ui/config_screen.gd" id="1_y5n1k"]
 [ext_resource type="Texture2D" uid="uid://cq4upd0evrbkm" path="res://assets/Menu/Buttons/Close.png" id="2_ap3cc"]
 
 [node name="ConfigScreen" type="Control"]

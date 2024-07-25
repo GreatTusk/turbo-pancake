@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bu24dqedjre8n"]
 
 [ext_resource type="Texture2D" uid="uid://br62yyqg6e0kv" path="res://assets/Background/Parallax_Backgrounds_SnowyMountains/5.png" id="1_d4n1s"]
-[ext_resource type="Script" path="res://Scripts/Background/moving_parallax_bg.gd" id="1_ef2w7"]
+[ext_resource type="Script" path="res://scripts/background/moving_parallax_bg.gd" id="1_ef2w7"]
 [ext_resource type="Texture2D" uid="uid://dqrpoaxlflhlf" path="res://assets/Background/Parallax_Backgrounds_SnowyMountains/4.png" id="2_hjmui"]
 [ext_resource type="Texture2D" uid="uid://flyjwlb522af" path="res://assets/Background/Parallax_Backgrounds_SnowyMountains/3.png" id="3_vag8x"]
 [ext_resource type="Texture2D" uid="uid://c7ucwvp02k577" path="res://assets/Background/Parallax_Backgrounds_SnowyMountains/2.png" id="4_43n48"]

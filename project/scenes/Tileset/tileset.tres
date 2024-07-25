@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=7 format=3 uid="uid://vptcadldwt6f"]
 
 [ext_resource type="Texture2D" uid="uid://bmmteokwntry6" path="res://assets/Terrain/Terrain (16x16).png" id="1_hol7q"]
-[ext_resource type="PackedScene" uid="uid://d074vn7exht1t" path="res://Scenes/Obstacles/spike.tscn" id="1_k6vcd"]
-[ext_resource type="PackedScene" uid="uid://bh4fvrj13b1ox" path="res://Scenes/Props/floating_platform.tscn" id="3_k7oy3"]
+[ext_resource type="PackedScene" uid="uid://d074vn7exht1t" path="res://scenes/obstacles/spike.tscn" id="1_k6vcd"]
+[ext_resource type="PackedScene" uid="uid://bh4fvrj13b1ox" path="res://scenes/props/floating_platform.tscn" id="3_k7oy3"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_jii4f"]
 resource_name = "Spike"

@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/Menu/Buttons/Back.png" id="1_a37we"]
 [ext_resource type="Script" path="res://Scenes/UI/LevelUI/gameui.gd" id="1_kj64q"]
-[ext_resource type="Script" path="res://Scripts/UI/score_label.gd" id="3_045kw"]
-[ext_resource type="Script" path="res://Scripts/UI/player_animation_label.gd" id="4_t5sm7"]
-[ext_resource type="Script" path="res://Scripts/UI/player_velocity_label.gd" id="5_ckp1w"]
-[ext_resource type="Script" path="res://Scripts/UI/player_state_label.gd" id="6_4hvj5"]
-[ext_resource type="PackedScene" uid="uid://2nmlqgkwuq0g" path="res://Scenes/UI/level_modal.tscn" id="7_khtmo"]
-[ext_resource type="PackedScene" uid="uid://bnl325vuvde6k" path="res://Scenes/UI/level_finished.tscn" id="8_umwcv"]
-[ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://Scenes/UI/config_screen.tscn" id="9_6t7ff"]
+[ext_resource type="Script" path="res://scripts/ui/score_label.gd" id="3_045kw"]
+[ext_resource type="Script" path="res://scripts/ui/player_animation_label.gd" id="4_t5sm7"]
+[ext_resource type="Script" path="res://scripts/ui/player_velocity_label.gd" id="5_ckp1w"]
+[ext_resource type="Script" path="res://scripts/ui/player_state_label.gd" id="6_4hvj5"]
+[ext_resource type="PackedScene" uid="uid://2nmlqgkwuq0g" path="res://scenes/ui/level_modal.tscn" id="7_khtmo"]
+[ext_resource type="PackedScene" uid="uid://bnl325vuvde6k" path="res://scenes/ui/level_finished.tscn" id="8_umwcv"]
+[ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://scenes/ui/config_screen.tscn" id="9_6t7ff"]
 
 [node name="LevelUI" type="CanvasLayer"]
 layer = 2

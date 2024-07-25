@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnl325vuvde6k"]
 
-[ext_resource type="Script" path="res://Scripts/UI/level_finished.gd" id="1_ji36s"]
+[ext_resource type="Script" path="res://scripts/ui/level_finished.gd" id="1_ji36s"]
 [ext_resource type="Texture2D" uid="uid://ceetpclbadcei" path="res://assets/Menu/Buttons/Previous.png" id="2_0s34l"]
 [ext_resource type="Texture2D" uid="uid://cl31th6uhrsur" path="res://assets/Menu/Buttons/Levels.png" id="4_05ldm"]
 [ext_resource type="Texture2D" uid="uid://cvdiypkgrp12k" path="res://assets/Menu/Buttons/Next.png" id="5_mcrfc"]
