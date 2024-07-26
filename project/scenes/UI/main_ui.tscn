@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://60iljtrj8nmv"]
+[gd_scene load_steps=11 format=3 uid="uid://60iljtrj8nmv"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_11lnq"]
 [ext_resource type="PackedScene" uid="uid://dv58xv05ojbm0" path="res://scenes/backgrounds/background_selector.tscn" id="2_0ygg0"]
 [ext_resource type="PackedScene" uid="uid://b4uvnyh1xaqdx" path="res://scenes/ui/level_selector.tscn" id="2_1s0gh"]
 [ext_resource type="PackedScene" uid="uid://bu24dqedjre8n" path="res://scenes/backgrounds/snowy_mountains.tscn" id="3_8ocbi"]
+[ext_resource type="SpriteFrames" uid="uid://4n1n20a1eh05" path="res://scenes/player/player.tres" id="5_1lolr"]
 [ext_resource type="PackedScene" uid="uid://ctrk0xodqt2ld" path="res://scenes/ui/title_screen.tscn" id="5_2ouee"]
+[ext_resource type="TileSet" uid="uid://vptcadldwt6f" path="res://scenes/tileset/tileset.tres" id="6_1mnmq"]
 [ext_resource type="PackedScene" uid="uid://bqjnhe3iairks" path="res://scenes/ui/moving_cave_bg.tscn" id="8_k44ks"]
 [ext_resource type="AudioStream" uid="uid://5w3cd35bd1bj" path="res://assets/Music/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav" id="9_32vjk"]
 [ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://scenes/ui/config_screen.tscn" id="11_ctiq4"]
@@ -14,6 +16,20 @@ script = ExtResource("1_11lnq")
 
 [node name="ParallaxBackgrounds" parent="." instance=ExtResource("2_0ygg0")]
 backgrounds = Array[PackedScene]([ExtResource("3_8ocbi"), ExtResource("8_k44ks")])
+
+[node name="MainCharacter" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainCharacter"]
+position = Vector2(24, 96)
+sprite_frames = ExtResource("5_1lolr")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.430714
+
+[node name="TileMap" type="TileMap" parent="MainCharacter"]
+tile_set = ExtResource("6_1mnmq")
+format = 2
+layer_0/tile_data = PackedInt32Array(458753, 1179649, 2, 458754, 1245185, 2, 458752, 1179649, 2)
 
 [node name="TitleScreen" parent="." instance=ExtResource("5_2ouee")]
 

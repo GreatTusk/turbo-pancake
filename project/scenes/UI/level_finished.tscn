@@ -87,5 +87,7 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("5_mcrfc")
 stretch_mode = 5
 
+[connection signal="button_down" from="Modal/HBoxContainer/PreviousLevel" to="." method="_on_previous_level_button_down"]
 [connection signal="pressed" from="Modal/HBoxContainer/ToLevelSelector" to="." method="_on_to_level_selector_pressed"]
 [connection signal="pressed" from="Modal/HBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="Modal/HBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]

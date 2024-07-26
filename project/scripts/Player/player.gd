@@ -45,6 +45,7 @@ const WALL_COLL_POS_R: float = 400.0
 const WALL_COLL_POS_L: float = 410.0
 const RAYC_COLL_POS_L: float = 45.0
 const RAYC_COLL_POS_R: float = 40.0
+const PLAYER_HEIGHT: float = 10.532
 const TRAMPOLINE_IMPULSE: float = 280.0
 
 # Control flow vars

@@ -1,3 +1,4 @@
+class_name LevelUI
 extends CanvasLayer
 
 @onready var level_modal := $LevelModal as LevelModal
@@ -10,5 +11,5 @@ func _on_audio_settings_pressed() -> void:
 	config_screen.show()
 
 func _on_return_button_pressed() -> void:
-	level_modal.visible = true
+	level_modal.show()
 	get_tree().paused = true

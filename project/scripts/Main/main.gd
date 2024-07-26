@@ -1,8 +1,12 @@
 extends Node
 
+# The main ui and level manager are stored as packed scenes and not as children
+# because they will be dynamically freed and instantiated
 @export var main_ui_res: PackedScene
+@export var level_manager_res: PackedScene
 
 func _ready() -> void:
+	# Ignore return value - not useful here
 	instantiate_main_ui()
 	
 func instantiate_main_ui() -> CanvasLayer:
@@ -13,24 +17,28 @@ func instantiate_main_ui() -> CanvasLayer:
 	level_selector.level_selected.connect(_on_level_selected)
 	return main_ui
 
-func _on_level_selected(level_scene_path: String, level_index: int = 0) -> void:
-	# Returns a Node. The actual type is a Node2D but it doesn't matter
-	var level := (load(level_scene_path) as PackedScene).instantiate()
-	# Go down the tree and connect the go back to the UI and connect signals
-	var level_modal := level.get_node("LevelUI/LevelModal") as LevelModal
+func _on_level_selected(level_scene_path: String) -> void:
+	# Instatiate the level manager. It contains the in-level ui
+	var level_manager: LevelManager = level_manager_res.instantiate() as LevelManager
+	# Go down the tree and connect signals
+	var level_modal := level_manager.get_node("LevelUI/LevelModal") as LevelModal
 	level_modal.level_selector_pressed.connect(_on_level_selector_pressed)
 	level_modal.level_restarted.connect(_on_level_restarted)
 	
-	var level_finished := level.get_node("LevelUI/LevelFinished") as LevelFinished
+	var level_finished := level_manager.get_node("LevelUI/LevelFinished") as LevelFinished
 	level_finished.level_selector_pressed.connect(_on_level_selector_pressed)
 	level_finished.level_restarted.connect(_on_level_restarted)
-	level_finished.current_level = level_index
+	level_finished.next_level_pressed.connect(_on_next_level_pressed)
+	level_finished.previous_level_pressed.connect(_on_previous_level_pressed)
 	
 	var main_ui := self.get_node_or_null("MainUI")
 	# Checking so this method can be reused as is when restarting a level as well
 	if main_ui:
 		main_ui.queue_free()
-	self.add_child(level)
+	
+	var level := (load(level_scene_path) as PackedScene).instantiate() as Level
+	level_manager.add_child(level)
+	self.add_child(level_manager)
 	
 func _on_level_selector_pressed() -> void:
 	# The level will always be the first and only child
@@ -47,11 +55,40 @@ func _on_level_selector_pressed() -> void:
 	get_tree().paused = false
 
 func _on_level_restarted() -> void:
-	var level_to_reset := self.get_child(0)
-	# It's a string, duh
-	var level_path := level_to_reset.scene_file_path
-	level_to_reset.call_deferred("free")
-	# Just so happens that this signal function does the instantiating, 
-	# wiring up and everything we need to restart a level
+	# If the level was restarted, we can assume the level manager is still valid
+	var level_manager := self.get_child(0) 
+	assert(level_manager)
+	
+	var level_to_reset: Level
+	for node in level_manager.get_children():
+		if node is Level:
+			level_to_reset = node
+			break
+	
+	var level_path := level_to_reset.scene_file_path # String
+	level_manager.call_deferred("free")
+	
 	_on_level_selected(level_path)
 	get_tree().paused = false
+	#(level_manager.level_ui as LevelUI).level_modal.hide()
+	
+	#var level := (load(level_path) as PackedScene).instantiate() as Level
+	#level_manager.add_child(level)
+	#(level_manager.level_ui as LevelUI).level_modal.hide()
+
+func _on_next_level_pressed() -> void:
+	change_level(1)
+
+func _on_previous_level_pressed() -> void:
+	change_level(-1)
+
+func change_level(direction: int) -> void:
+	Singleton.current_level += direction
+	var level_path := "res://scenes/levels/level_%s.tscn" % (Singleton.current_level)
+	var level_manager := self.get_child(0) 
+	assert(level_manager)
+	level_manager.call_deferred("free")
+	_on_level_selected(level_path)
+
+
+
