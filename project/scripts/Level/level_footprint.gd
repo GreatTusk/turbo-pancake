@@ -11,5 +11,6 @@ extends Node2D
 
 func _on_level_finished() -> void:
 	var bgm := $BGM
-	bgm.queue_free()
+	if bgm:
+		bgm.queue_free()
 

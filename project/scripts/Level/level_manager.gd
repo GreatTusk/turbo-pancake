@@ -78,8 +78,13 @@ func _on_level_finished() -> void:
 
 func connect_player_to_level() -> void:
 	# Assume that the index 2 will contain the level
-	var level: Level = self.get_child(2)
-	assert(level is Level)
+	var level: Level
+	for i in range(self.get_child_count() - 1, -1, -1):
+		var child := self.get_child(i)
+		if child is Level:
+			level = child
+			break
+	assert(level)
 	# Handle connections between the player and the ui
 	player.animation_changed.connect(Callable(level_ui.get_node("Control/Animation"), "_on_animation_changed"))
 	player.velocity_changed.connect(Callable(level_ui.get_node("Control/Velocity"), "_on_velocity_changed"))

@@ -60,20 +60,31 @@ func _on_level_restarted() -> void:
 	assert(level_manager)
 	
 	var level_to_reset: Level
-	for node in level_manager.get_children():
-		if node is Level:
-			level_to_reset = node
+	for i in range(level_manager.get_child_count() - 1, -1, -1):
+		var child := level_manager.get_child(i)
+		if child is Level:
+			level_to_reset = child
 			break
-	
+			
+	# From here onwards, instead of replacing the level, the entire manager is replaced
 	var level_path := level_to_reset.scene_file_path # String
 	level_manager.call_deferred("free")
-	
 	_on_level_selected(level_path)
 	get_tree().paused = false
-	#(level_manager.level_ui as LevelUI).level_modal.hide()
 	
-	#var level := (load(level_path) as PackedScene).instantiate() as Level
-	#level_manager.add_child(level)
+	# Tried to reload only the level, proved to be too difficult
+	
+	#var level_path := level_to_reset.scene_file_path # String
+	#var new_level := (load(level_path) as PackedScene).instantiate()
+	#level_to_reset.call_deferred("free")
+	#level_manager.add_child(new_level)
+	#level_manager.request_ready()
+	#for node in level_manager.get_children():
+		#node.request_ready()
+		#await node.ready
+	#get_tree().paused = false
+	#var player := level_manager.get_node("Player") as PlayableCharacter
+	#player.global_position = player.spawn_pos
 	#(level_manager.level_ui as LevelUI).level_modal.hide()
 
 func _on_next_level_pressed() -> void:
