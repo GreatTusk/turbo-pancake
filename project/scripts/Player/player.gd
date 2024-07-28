@@ -56,7 +56,6 @@ var spawn_pos: Vector2:
 var can_boost: bool = true
 var gravity := MAX_GRAVITY
 var ground_dec: float = STD_GROUND_DEC
-var tile_map: TileMap
 
 # Using signals to communicate to outer nodes
 signal animation_changed(animation: StringName)
@@ -65,6 +64,7 @@ signal state_changed(state: StringName)
 
 # Local signal
 signal respawn
+signal request_tile_effect(player_position: Vector2)
 
 enum States {
 	GROUND,
@@ -115,8 +115,7 @@ func _physics_process(delta: float) -> void:
 
 
 func ground_movement() -> void:
-	#ground_dec = SLIP_GROUND_DEC if process_tile_effect() else STD_GROUND_DEC
-	#ground_dec = STD_GROUND_DEC / process_tile_effect()
+	request_tile_effect.emit(to_local(self.global_position))
 	# Whether the user pressed jump or a jump had been previously buffered, jump
 	if Input.is_action_just_pressed("jump") || !jump_buffer_timer.is_stopped():
 		jump_lines.play()
@@ -246,15 +245,15 @@ func is_coll_wall() -> bool:
 	# Check the left or right cast depending on which way the player is facing
 	return (left_cast if animated_sprites.flip_h else right_cast).is_colliding()
 
-func process_tile_effect() -> float:
-	if tile_map.get_layers_count() > 1:
-		var current_tile: Vector2i = tile_map.local_to_map(to_local(self.global_position))
-		current_tile.y += 25
-		var data := tile_map.get_cell_tile_data(1, current_tile)
-		if data:
-			return data.get_custom_data("movement_modifier")
-	# No effect, divide by 1
-	return 1.0
+#func process_tile_effect() -> float:
+	#if tile_map.get_layers_count() > 1:
+		#var current_tile: Vector2i = tile_map.local_to_map(to_local(self.global_position))
+		#current_tile.y += 25
+		#var data := tile_map.get_cell_tile_data(1, current_tile)
+		#if data:
+			#return data.get_custom_data("movement_modifier")
+	## No effect, divide by 1
+	#return 1.0
 
 func boost() -> void:
 	self.velocity.x = (-1 if animated_sprites.flip_h else 1) * BOOST_IMPULSE 
@@ -303,5 +302,8 @@ func _on_trampoline_jump() -> void:
 
 func _on_boost_cooldown_timeout() -> void:
 	gravity = MAX_GRAVITY
+	
+func _on_tile_effect_response(modifier: float) -> void:
+	ground_dec = STD_GROUND_DEC / modifier
 
 #endregion

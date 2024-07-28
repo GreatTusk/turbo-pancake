@@ -25,11 +25,13 @@ func initialize_level(level: Level) -> void:
 	var flamethrowers := level.get_node_or_null("Traps/Flamethrowers") as Node
 	var enemies := level.get_node_or_null("Enemies") as Node
 	var fruits := level.get_node_or_null("Fruits") as Node
-	var tile_map := level.get_node_or_null("TileMap") as TileMap
+	var tile_map := level.get_node_or_null("TileMap") as TileMapManager
 	
 	# The level must have a tilemap!
 	assert(tile_map)
-	player.tile_map = tile_map
+	player.request_tile_effect.connect(tile_map._on_request_tile_effect)
+	tile_map.tile_effect_response.connect(player._on_tile_effect_response)
+	
 	# The level must have a start point for the player to be valid!
 	assert(checkpoints)
 	for checkpoint in checkpoints.get_children():
