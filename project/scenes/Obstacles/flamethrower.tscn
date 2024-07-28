@@ -87,7 +87,6 @@ script = ExtResource("1_6kc05")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_usmrk")
 animation = &"off"
-frame_progress = 0.654629
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2
@@ -95,6 +94,7 @@ collision_mask = 2
 [node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_otyda")
+debug_color = Color(0.998758, 0, 0.133438, 0.42)
 
 [node name="PlayerFinder" type="Area2D" parent="."]
 collision_mask = 2
@@ -110,6 +110,9 @@ shape = SubResource("RectangleShape2D_otyda")
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_brb8e")
 debug_color = Color(0, 0.625364, 0.520859, 0.42)
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="PlayerFinder" to="." method="_on_player_finder_body_entered"]

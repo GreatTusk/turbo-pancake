@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://sa73a42qxj5b"]
 
 [ext_resource type="Script" path="res://scripts/level/level_manager.gd" id="1_72081"]
-[ext_resource type="PackedScene" uid="uid://dbjvwvbxcm7qf" path="res://scenes/ui/LevelUI/gameui.tscn" id="3_axvgc"]
+[ext_resource type="PackedScene" uid="uid://dbjvwvbxcm7qf" path="res://scenes/ui/levelui/gameui.tscn" id="2_3tcch"]
 [ext_resource type="PackedScene" uid="uid://bfrx0d032inre" path="res://scenes/player/player.tscn" id="3_hce3i"]
 
 [node name="LevelManager" type="Node2D"]
 script = ExtResource("1_72081")
 
-[node name="LevelUI" parent="." instance=ExtResource("3_axvgc")]
+[node name="LevelUI" parent="." instance=ExtResource("2_3tcch")]
 visible = false
 
 [node name="Player" parent="." instance=ExtResource("3_hce3i")]

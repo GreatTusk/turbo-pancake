@@ -1,25 +1,25 @@
 [gd_scene load_steps=10 format=3 uid="uid://dbjvwvbxcm7qf"]
 
-[ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/Menu/Buttons/Back.png" id="1_a37we"]
-[ext_resource type="Script" path="res://Scenes/UI/LevelUI/gameui.gd" id="1_kj64q"]
-[ext_resource type="Script" path="res://scripts/ui/score_label.gd" id="3_045kw"]
-[ext_resource type="Script" path="res://scripts/ui/player_animation_label.gd" id="4_t5sm7"]
-[ext_resource type="Script" path="res://scripts/ui/player_velocity_label.gd" id="5_ckp1w"]
-[ext_resource type="Script" path="res://scripts/ui/player_state_label.gd" id="6_4hvj5"]
-[ext_resource type="PackedScene" uid="uid://2nmlqgkwuq0g" path="res://scenes/ui/level_modal.tscn" id="7_khtmo"]
-[ext_resource type="PackedScene" uid="uid://bnl325vuvde6k" path="res://scenes/ui/level_finished.tscn" id="8_umwcv"]
-[ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://scenes/ui/config_screen.tscn" id="9_6t7ff"]
+[ext_resource type="Script" path="res://scripts/ui/level_ui.gd" id="1_otma3"]
+[ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/Menu/Buttons/Back.png" id="2_bu2r5"]
+[ext_resource type="Script" path="res://scripts/ui/score_label.gd" id="3_3iv21"]
+[ext_resource type="Script" path="res://scripts/ui/player_animation_label.gd" id="4_tsk05"]
+[ext_resource type="Script" path="res://scripts/ui/player_velocity_label.gd" id="5_t67ed"]
+[ext_resource type="Script" path="res://scripts/ui/player_state_label.gd" id="6_i70w5"]
+[ext_resource type="PackedScene" uid="uid://2nmlqgkwuq0g" path="res://scenes/ui/level_modal.tscn" id="7_7j2la"]
+[ext_resource type="PackedScene" uid="uid://bnl325vuvde6k" path="res://scenes/ui/level_finished.tscn" id="8_nv7mw"]
+[ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://scenes/ui/config_screen.tscn" id="9_d5pk6"]
 
 [node name="LevelUI" type="CanvasLayer"]
 layer = 2
-script = ExtResource("1_kj64q")
+script = ExtResource("1_otma3")
 
 [node name="ReturnButton" type="TextureButton" parent="."]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 40.0
 offset_bottom = 40.0
-texture_normal = ExtResource("1_a37we")
+texture_normal = ExtResource("2_bu2r5")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
@@ -33,7 +33,7 @@ grow_horizontal = 0
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 16
 text = "0"
-script = ExtResource("3_045kw")
+script = ExtResource("3_3iv21")
 metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="VBoxContainer" parent="."]
@@ -55,14 +55,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "SAMPLE"
 horizontal_alignment = 2
-script = ExtResource("4_t5sm7")
+script = ExtResource("4_tsk05")
 
 [node name="Velocity" type="Label" parent="Control"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "SAMPLE"
 horizontal_alignment = 2
-script = ExtResource("5_ckp1w")
+script = ExtResource("5_t67ed")
 metadata/_edit_use_anchors_ = true
 
 [node name="State" type="Label" parent="Control"]
@@ -71,10 +71,10 @@ theme_override_font_sizes/font_size = 8
 text = "SAMPLE
 "
 horizontal_alignment = 2
-script = ExtResource("6_4hvj5")
+script = ExtResource("6_i70w5")
 metadata/_edit_use_anchors_ = true
 
-[node name="LevelModal" parent="." instance=ExtResource("7_khtmo")]
+[node name="LevelModal" parent="." instance=ExtResource("7_7j2la")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -82,11 +82,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 
-[node name="LevelFinished" parent="." instance=ExtResource("8_umwcv")]
+[node name="LevelFinished" parent="." instance=ExtResource("8_nv7mw")]
 process_mode = 0
 visible = false
 
-[node name="ConfigScreen" parent="." instance=ExtResource("9_6t7ff")]
+[node name="ConfigScreen" parent="." instance=ExtResource("9_d5pk6")]
 process_mode = 2
 visible = false
 

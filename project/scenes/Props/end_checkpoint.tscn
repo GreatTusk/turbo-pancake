@@ -39,6 +39,7 @@ scale_curve = SubResource("CurveTexture_yfcas")
 anim_offset_max = 1.0
 
 [node name="EndCheckpoint" type="Node2D"]
+z_index = -1
 script = ExtResource("1_r8qc6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

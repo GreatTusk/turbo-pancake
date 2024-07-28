@@ -34,8 +34,7 @@ const MAX_GRAVITY: float = 300.0
 const ACC: float = 15.0
 const AIR_ACC_X: float = 12.0
 const AIR_ACC_Y: float = 550.0
-
-const GROUND_DEC: float = 20.0
+const STD_GROUND_DEC: float = 20.0
 const AIR_DEC_X: float = 10.0
 
 const BOOST_IMPULSE: float = 320.0
@@ -56,6 +55,8 @@ var spawn_pos: Vector2:
 	set = set_respawn_pos
 var can_boost: bool = true
 var gravity := MAX_GRAVITY
+var ground_dec: float = STD_GROUND_DEC
+var tile_map: TileMap
 
 # Using signals to communicate to outer nodes
 signal animation_changed(animation: StringName)
@@ -112,7 +113,10 @@ func _physics_process(delta: float) -> void:
 			wall_movement(delta)
 	move_and_slide()
 
+
 func ground_movement() -> void:
+	#ground_dec = SLIP_GROUND_DEC if process_tile_effect() else STD_GROUND_DEC
+	#ground_dec = STD_GROUND_DEC / process_tile_effect()
 	# Whether the user pressed jump or a jump had been previously buffered, jump
 	if Input.is_action_just_pressed("jump") || !jump_buffer_timer.is_stopped():
 		jump_lines.play()
@@ -121,7 +125,7 @@ func ground_movement() -> void:
 		jump_buffer_timer.stop()
 		# Return - if we've jumped we're no longer in the ground
 		return
-	
+		
 	# Horizontal movement
 	var direction: float = Input.get_axis("move_left", "move_right")
 	if direction != 0.0:
@@ -130,7 +134,7 @@ func ground_movement() -> void:
 		self.velocity.x = move_toward(self.velocity.x, direction * MAX_SPEED, ACC)
 	else:
 		animated_sprites.play("idle")
-		self.velocity.x = move_toward(self.velocity.x, 0.0, GROUND_DEC)
+		self.velocity.x = move_toward(self.velocity.x, 0.0, ground_dec)
 	
 	if Input.is_action_just_pressed("boost") && boost_cooldown_timer.is_stopped():
 		boost()
@@ -241,6 +245,16 @@ func adjust_hitbox() -> void:
 func is_coll_wall() -> bool:
 	# Check the left or right cast depending on which way the player is facing
 	return (left_cast if animated_sprites.flip_h else right_cast).is_colliding()
+
+func process_tile_effect() -> float:
+	if tile_map.get_layers_count() > 1:
+		var current_tile: Vector2i = tile_map.local_to_map(to_local(self.global_position))
+		current_tile.y += 25
+		var data := tile_map.get_cell_tile_data(1, current_tile)
+		if data:
+			return data.get_custom_data("movement_modifier")
+	# No effect, divide by 1
+	return 1.0
 
 func boost() -> void:
 	self.velocity.x = (-1 if animated_sprites.flip_h else 1) * BOOST_IMPULSE 

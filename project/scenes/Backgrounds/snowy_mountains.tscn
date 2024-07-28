@@ -21,7 +21,7 @@ texture = ExtResource("1_d4n1s")
 centered = false
 
 [node name="Mountains" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(1.5, 1.5)
+motion_scale = Vector2(1.2, 1.2)
 motion_mirroring = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Mountains"]
@@ -29,7 +29,7 @@ texture = ExtResource("2_hjmui")
 centered = false
 
 [node name="BackTrees" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(2, 2)
+motion_scale = Vector2(1.4, 1.4)
 motion_mirroring = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="BackTrees"]
@@ -37,7 +37,7 @@ texture = ExtResource("3_vag8x")
 centered = false
 
 [node name="FrontTrees" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(2.5, 2.5)
+motion_scale = Vector2(1.6, 1.6)
 motion_mirroring = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="FrontTrees"]
@@ -45,7 +45,7 @@ texture = ExtResource("4_43n48")
 centered = false
 
 [node name="Ground" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(3, 3)
+motion_scale = Vector2(1.8, 1.8)
 motion_mirroring = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
