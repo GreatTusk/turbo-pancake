@@ -13,14 +13,6 @@ projectdir = "project"
 
 localEnv = Environment(tools=["default"], PLATFORM="")
 
-# Remove any existing -std flags and append -std=c++20
-def set_cxx_standard(env, standard):
-    flags = env['CXXFLAGS']
-    env['CXXFLAGS'] = [flag for flag in flags if not flag.startswith('-std=')]
-    env.Prepend(CXXFLAGS=[f'-std={standard}'])
-
-set_cxx_standard(localEnv, 'c++20')
-
 customs = ["custom.py"]
 customs = [os.path.abspath(path) for path in customs]
 
@@ -55,7 +47,6 @@ env.Alias("compiledb", compilation_db)
 
 env = SConscript("extern/godot-cpp/SConstruct", {"env": env, "customs": customs})
 
-set_cxx_standard(env, 'c++20')
 
 env.Append(CPPPATH=["src/"])
 sources = Glob("src/**/*.cpp")

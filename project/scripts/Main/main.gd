@@ -7,6 +7,10 @@ extends Node
 
 func _ready() -> void:
 	# Ignore return value - not useful here
+	if OS.has_feature("mobile"):
+		# TODO: Fix the touchscreen controls to the sides of the screen
+		pass
+		#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
 	instantiate_main_ui()
 	
 func instantiate_main_ui() -> CanvasLayer:

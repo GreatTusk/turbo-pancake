@@ -6,7 +6,6 @@
 #include "godot_cpp/classes/input.hpp"
 #include "godot_cpp/classes/os.hpp"
 #include "godot_cpp/variant/utility_functions.hpp"
-#include "main.hpp"
 #include "player.h"
 #include "util/engine.hpp"
 #include "util/input.hpp"
