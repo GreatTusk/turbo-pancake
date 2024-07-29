@@ -9,7 +9,7 @@ signal level_selected(level_scene_path: String)
 const LEVELS_PATH: String = "res://scenes/levels"
 
 func _ready() -> void:
-	const icons_path := "res://assets/Menu/Levels/%s.png"
+	const icons_path := "res://assets/menu/levels/%s.png"
 	var level_count: int = count_files_dir(LEVELS_PATH)
 	Singleton.max_level_count = level_count
 
@@ -46,7 +46,8 @@ func count_files_dir(path: String) -> int:
 func _on_level_button_pressed(level_index: int) -> void:
 	# Emit the level's scene path to Main
 	Singleton.current_level = level_index
-	level_selected.emit((LEVELS_PATH + "/level_%s.tscn") % level_index)
+	var path: String = (LEVELS_PATH + "/level_%s.tscn") % level_index
+	level_selected.emit(path)
 
 func _on_to_title_screen_pressed()  -> void:
 	back_to_title_screen.emit()

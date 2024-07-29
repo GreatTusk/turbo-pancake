@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bu24dqedjre8n" path="res://scenes/backgrounds/snowy_mountains.tscn" id="5_ffrnw"]
 [ext_resource type="PackedScene" uid="uid://b4gxppsa8chb4" path="res://scenes/props/end_checkpoint.tscn" id="5_tj5uu"]
 [ext_resource type="PackedScene" uid="uid://bofjiwm58bvlp" path="res://scenes/enemies/rock_head.tscn" id="6_1wfs8"]
-[ext_resource type="AudioStream" uid="uid://dybhism7pj1wx" path="res://assets/Music/Fire Emblem Thracia 776 - Leif’s Army in Search of Victory ~ Adversity - Orchestral Cover 01h7.wav" id="6_ebil8"]
+[ext_resource type="AudioStream" uid="uid://dybhism7pj1wx" path="res://assets/music/Fire Emblem Thracia 776 - Leif’s Army in Search of Victory ~ Adversity - Orchestral Cover 01h7.wav" id="6_ebil8"]
 [ext_resource type="Script" path="res://scripts/audio/bg_music.gd" id="7_0o2jn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0byia"]
@@ -23,6 +23,7 @@ bottom_limit = 416
 [node name="SnowyMountains" parent="." instance=ExtResource("5_ffrnw")]
 scale = Vector2(1, 1.5)
 transform = Transform2D(1, 0, 0, 1.5, 0, 0)
+scroll_ignore_camera_zoom = false
 scroll = false
 
 [node name="TileMap" type="TileMap" parent="."]

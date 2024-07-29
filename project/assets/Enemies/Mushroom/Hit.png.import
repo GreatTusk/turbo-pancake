@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qdypxaiaverh"
-path="res://.godot/imported/Hit.png-3d2c806696bd69b9cf5d37545794e118.ctex"
+uid="uid://c2vhonfs0jmlr"
+path="res://.godot/imported/hit.png-f6b380bfd85ba35cfc0a8ddd36618d5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemies/Mushroom/Hit.png"
-dest_files=["res://.godot/imported/Hit.png-3d2c806696bd69b9cf5d37545794e118.ctex"]
+source_file="res://assets/enemies/mushroom/hit.png"
+dest_files=["res://.godot/imported/hit.png-f6b380bfd85ba35cfc0a8ddd36618d5a.ctex"]
 
 [params]
 

@@ -15,7 +15,7 @@ namespace tp
     void Fan::_ready()
     {
         this->set_process(false);
-        if (engine::editor_active())
+        if (utils::engine::editor_active())
             return;
         sfx_player = this->get_node<godot::AudioStreamPlayer2D>(name::fan::sfx_player);
         auto* area_2d = this->get_node<godot::Area2D>(name::trampoline::area2d);
@@ -48,6 +48,8 @@ namespace tp
                                     &Fan::_on_area_2d_body_entered);
         godot::ClassDB::bind_method(godot::D_METHOD(event::body_exited, "body"),
                                     &Fan::_on_area_2d_body_exited);
-        signal_binding<Fan, event::fan_colliding>::add<double>();
+        // ADD_SIGNAL(godot::MethodInfo(event::fan_colliding,
+        // godot::PropertyInfo(godot::Variant::OBJECT, "node"),
+        // godot::PropertyInfo(godot::Variant::VECTOR2, "new_pos")));
     }
 }

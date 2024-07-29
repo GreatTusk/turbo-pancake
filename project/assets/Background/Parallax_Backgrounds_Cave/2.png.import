@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsqesi70k73js"
-path="res://.godot/imported/2.png-ffb07293b376f7fa70103d898e39a914.ctex"
+path="res://.godot/imported/2.png-874f2dcd9bea01b8ae220a01dcbf4332.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Background/Parallax_Backgrounds_Cave/2.png"
-dest_files=["res://.godot/imported/2.png-ffb07293b376f7fa70103d898e39a914.ctex"]
+source_file="res://assets/background/parallax_backgrounds_cave/2.png"
+dest_files=["res://.godot/imported/2.png-874f2dcd9bea01b8ae220a01dcbf4332.ctex"]
 
 [params]
 

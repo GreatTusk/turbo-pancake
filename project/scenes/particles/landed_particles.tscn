@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhscpn3mo4rdk"]
 
-[ext_resource type="Texture2D" uid="uid://c2cnxu6uqh2pa" path="res://assets/Other/Dust Particle.png" id="1_hlxtv"]
+[ext_resource type="Texture2D" uid="uid://c2cnxu6uqh2pa" path="res://assets/other/dust_particle.png" id="1_hlxtv"]
 
 [sub_resource type="Gradient" id="Gradient_qtooj"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)

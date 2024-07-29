@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d074vn7exht1t"]
 
 [ext_resource type="Script" path="res://scripts/enemies/spike.gd" id="1_a5ksk"]
-[ext_resource type="Texture2D" uid="uid://chrojbve1ofv3" path="res://assets/Traps/Spikes/Idle.png" id="1_v4p0f"]
+[ext_resource type="Texture2D" uid="uid://chrojbve1ofv3" path="res://assets/traps/spikes/idle.png" id="1_v4p0f"]
 
 [node name="Spike" type="Node2D"]
 script = ExtResource("1_a5ksk")

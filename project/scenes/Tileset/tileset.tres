@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=9 format=3 uid="uid://vptcadldwt6f"]
 
-[ext_resource type="Texture2D" uid="uid://bmmteokwntry6" path="res://assets/Terrain/Terrain (16x16).png" id="1_hol7q"]
+[ext_resource type="Texture2D" uid="uid://bmmteokwntry6" path="res://assets/terrain/terrain(16x16).png" id="1_hol7q"]
 [ext_resource type="PackedScene" uid="uid://d074vn7exht1t" path="res://scenes/obstacles/spike.tscn" id="1_k6vcd"]
 [ext_resource type="PackedScene" uid="uid://bh4fvrj13b1ox" path="res://scenes/props/floating_platform.tscn" id="3_k7oy3"]
-[ext_resource type="Texture2D" uid="uid://cyl8hd4dx8g6h" path="res://assets/Traps/Sand Mud Ice/Sand Mud Ice (16x6).png" id="4_yl44o"]
+[ext_resource type="Texture2D" uid="uid://cyl8hd4dx8g6h" path="res://assets/traps/sand_mud_ice/sand_mud_ice_(16x6).png" id="4_yl44o"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_jii4f"]
 resource_name = "Spike"

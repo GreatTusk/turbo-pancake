@@ -1,12 +1,13 @@
 #include <godot_cpp/classes/window.hpp>
 
-#include "core/assert.hpp"
-#include "core/constants.hpp"
+// #include "core/assert.hpp"
+// #include "core/constants.hpp"
 #include "main.hpp"
-#include "util/conversions.hpp"
-#include "util/engine.hpp"
-#include "util/input.hpp"
-#include "util/scene.hpp"
+
+// #include "util/conversions.hpp"
+// #include "util/engine.hpp"
+// #include "util/input.hpp"
+// #include "util/scene.hpp"
 
 namespace tp
 {

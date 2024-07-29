@@ -8,7 +8,6 @@
 #include "core/attributes.hpp"
 #include "core/constants.hpp"
 #include "fruit.h"
-#include "util/bind.hpp"
 #include "util/engine.hpp"
 
 namespace tp
@@ -16,7 +15,7 @@ namespace tp
 
     void Fruit::_ready()
     {
-        if (engine::editor_active())
+        if (utils::engine::editor_active())
             return;
 
         auto* area_2d = this->get_node<godot::Area2D>(name::trampoline::area2d);
@@ -81,7 +80,8 @@ namespace tp
         godot::ClassDB::bind_method(godot::D_METHOD(event::animation_finished),
                                     &Fruit::_on_animation_finished);
 
-        signal_binding<Fruit, event::fruit_collected_player>::add();
-        signal_binding<Fruit, event::fruit_collected>::add<godot::StringName>();
+        ADD_SIGNAL(godot::MethodInfo(event::fruit_collected_player));
+        ADD_SIGNAL(godot::MethodInfo(event::fruit_collected,
+                                     godot::PropertyInfo(godot::Variant::STRING_NAME, "fruit")));
     }
 }

@@ -1,12 +1,12 @@
 [gd_scene load_steps=19 format=3 uid="uid://bofjiwm58bvlp"]
 
-[ext_resource type="Texture2D" uid="uid://cnqjmsap6ayf" path="res://assets/Traps/Rock Head/Blink (42x42).png" id="1_q5sf2"]
-[ext_resource type="Texture2D" uid="uid://88d812235ovl" path="res://assets/Traps/Rock Head/Bottom Hit (42x42).png" id="2_tyeyy"]
-[ext_resource type="Texture2D" uid="uid://btg8xxer26pe6" path="res://assets/Traps/Rock Head/Idle.png" id="3_m7s8v"]
+[ext_resource type="Texture2D" uid="uid://cnqjmsap6ayf" path="res://assets/traps/rock_head/blink_(42x42).png" id="1_q5sf2"]
+[ext_resource type="Texture2D" uid="uid://88d812235ovl" path="res://assets/traps/rock_head/bottom_hit_(42x42).png" id="2_tyeyy"]
+[ext_resource type="Texture2D" uid="uid://btg8xxer26pe6" path="res://assets/traps/rock_head/idle.png" id="3_m7s8v"]
 [ext_resource type="Script" path="res://scripts/enemies/rock_head.gd" id="4_y87xp"]
 [ext_resource type="AudioStream" uid="uid://ch7nlq6a2vgxe" path="res://assets/sounds/explosion.wav" id="5_wo8s6"]
 [ext_resource type="Material" uid="uid://cr15j1gubqjgn" path="res://scenes/particles/rock_head.tres" id="6_ejki4"]
-[ext_resource type="Texture2D" uid="uid://c2cnxu6uqh2pa" path="res://assets/Other/Dust Particle.png" id="7_xrjfd"]
+[ext_resource type="Texture2D" uid="uid://c2cnxu6uqh2pa" path="res://assets/other/dust_particle.png" id="7_xrjfd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juftl"]
 size = Vector2(32, 32)

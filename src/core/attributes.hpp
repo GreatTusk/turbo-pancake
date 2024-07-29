@@ -1,6 +1,6 @@
 #pragma once
 
-namespace tp::inline utils
+namespace tp::utils
 {
 
 #if defined(_MSC_VER)

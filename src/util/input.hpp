@@ -6,7 +6,7 @@ namespace godot
     class Input;
 }
 
-namespace tp::inline utils
+namespace tp::utils
 {
     namespace input
     {

@@ -10,7 +10,6 @@
 #include <godot_cpp/classes/node2d.hpp>
 
 #include "core/attributes.hpp"
-#include "util/bind.hpp"
 
 namespace tp
 {

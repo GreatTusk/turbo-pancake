@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=69 format=3 uid="uid://c41upm1405qg1"]
 
-[ext_resource type="Texture2D" uid="uid://c0l0xmey1ffyv" path="res://assets/Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png" id="1_ggsho"]
-[ext_resource type="Texture2D" uid="uid://id7d1mo6eox6" path="res://assets/Items/Checkpoints/Checkpoint/Checkpoint (No Flag).png" id="2_mlxq5"]
-[ext_resource type="Texture2D" uid="uid://b2uv0b88jq1xn" path="res://assets/Items/Checkpoints/Checkpoint/Checkpoint (Flag Out) (64x64).png" id="3_el6a6"]
-[ext_resource type="Texture2D" uid="uid://do6e5ipm1jsme" path="res://assets/Items/Checkpoints/End/End (Idle).png" id="4_vt6f7"]
-[ext_resource type="Texture2D" uid="uid://diulxs1vrbmld" path="res://assets/Items/Checkpoints/End/End (Pressed) (64x64).png" id="5_ul0ui"]
-[ext_resource type="Texture2D" uid="uid://donkveeuqcy8c" path="res://assets/Items/Checkpoints/Start/Start (Idle).png" id="6_hfflu"]
-[ext_resource type="Texture2D" uid="uid://cnw2ijqyth8ru" path="res://assets/Items/Checkpoints/Start/Start (Moving) (64x64).png" id="7_tdace"]
+[ext_resource type="Texture2D" uid="uid://c0l0xmey1ffyv" path="res://assets/items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png" id="1_ggsho"]
+[ext_resource type="Texture2D" uid="uid://id7d1mo6eox6" path="res://assets/items/Checkpoints/Checkpoint/Checkpoint (No Flag).png" id="2_mlxq5"]
+[ext_resource type="Texture2D" uid="uid://b2uv0b88jq1xn" path="res://assets/items/Checkpoints/Checkpoint/Checkpoint (Flag Out) (64x64).png" id="3_el6a6"]
+[ext_resource type="Texture2D" uid="uid://do6e5ipm1jsme" path="res://assets/items/Checkpoints/End/End (Idle).png" id="4_vt6f7"]
+[ext_resource type="Texture2D" uid="uid://diulxs1vrbmld" path="res://assets/items/Checkpoints/End/End (Pressed) (64x64).png" id="5_ul0ui"]
+[ext_resource type="Texture2D" uid="uid://donkveeuqcy8c" path="res://assets/items/Checkpoints/Start/Start (Idle).png" id="6_hfflu"]
+[ext_resource type="Texture2D" uid="uid://cnw2ijqyth8ru" path="res://assets/items/Checkpoints/Start/Start (Moving) (64x64).png" id="7_tdace"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_auc0w"]
 atlas = ExtResource("1_ggsho")

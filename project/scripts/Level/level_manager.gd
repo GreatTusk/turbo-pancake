@@ -10,6 +10,7 @@ original state would be more expensive than reloading them.
 
 # LevelUI
 @onready var level_ui := $LevelUI as CanvasLayer
+@onready var mobile_controls := level_ui.get_node("MobileControls") as Node2D
 @onready var score_label := level_ui.get_node("Score") as Label
 @onready var level_finished := level_ui.get_node("LevelFinished") as LevelFinished
 @onready var player := $Player as PlayableCharacter
@@ -78,6 +79,9 @@ func initialize_level(level: Level) -> void:
 			fruit.fruit_score_changed.connect(Callable(score_label, "_on_fruit_collected"))
 	
 func _on_level_finished() -> void:
+	for mobile_control: TouchScreenButton in mobile_controls.get_children():
+		mobile_control.hide()  
+	player.animated_sprites.stop()
 	player.set_physics_process(false)
 	level_finished.show()
 
@@ -101,6 +105,10 @@ func connect_player_and_level() -> void:
 	player.camera.limit_top = level.top_limit
 	player.camera.limit_right = level.right_limit
 	player.camera.limit_left = level.left_limit
+	
+	if OS.has_feature("mobile"):
+		player.camera.zoom = Vector2(1.2, 1.2)
+
 	level_ui.show()
 	initialize_level(level)
 

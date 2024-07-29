@@ -31,6 +31,6 @@ namespace tp
         // This is also needed to connect the signal
         godot::ClassDB::bind_method(godot::D_METHOD(event::body_entered, "body"),
                                     &Trampoline::_on_area_2d_body_entered);
-        signal_binding<Trampoline, event::on_trampoline>::add();
+        // signal_binding<Trampoline, event::on_trampoline>::add();
     }
 }

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnl325vuvde6k"]
 
 [ext_resource type="Script" path="res://scripts/ui/level_finished.gd" id="1_ji36s"]
-[ext_resource type="Texture2D" uid="uid://ceetpclbadcei" path="res://assets/Menu/Buttons/Previous.png" id="2_0s34l"]
-[ext_resource type="Texture2D" uid="uid://cl31th6uhrsur" path="res://assets/Menu/Buttons/Levels.png" id="4_05ldm"]
-[ext_resource type="Texture2D" uid="uid://cvdiypkgrp12k" path="res://assets/Menu/Buttons/Next.png" id="5_mcrfc"]
-[ext_resource type="Texture2D" uid="uid://dg0e7n4x3hj5o" path="res://assets/Menu/Buttons/Restart.png" id="5_yn7jj"]
+[ext_resource type="Texture2D" uid="uid://ceetpclbadcei" path="res://assets/menu/buttons/previous.png" id="2_0s34l"]
+[ext_resource type="Texture2D" uid="uid://cl31th6uhrsur" path="res://assets/menu/buttons/levels.png" id="4_05ldm"]
+[ext_resource type="Texture2D" uid="uid://cvdiypkgrp12k" path="res://assets/menu/buttons/next.png" id="5_mcrfc"]
+[ext_resource type="Texture2D" uid="uid://dg0e7n4x3hj5o" path="res://assets/menu/buttons/restart.png" id="5_yn7jj"]
 
 [node name="LevelFinished" type="Control"]
 process_mode = 2

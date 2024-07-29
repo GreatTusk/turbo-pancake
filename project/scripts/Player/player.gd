@@ -50,7 +50,7 @@ const TRAMPOLINE_IMPULSE: float = 280.0
 # Control flow vars
 var double_jump: bool = double_jump_unlocked
 var double_jump_y: float
-var current_state: States = States.GROUND
+var current_state: States = States.AIR
 var spawn_pos: Vector2:
 	set = set_respawn_pos
 var can_boost: bool = true
@@ -198,10 +198,11 @@ func exit_state(previous_state: States, new_state: States) -> void:
 		States.AIR:
 			# If the player is not on the air anymore, reset their ability to double jump
 			double_jump = double_jump_unlocked
-			if new_state == States.WALL:
-				can_boost = true
-			elif new_state == States.GROUND:
-				fall_lines.play()
+			match new_state:
+				States.WALL:
+					can_boost = true
+				States.GROUND:
+					fall_lines.play()
 		States.GROUND:
 			if new_state == States.AIR:
 				coyote_timer.start()
@@ -214,7 +215,6 @@ func enter_state(new_state: States) -> void:
 			particle_queue.trigger()
 		States.WALL: 
 			# Cancel the player's vertical momentum
-			#print(global_position)
 			velocity.y = 0
 	current_state = new_state
 

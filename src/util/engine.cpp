@@ -6,7 +6,7 @@
 
 #include "util/engine.hpp"
 
-namespace tp::inline utils
+namespace tp::utils
 {
     godot::Engine* engine::get()
     {

@@ -16,7 +16,7 @@ namespace tp
     void Player::_ready()
     {
         set_physics_process(false);
-        if (engine::editor_active())
+        if (utils::engine::editor_active())
             return;
         main = get_node<Node2D>(name::player::nodes::main);
         this->set_position(spawn_pos);
@@ -83,14 +83,14 @@ namespace tp
 
     void Player::ground_movement(const double delta)
     {
-        if (input::get()->is_action_just_pressed(input::action::jump))
+        if (utils::input::get()->is_action_just_pressed(utils::input::action::jump))
         {
             jump_sfx->play();
             this->set_velocity({ get_velocity().x, JUMP_VEL });
             return;
         }
-        const double dir = input::get()->get_axis(input::action::move_left,
-                                                  input::action::move_right);
+        const double dir = utils::input::get()->get_axis(utils::input::action::move_left,
+                                                         utils::input::action::move_right);
 
         godot::Vector2 vel = this->get_velocity();
         if (dir == 0.0)
@@ -120,7 +120,7 @@ namespace tp
             godot::Math::move_toward(static_cast<double>(vel.y), MAX_SPEED_Y, AIR_ACC_Y * delta));
 
         // Handle double jumping
-        if (input::get()->is_action_just_pressed(input::action::jump) && double_jump)
+        if (utils::input::get()->is_action_just_pressed(utils::input::action::jump) && double_jump)
         {
             animated_sprites->play(name::player::animations::double_jump);
             jump_sfx->play();
@@ -128,20 +128,21 @@ namespace tp
             double_jump = false;
             double_jump_pos = this->get_position().y;
         }
-        else if (vel.y < 0.0 && animated_sprites->get_animation() != godot::StringName(name::player::animations::double_jump))
+        else if (vel.y < 0.0 && animated_sprites->get_animation() !=
+                                    godot::StringName(name::player::animations::double_jump))
         {
             animated_sprites->play(name::player::animations::jump);
         }
-        else if (vel.y > 0.0 &&
-                 (animated_sprites->get_animation() != godot::StringName(name::player::animations::double_jump) ||
-                  get_position().y >= double_jump_pos))
+        else if (vel.y > 0.0 && (animated_sprites->get_animation() !=
+                                     godot::StringName(name::player::animations::double_jump) ||
+                                 get_position().y >= double_jump_pos))
         {
             animated_sprites->play(name::player::animations::fall);
         }
 
         // Horizontal movement
-        if (const double dir = input::get()->get_axis(input::action::move_left,
-                                                      input::action::move_right);
+        if (const double dir = utils::input::get()->get_axis(utils::input::action::move_left,
+                                                             utils::input::action::move_right);
             dir == 0.0)
         {
             vel.x = static_cast<real_t>(
@@ -160,7 +161,7 @@ namespace tp
 
     void Player::wall_movement(const double delta)
     {
-        if (input::get()->is_action_just_pressed(input::action::jump))
+        if (utils::input::get()->is_action_just_pressed(utils::input::action::jump))
         {
             animated_sprites->play(name::player::animations::jump);
             jump_cooldown->start();
@@ -220,17 +221,17 @@ namespace tp
 
     bool Player::holding_x_dir()
     {
-        const godot::Input* input = input::get();
-        return input->is_action_pressed(input::action::move_left) ||
-               input->is_action_pressed(input::action::move_right);
+        const godot::Input* input = utils::input::get();
+        return input->is_action_pressed(utils::input::action::move_left) ||
+               input->is_action_pressed(utils::input::action::move_right);
     }
 
     bool Player::changed_dir() const
     {
-        const godot::Input* input = input::get();
+        const godot::Input* input = utils::input::get();
         const bool is_flipped_h = animated_sprites->is_flipped_h();
-        return (input->is_action_pressed(input::action::move_left) && !is_flipped_h) ||
-               (input->is_action_pressed(input::action::move_right) && is_flipped_h);
+        return (input->is_action_pressed(utils::input::action::move_left) && !is_flipped_h) ||
+               (input->is_action_pressed(utils::input::action::move_right) && is_flipped_h);
     }
 
     void Player::adjust_hitbox() const
@@ -277,7 +278,8 @@ namespace tp
 
     void Player::_on_respawn_animation_finished()
     {
-        if (animated_sprites->get_animation() == godot::StringName(name::player::animations::appearing))
+        if (animated_sprites->get_animation() ==
+            godot::StringName(name::player::animations::appearing))
         {
             change_state(States::GROUND);
             set_physics_process(true);
@@ -322,7 +324,8 @@ namespace tp
         godot::ClassDB::bind_method(godot::D_METHOD("die"), &Player::die);
 
         ADD_SIGNAL(godot::MethodInfo("respawn"));
-        godot::ClassDB::bind_method(godot::D_METHOD(name::player::signals::respawn), &Player::_on_respawn);
+        godot::ClassDB::bind_method(godot::D_METHOD(name::player::signals::respawn),
+                                    &Player::_on_respawn);
         godot::ClassDB::bind_method(godot::D_METHOD("set_respawn_pos", "pos"),
                                     &Player::set_respawn_pos);
     }

@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://bh4fvrj13b1ox"]
 
-[ext_resource type="Texture2D" uid="uid://c4y4ecubr14xk" path="res://assets/Traps/Falling Platforms/Off.png" id="1_5oyxr"]
+[ext_resource type="Texture2D" uid="uid://c4y4ecubr14xk" path="res://assets/traps/falling_platforms/off.png" id="1_5oyxr"]
 [ext_resource type="Script" path="res://scripts/props/floating_platform.gd" id="1_ve7ww"]
-[ext_resource type="Texture2D" uid="uid://bj2ywarp6b0wh" path="res://assets/Traps/Falling Platforms/On (32x10).png" id="2_o8l0m"]
+[ext_resource type="Texture2D" uid="uid://bj2ywarp6b0wh" path="res://assets/traps/falling_platforms/on_(32x10).png" id="2_o8l0m"]
 [ext_resource type="Material" uid="uid://bg3aikph12prs" path="res://scenes/particles/floating_platform.tres" id="4_wo3gu"]
-[ext_resource type="Texture2D" uid="uid://c2cnxu6uqh2pa" path="res://assets/Other/Dust Particle.png" id="5_xt7mx"]
+[ext_resource type="Texture2D" uid="uid://c2cnxu6uqh2pa" path="res://assets/other/dust_particle.png" id="5_xt7mx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88a5r"]
 size = Vector2(32, 5)

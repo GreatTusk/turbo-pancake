@@ -1,11 +1,9 @@
 #include <godot_cpp/classes/input.hpp>
 #include <godot_cpp/classes/input_map.hpp>
-#include <godot_cpp/core/method_ptrcall.hpp>
-#include <godot_cpp/core/type_info.hpp>
 
 #include "util/input.hpp"
 
-namespace tp::inline utils
+namespace tp::utils
 {
     godot::InputMap* input::map::get()
     {

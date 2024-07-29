@@ -1,16 +1,9 @@
 #include <type_traits>
 
 #include <gdextension_interface.h>
-#include <godot_cpp/classes/engine.hpp>
-#include <godot_cpp/core/memory.hpp>
-#include <godot_cpp/variant/string_name.hpp>
 
 #include "api/extension_interface.hpp"
-#include "entities/player.h"
-#include "interactive_items/fan.h"
 #include "interactive_items/fruit.h"
-#include "interactive_items/trampoline.h"
-#include "main.hpp"
 #include "util/engine.hpp"
 
 namespace tp

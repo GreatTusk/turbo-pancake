@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbjvwvbxcm7qf"]
+[gd_scene load_steps=14 format=3 uid="uid://dbjvwvbxcm7qf"]
 
 [ext_resource type="Script" path="res://scripts/ui/level_ui.gd" id="1_otma3"]
-[ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/Menu/Buttons/Back.png" id="2_bu2r5"]
+[ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/menu/buttons/back.png" id="2_nglyy"]
 [ext_resource type="Script" path="res://scripts/ui/score_label.gd" id="3_3iv21"]
 [ext_resource type="Script" path="res://scripts/ui/player_animation_label.gd" id="4_tsk05"]
 [ext_resource type="Script" path="res://scripts/ui/player_velocity_label.gd" id="5_t67ed"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://2nmlqgkwuq0g" path="res://scenes/ui/level_modal.tscn" id="7_7j2la"]
 [ext_resource type="PackedScene" uid="uid://bnl325vuvde6k" path="res://scenes/ui/level_finished.tscn" id="8_nv7mw"]
 [ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://scenes/ui/config_screen.tscn" id="9_d5pk6"]
+[ext_resource type="Texture2D" uid="uid://20u2601o6mde" path="res://assets/menu/mobile_controls/left.png" id="10_ppcfn"]
+[ext_resource type="Texture2D" uid="uid://j488uq84aa6n" path="res://assets/menu/mobile_controls/right.png" id="11_h1su6"]
+[ext_resource type="Texture2D" uid="uid://baxwuhhna22df" path="res://assets/menu/mobile_controls/up.png" id="12_76mgc"]
+[ext_resource type="Texture2D" uid="uid://d1xqfse7pxhur" path="res://assets/menu/mobile_controls/boost.png" id="13_t7x0d"]
 
 [node name="LevelUI" type="CanvasLayer"]
 layer = 2
@@ -19,7 +23,7 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 40.0
 offset_bottom = 40.0
-texture_normal = ExtResource("2_bu2r5")
+texture_normal = ExtResource("2_nglyy")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
@@ -89,5 +93,36 @@ visible = false
 [node name="ConfigScreen" parent="." instance=ExtResource("9_d5pk6")]
 process_mode = 2
 visible = false
+
+[node name="MobileControls" type="Node2D" parent="."]
+position = Vector2(0, 216)
+
+[node name="Left" type="TouchScreenButton" parent="MobileControls"]
+position = Vector2(16, -68)
+scale = Vector2(3.067, 2.875)
+texture_normal = ExtResource("10_ppcfn")
+action = "move_left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="MobileControls"]
+position = Vector2(80, -68)
+scale = Vector2(3.2, 2.875)
+texture_normal = ExtResource("11_h1su6")
+action = "move_right"
+visibility_mode = 1
+
+[node name="Jump" type="TouchScreenButton" parent="MobileControls"]
+position = Vector2(316, -64)
+scale = Vector2(3, 2.9)
+texture_normal = ExtResource("12_76mgc")
+action = "jump"
+visibility_mode = 1
+
+[node name="Boost" type="TouchScreenButton" parent="MobileControls"]
+position = Vector2(252, -64)
+scale = Vector2(2.09524, 2)
+texture_normal = ExtResource("13_t7x0d")
+action = "boost"
+visibility_mode = 1
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

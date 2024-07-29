@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bofjiwm58bvlp" path="res://scenes/enemies/rock_head.tscn" id="16_6cjax"]
 [ext_resource type="PackedScene" uid="uid://cvs2hp50inh6n" path="res://scenes/enemies/spike_head.tscn" id="17_0q1gd"]
 [ext_resource type="PackedScene" uid="uid://mkxeqvc338kv" path="res://scenes/items/apple.tscn" id="18_auu4r"]
-[ext_resource type="AudioStream" uid="uid://dg3lxjq4ok017" path="res://assets/Music/Life in the Mines.mp3" id="19_d2wju"]
+[ext_resource type="AudioStream" uid="uid://dg3lxjq4ok017" path="res://assets/music/Life in the Mines.mp3" id="19_d2wju"]
 [ext_resource type="Script" path="res://scripts/audio/bg_music.gd" id="20_2fu0e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7aknt"]

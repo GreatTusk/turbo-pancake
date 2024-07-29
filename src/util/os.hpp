@@ -6,7 +6,7 @@ namespace tp::inline utils
 {
     struct os
     {
-        static inline godot::OS* get()
+        static godot::OS* get()
         {
             return godot::OS::get_singleton();
         }

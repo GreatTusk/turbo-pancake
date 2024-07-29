@@ -1,20 +1,25 @@
 #!/usr/bin/env python
 import os
 
-
 def normalize_path(val, env):
     return val if os.path.isabs(val) else os.path.join(env.Dir("#").abspath, val)
-
 
 def validate_parent_dir(key, val, env):
     if not os.path.isdir(normalize_path(os.path.dirname(val), env)):
         raise UserError("'%s' is not a directory: %s" % (key, os.path.dirname(val)))
 
-
 libname = "turbo_pancake"
 projectdir = "project"
 
 localEnv = Environment(tools=["default"], PLATFORM="")
+
+# Remove any existing -std flags and append -std=c++20
+def set_cxx_standard(env, standard):
+    flags = env['CXXFLAGS']
+    env['CXXFLAGS'] = [flag for flag in flags if not flag.startswith('-std=')]
+    env.Prepend(CXXFLAGS=[f'-std={standard}'])
+
+set_cxx_standard(localEnv, 'c++20')
 
 customs = ["custom.py"]
 customs = [os.path.abspath(path) for path in customs]
@@ -50,8 +55,11 @@ env.Alias("compiledb", compilation_db)
 
 env = SConscript("extern/godot-cpp/SConstruct", {"env": env, "customs": customs})
 
+set_cxx_standard(env, 'c++20')
+
 env.Append(CPPPATH=["src/"])
-sources = Glob("src/*.cpp")
+sources = Glob("src/**/*.cpp")
+
 
 file = "{}{}{}".format(libname, env["suffix"], env["SHLIBSUFFIX"])
 
@@ -59,13 +67,13 @@ if env["platform"] == "macos" or env["platform"] == "ios":
     platlibname = "{}.{}.{}".format(libname, env["platform"], env["target"])
     file = "{}.framework/{}".format(env["platform"], platlibname, platlibname)
 
-libraryfile = "bin/{}/{}".format(env["platform"], file)
+libraryfile = "bin/{}".format(file)
 library = env.SharedLibrary(
     libraryfile,
     source=sources,
 )
 
-copy = env.InstallAs("{}/bin/{}/lib{}".format(projectdir, env["platform"], file), library)
+copy = env.InstallAs("{}/bin/lib{}".format(projectdir, file), library)
 
 default_args = [library, copy]
 if localEnv.get("compiledb", False):

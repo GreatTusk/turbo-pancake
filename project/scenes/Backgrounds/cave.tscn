@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://dwebwidqfamdi"]
 
-[ext_resource type="Texture2D" uid="uid://bpyk84pwt6p1w" path="res://assets/Background/Parallax_Backgrounds_Cave/7.png" id="1_vi5lt"]
-[ext_resource type="Texture2D" uid="uid://c1yfr7tswrd6i" path="res://assets/Background/Parallax_Backgrounds_Cave/6.png" id="2_a5wr5"]
-[ext_resource type="Texture2D" uid="uid://ibohx0j8aqoj" path="res://assets/Background/Parallax_Backgrounds_Cave/5.png" id="3_r8phb"]
-[ext_resource type="Texture2D" uid="uid://d4bx4imi7syys" path="res://assets/Background/Parallax_Backgrounds_Cave/4.png" id="4_yf3e4"]
-[ext_resource type="Texture2D" uid="uid://crlf3lp5jdxn2" path="res://assets/Background/Parallax_Backgrounds_Cave/3.png" id="5_y1rdc"]
-[ext_resource type="Texture2D" uid="uid://dsqesi70k73js" path="res://assets/Background/Parallax_Backgrounds_Cave/2.png" id="6_hykd3"]
-[ext_resource type="Texture2D" uid="uid://ca6ey41flk515" path="res://assets/Background/Parallax_Backgrounds_Cave/1.png" id="7_gv4d2"]
+[ext_resource type="Texture2D" uid="uid://bpyk84pwt6p1w" path="res://assets/background/parallax_backgrounds_cave/7.png" id="1_vi5lt"]
+[ext_resource type="Texture2D" uid="uid://c1yfr7tswrd6i" path="res://assets/background/parallax_backgrounds_cave/6.png" id="2_a5wr5"]
+[ext_resource type="Texture2D" uid="uid://ibohx0j8aqoj" path="res://assets/background/parallax_backgrounds_cave/5.png" id="3_r8phb"]
+[ext_resource type="Texture2D" uid="uid://d4bx4imi7syys" path="res://assets/background/parallax_backgrounds_cave/4.png" id="4_yf3e4"]
+[ext_resource type="Texture2D" uid="uid://crlf3lp5jdxn2" path="res://assets/background/parallax_backgrounds_cave/3.png" id="5_y1rdc"]
+[ext_resource type="Texture2D" uid="uid://dsqesi70k73js" path="res://assets/background/parallax_backgrounds_cave/2.png" id="6_hykd3"]
+[ext_resource type="Texture2D" uid="uid://ca6ey41flk515" path="res://assets/background/parallax_backgrounds_cave/1.png" id="7_gv4d2"]
 
 [node name="CaveParallaxBackground" type="Node2D"]
 
@@ -14,7 +14,6 @@
 scale = Vector2(1, 1.5)
 transform = Transform2D(1, 0, 0, 1.5, 0, 0)
 scroll_base_scale = Vector2(0.2, 0.2)
-scroll_ignore_camera_zoom = true
 
 [node name="Background" type="ParallaxLayer" parent="Cave"]
 motion_mirroring = Vector2(384, 0)

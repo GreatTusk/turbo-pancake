@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://5w3cd35bd1bj"
-path="res://.godot/imported/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav-89f4318d76d9c09c18c5871f43f988e0.sample"
+path="res://.godot/imported/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav-3fb0d3c61198bfa67b6b8f92059fc364.sample"
 
 [deps]
 
-source_file="res://assets/Music/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav"
-dest_files=["res://.godot/imported/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav-89f4318d76d9c09c18c5871f43f988e0.sample"]
+source_file="res://assets/music/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav"
+dest_files=["res://.godot/imported/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav-3fb0d3c61198bfa67b6b8f92059fc364.sample"]
 
 [params]
 
