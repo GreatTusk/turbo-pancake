@@ -103,6 +103,3 @@ func change_level(direction: int) -> void:
 	assert(level_manager)
 	level_manager.call_deferred("free")
 	_on_level_selected(level_path)
-
-
-

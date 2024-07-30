@@ -8,7 +8,7 @@ script/source = "extends Node2D
 signal kill_player
 
 func _on_saw_body_entered(_body: PlayableCharacter) -> void:	
-	emit_signal(\"kill_player\")
+	kill_player.emit()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wttq1"]

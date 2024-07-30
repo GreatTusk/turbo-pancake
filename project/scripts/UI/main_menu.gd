@@ -6,7 +6,8 @@ extends CanvasLayer
 @onready var config_screen := $ConfigScreen as ConfigScreen
 
 func _ready() -> void:
-	self.add_child((parallax_backgrounds.backgrounds.pick_random() as PackedScene).instantiate())
+	var random_bg: PackedScene = parallax_backgrounds.backgrounds.pick_random()
+	self.add_child(random_bg.instantiate())
 	title_screen.level_selector_pressed.connect(_switch_to_level_selector)
 	title_screen.settings_pressed.connect(_on_settings_pressed)
 	level_selector.back_to_title_screen.connect(_switch_to_title_screen)

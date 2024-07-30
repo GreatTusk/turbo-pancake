@@ -12,6 +12,7 @@ export_presets.cfg
 *.translation
 *.obj
 *.os
+*.o
 
 **/bin/*
 !**/bin/*.gdextension

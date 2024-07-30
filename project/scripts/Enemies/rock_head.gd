@@ -63,5 +63,4 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_hit_area_body_entered(_body: PlayableCharacter) -> void:
 	#if body.is_on_ground():
-	emit_signal("kill_player")
-
+	kill_player.emit()

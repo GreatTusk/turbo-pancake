@@ -77,6 +77,9 @@ position = Vector2(24, 192)
 [node name="Fruit" parent="Fruits" instance=ExtResource("8_jg8hw")]
 position = Vector2(400, 296)
 
+[node name="Fruit2" parent="Fruits" instance=ExtResource("8_jg8hw")]
+position = Vector2(152, 328)
+
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ebil8")
 autoplay = true

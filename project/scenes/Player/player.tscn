@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0hecv"]
 [ext_resource type="SpriteFrames" uid="uid://4n1n20a1eh05" path="res://scenes/player/player.tres" id="2_33yml"]
+[ext_resource type="PackedScene" uid="uid://bhscpn3mo4rdk" path="res://scenes/particles/landed_particles.tscn" id="10_tx3ro"]
 [ext_resource type="AudioStream" uid="uid://ch7nlq6a2vgxe" path="res://assets/sounds/explosion.wav" id="11_2pmbt"]
 [ext_resource type="AudioStream" uid="uid://bf4ugdsd7e10r" path="res://assets/sounds/jump.wav" id="12_0h6ri"]
 [ext_resource type="AudioStream" uid="uid://cjdvq8nmspmr8" path="res://assets/sounds/power_up.wav" id="13_bd10r"]
 [ext_resource type="AudioStream" uid="uid://ccsvuiey8ywwc" path="res://assets/sounds/coin.wav" id="13_pti6i"]
 [ext_resource type="AudioStream" uid="uid://bggehdj1lho2j" path="res://assets/sounds/hurt.wav" id="14_5j5ae"]
 [ext_resource type="AudioStream" uid="uid://cc2duxi643c6k" path="res://assets/sounds/tap.wav" id="15_8t8v4"]
-[ext_resource type="PackedScene" uid="uid://bhscpn3mo4rdk" path="res://scenes/particles/landed_particles.tscn" id="17_brwra"]
 [ext_resource type="Script" path="res://scripts/player/particle_queue.gd" id="18_qks7l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmiy4"]
@@ -21,6 +21,7 @@ scale = Vector2(0.1, 0.1)
 collision_layer = 2
 collision_mask = 29
 script = ExtResource("1_0hecv")
+boost_unlocked = true
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 position = Vector2(407, 276)
@@ -117,9 +118,7 @@ collision_mask = 4
 [node name="ParticleQueue" type="Node2D" parent="."]
 position = Vector2(400, 400)
 script = ExtResource("18_qks7l")
-queue_count = null
-particle = ExtResource("17_brwra")
-particle_texture = null
+particle_scene = ExtResource("10_tx3ro")
 
 [connection signal="animation_finished" from="Sprites" to="." method="_on_respawn_animation_finished"]
 [connection signal="finished" from="VoiceLines/Die/Die_1" to="." method="_on_dying_sfx_finished"]

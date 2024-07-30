@@ -13,4 +13,3 @@ func _on_level_finished() -> void:
 	var bgm := $BGM
 	if bgm:
 		bgm.queue_free()
-

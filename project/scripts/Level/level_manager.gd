@@ -114,4 +114,3 @@ func connect_player_and_level() -> void:
 
 func _ready() -> void:
 	connect_player_and_level()
-
