@@ -48,8 +48,5 @@ namespace tp
                                     &Fan::_on_area_2d_body_entered);
         godot::ClassDB::bind_method(godot::D_METHOD(event::body_exited, "body"),
                                     &Fan::_on_area_2d_body_exited);
-        // ADD_SIGNAL(godot::MethodInfo(event::fan_colliding,
-        // godot::PropertyInfo(godot::Variant::OBJECT, "node"),
-        // godot::PropertyInfo(godot::Variant::VECTOR2, "new_pos")));
     }
 }

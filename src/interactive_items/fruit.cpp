@@ -2,6 +2,7 @@
 // Created by F776 on 09-06-2024.
 //
 
+#include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/audio_stream_player.hpp>
 #include <godot_cpp/variant/string.hpp>
 
@@ -22,16 +23,8 @@ namespace tp
         area_2d->connect("body_entered", godot::Callable(this, event::body_entered));
         area_2d->connect("body_exited", godot::Callable(this, event::body_exited));
 
-        // Getting pointers to external nodes to connect signals
-        // Deprecated
-        // auto* score_label = this->get_node<godot::Label>(name::ui::score_label);
-        // this->connect(event::fruit_collected, godot::Callable(score_label, "_on_fruit_collected"));
-        // auto* player = this->get_node<godot::CharacterBody2D>("../../../Main/Player");
-        // this->connect(event::fruit_collected_player, godot::Callable(player, "_on_fruit_collected"));
-
         // Sprite2D is used on methods, so its pointer is stored in the class for easy access
         sprite_2d = this->get_node<godot::AnimatedSprite2D>(name::trampoline::sprite);
-        // runtime_assert(sprite_2d != nullptr);
         sprite_2d->connect("animation_finished", godot::Callable(this, event::animation_finished));
         sprite_2d->play(fruit);
     }

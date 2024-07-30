@@ -10,8 +10,6 @@
   <component name="CidrRootsConfiguration">
     <sourceRoots>
       <file path="$PROJECT_DIR$/.out/build/msvc-debug/extern/godot-cpp" />
-      <file path="$PROJECT_DIR$/extern/godot-cpp" />
-      <file path="$PROJECT_DIR$/extern/godot-engine" />
       <file path="$PROJECT_DIR$/src" />
       <file path="$PROJECT_DIR$/src/api" />
       <file path="$PROJECT_DIR$/src/core" />
@@ -20,6 +18,8 @@
       <file path="$PROJECT_DIR$/src/util" />
     </sourceRoots>
     <libraryRoots>
+      <file path="$PROJECT_DIR$/extern/godot-cpp" />
+      <file path="$PROJECT_DIR$/extern/godot-engine" />
       <file path="$PROJECT_DIR$/extern/vcpkg" />
     </libraryRoots>
     <excludeRoots>
