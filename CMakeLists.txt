@@ -15,6 +15,12 @@ option(
       ON
 )
 
+option(
+  GENERATE_COMPILE_COMMANDS
+    "Generate compilation DB (compile_commands.json) for external tools"
+      ON
+)
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_EXTENSIONS ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -44,6 +50,8 @@ include(vcpkg-install-deps)
 set(compiler_is_clang "$<OR:$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:Clang>>")
 set(compiler_is_gnu "$<CXX_COMPILER_ID:GNU>")
 set(compiler_is_msvc "$<CXX_COMPILER_ID:MSVC>")
+set(compiler_is_emscripten "$<CXX_COMPILER_ID:Emscripten>")
+set(compiler_is_android "$<CXX_COMPILER_ID:Android>")
 
 # =======================================================================
 # Configure godot-engine and godot-cpp submodules and define libraries.
@@ -114,6 +122,15 @@ target_compile_options(${PROJECT_NAME} PUBLIC
             -Wno-ignored-attributes
             -Wno-unknown-attributes
         >
+        $<${compiler_is_emscripten}:
+            -s USE_PTHREADS=1
+            -s SIDE_MODULE=1
+            -s -fvisibility=hidden
+        >
+        $<${compiler_is_android}:
+            -fPIC
+            -DANDROID
+        >
         $<$<CONFIG:Debug>:
             -fno-omit-frame-pointer
             -O0
@@ -125,8 +142,8 @@ target_compile_options(${PROJECT_NAME} PUBLIC
 )
 
 # enable extension hot swapping
-target_compile_definitions(${PROJECT_NAME} PUBLIC 
-	HOT_RELOAD_ENABLED
+target_compile_definitions(${PROJECT_NAME} PUBLIC
+ HOT_RELOAD_ENABLED
 )
 
 # include directories gdextension library
@@ -157,6 +174,10 @@ if (AUTOFORMAT_SRC_ON_CONFIGURE MATCHES ON)
     include(clang-format)
 endif()
 
+if (GENERATE_COMPILE_COMMANDS MATCHES ON)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+endif()
+
 # =======================================================================
 # Dependency linkage
 # =======================================================================
@@ -170,7 +191,7 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-	set(system_bits 64)
+ set(system_bits 64)
 else()
     set(system_bits 32)
 endif()
@@ -181,16 +202,16 @@ string(TOLOWER
 )
 
 set_target_properties(${PROJECT_NAME}
-	PROPERTIES
-		POSITION_INDEPENDENT_CODE ON
+ PROPERTIES
+  POSITION_INDEPENDENT_CODE ON
         CMAKE_EXPORT_COMPILE_COMMANDS ON
         CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON
-		ARCHIVE_OUTPUT_DIRECTORY "${GDEXTENSION_LIB_PATH}"
-		LIBRARY_OUTPUT_DIRECTORY "${GDEXTENSION_LIB_PATH}"
-		RUNTIME_OUTPUT_DIRECTORY "${GDEXTENSION_LIB_PATH}"
+  ARCHIVE_OUTPUT_DIRECTORY "${GDEXTENSION_LIB_PATH}"
+  LIBRARY_OUTPUT_DIRECTORY "${GDEXTENSION_LIB_PATH}"
+  RUNTIME_OUTPUT_DIRECTORY "${GDEXTENSION_LIB_PATH}"
         CMAKE_PDB_OUTPUT_DIRECTORY "${GDEXTENSION_LIB_PATH}"
         CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY "${GDEXTENSION_LIB_PATH}"
-		OUTPUT_NAME "${gde_lib_name}"
+  OUTPUT_NAME "${gde_lib_name}"
 )
 
 # =======================================================================

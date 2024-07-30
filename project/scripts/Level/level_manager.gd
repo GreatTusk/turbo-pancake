@@ -79,8 +79,7 @@ func initialize_level(level: Level) -> void:
 			fruit.fruit_score_changed.connect(Callable(score_label, "_on_fruit_collected"))
 	
 func _on_level_finished() -> void:
-	for mobile_control: TouchScreenButton in mobile_controls.get_children():
-		mobile_control.hide()  
+	mobile_controls.hide()
 	player.animated_sprites.stop()
 	player.set_physics_process(false)
 	level_finished.show()

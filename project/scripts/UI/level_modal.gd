@@ -6,10 +6,6 @@ signal level_selector_pressed
 signal audio_settings_pressed
 
 
-func _on_cancel_pressed() -> void:
-	self.hide()
-	get_tree().paused = false
-
 func _on_restart_level_pressed() -> void:
 	level_restarted.emit()
 

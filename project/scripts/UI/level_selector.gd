@@ -42,12 +42,10 @@ func count_files_dir(path: String) -> int:
 		file_name = dir.get_next()
 	return counter
 
-
 func _on_level_button_pressed(level_index: int) -> void:
 	# Emit the level's scene path to Main
 	Singleton.current_level = level_index
-	var path: String = (LEVELS_PATH + "/level_%s.tscn") % level_index
-	level_selected.emit(path)
+	level_selected.emit((LEVELS_PATH + "/level_%s.tscn") % level_index)
 
 func _on_to_title_screen_pressed()  -> void:
 	back_to_title_screen.emit()

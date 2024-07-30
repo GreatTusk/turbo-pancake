@@ -12,7 +12,9 @@ func _on_request_tile_effect(player_pos: Vector2) -> void:
 		var current_tile: Vector2i = local_to_map(player_pos)
 		current_tile.y += TILE_OFFSET
 		var data := get_cell_tile_data(SPECIAL_EFFECT_LAYER, current_tile)
+		var particle_index: int = 0
 		if data:
 			modifier = data.get_custom_data("movement_modifier")
+			particle_index = data.get_custom_data("particle")
 		# Emit a signal back to the player with the modifier value
 		self.tile_effect_response.emit(modifier)

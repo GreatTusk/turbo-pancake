@@ -19,6 +19,7 @@ extends CharacterBody2D
 @onready var jump_buffer_timer := $Timers/JumpBufferTimer as Timer
 
 @export var double_jump_unlocked: bool = false
+@export var boost_unlocked: bool = false
 
 # TODO: Player moves too fast in the air. Falls too fast. Poor control in the air
 # Player consts
@@ -53,7 +54,7 @@ var double_jump_y: float
 var current_state: States = States.AIR
 var spawn_pos: Vector2:
 	set = set_respawn_pos
-var can_boost: bool = true
+var can_boost: bool = boost_unlocked
 var gravity := MAX_GRAVITY
 var ground_dec: float = STD_GROUND_DEC
 
@@ -157,7 +158,7 @@ func air_movement(delta: float) -> void:
 			velocity.y = DOUBLE_JUMP_VEL
 			double_jump = false
 			double_jump_y = self.position.y
-			can_boost = true
+			can_boost = boost_unlocked
 			
 	# If not double jumping and going up
 	if velocity.y < 0 && animated_sprites.animation != "double_jump":
@@ -200,7 +201,7 @@ func exit_state(previous_state: States, new_state: States) -> void:
 			double_jump = double_jump_unlocked
 			match new_state:
 				States.WALL:
-					can_boost = true
+					can_boost = boost_unlocked
 				States.GROUND:
 					fall_lines.play()
 		States.GROUND:
@@ -211,7 +212,7 @@ func enter_state(new_state: States) -> void:
 	match new_state:
 		# do some logic
 		States.GROUND:
-			can_boost = true
+			can_boost = boost_unlocked
 			particle_queue.trigger()
 		States.WALL: 
 			# Cancel the player's vertical momentum
