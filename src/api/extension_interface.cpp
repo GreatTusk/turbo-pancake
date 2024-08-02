@@ -4,7 +4,6 @@
 
 #include "api/extension_interface.hpp"
 #include "interactive_items/fruit.h"
-#include "util/engine.hpp"
 
 namespace tp
 {
@@ -21,12 +20,8 @@ namespace tp
     {
         if (init_level != godot::MODULE_INITIALIZATION_LEVEL_SCENE)
             return;
-        // Interactive Items
-        // godot::ClassDB::register_class<Trampoline>();
-        // godot::ClassDB::register_class<Fan>();
-        godot::ClassDB::register_class<Fruit>();
-        // godot::ClassDB::register_class<Player>();
 
+        godot::ClassDB::register_class<Fruit>();
         initialize_static_objects();
     }
 
