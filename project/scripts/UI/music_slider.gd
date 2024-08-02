@@ -7,6 +7,7 @@ enum AudioBus {}
 
 func _ready() -> void:
 	self.value_changed.connect(_on_volume_changed)
+	self.mouse_exited.connect(_on_focus_lost)
 	self.value = db_to_linear(AudioServer.get_bus_volume_db(audio_bus))
 	#AudioServer.bus_renamed.connect(_on_bus_renamed)
 	#AudioServer.bus_layout_changed.connect(_on_bus_layout_changed)
@@ -33,3 +34,6 @@ func _on_bus_layout_changed() -> void:
 func _on_bus_renamed() -> void:
 	_validate_property.call()
 	notify_property_list_changed()
+	
+func _on_focus_lost() -> void:
+	self.release_focus()

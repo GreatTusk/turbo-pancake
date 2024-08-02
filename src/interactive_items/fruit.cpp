@@ -4,28 +4,28 @@
 
 #include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/audio_stream_player.hpp>
+#include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/variant/string.hpp>
 
 #include "core/attributes.hpp"
 #include "core/constants.hpp"
 #include "fruit.h"
-#include "util/engine.hpp"
 
 namespace tp
 {
 
     void Fruit::_ready()
     {
-        if (utils::engine::editor_active())
+        if (godot::Engine::get_singleton()->is_editor_hint())
             return;
 
-        auto* area_2d = this->get_node<godot::Area2D>(name::trampoline::area2d);
-        area_2d->connect("body_entered", godot::Callable(this, event::body_entered));
-        area_2d->connect("body_exited", godot::Callable(this, event::body_exited));
+        auto* area_2d = this->get_node<godot::Area2D>(constants::name::fruit::area2d);
+        area_2d->connect("body_entered", godot::Callable(this, constants::event::body_entered));
 
         // Sprite2D is used on methods, so its pointer is stored in the class for easy access
-        sprite_2d = this->get_node<godot::AnimatedSprite2D>(name::trampoline::sprite);
-        sprite_2d->connect("animation_finished", godot::Callable(this, event::animation_finished));
+        sprite_2d = this->get_node<godot::AnimatedSprite2D>(constants::name::fruit::sprite);
+        sprite_2d->connect("animation_finished",
+                           godot::Callable(this, constants::event::animation_finished));
         sprite_2d->play(fruit);
     }
 
@@ -33,9 +33,9 @@ namespace tp
     void Fruit::_on_area_2d_body_entered(const godot::CharacterBody2D* body)
     {
         // Notify the player
-        this->emit_signal(event::fruit_collected_player);
+        this->emit_signal(constants::event::fruit_collected_player);
         // Update the score label
-        this->emit_signal(event::fruit_collected, fruit);
+        this->emit_signal(constants::event::fruit_collected, fruit);
         // Play the collected animation
         sprite_2d->play("collected");
     }
@@ -67,14 +67,14 @@ namespace tp
             godot::PropertyInfo(godot::Variant::STRING_NAME, "fruit", godot::PROPERTY_HINT_ENUM,
                                 "Apple,Banana,Cherry,Kiwi,Melon,Orange,Pineapple,Strawberry"),
             "set_fruit", "get_fruit");
-        // This is also needed to connect the signal
-        godot::ClassDB::bind_method(godot::D_METHOD(event::body_entered, "body"),
+        // Connect signals
+        godot::ClassDB::bind_method(godot::D_METHOD(constants::event::body_entered, "body"),
                                     &Fruit::_on_area_2d_body_entered);
-        godot::ClassDB::bind_method(godot::D_METHOD(event::animation_finished),
+        godot::ClassDB::bind_method(godot::D_METHOD(constants::event::animation_finished),
                                     &Fruit::_on_animation_finished);
 
-        ADD_SIGNAL(godot::MethodInfo(event::fruit_collected_player));
-        ADD_SIGNAL(godot::MethodInfo(event::fruit_collected,
+        ADD_SIGNAL(godot::MethodInfo(constants::event::fruit_collected_player));
+        ADD_SIGNAL(godot::MethodInfo(constants::event::fruit_collected,
                                      godot::PropertyInfo(godot::Variant::STRING_NAME, "fruit")));
     }
 }

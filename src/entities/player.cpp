@@ -17,36 +17,36 @@ namespace tp
         set_physics_process(false);
         if (utils::engine::editor_active())
             return;
-        main = get_node<Node2D>(name::player::nodes::main);
+        main = get_node<Node2D>(constants::name::player::nodes::main);
         this->set_position(spawn_pos);
 
         // Initialize child nodes
-        jump_cooldown = this->get_node<godot::Timer>(name::player::nodes::jump_cooldown);
-        left_ray = this->get_node<godot::RayCast2D>(name::player::nodes::left_ray);
-        right_ray = this->get_node<godot::RayCast2D>(name::player::nodes::right_ray);
-        down_ray_1 = this->get_node<godot::RayCast2D>(name::player::nodes::down_ray_1);
-        down_ray_2 = this->get_node<godot::RayCast2D>(name::player::nodes::down_ray_2);
+        jump_cooldown = this->get_node<godot::Timer>(constants::name::player::nodes::jump_cooldown);
+        left_ray = this->get_node<godot::RayCast2D>(constants::name::player::nodes::left_ray);
+        right_ray = this->get_node<godot::RayCast2D>(constants::name::player::nodes::right_ray);
+        down_ray_1 = this->get_node<godot::RayCast2D>(constants::name::player::nodes::down_ray_1);
+        down_ray_2 = this->get_node<godot::RayCast2D>(constants::name::player::nodes::down_ray_2);
         collision_shape = this->get_node<godot::CollisionShape2D>(
-            name::player::nodes::collision_shape);
+            constants::name::player::nodes::collision_shape);
         animated_sprites = this->get_node<godot::AnimatedSprite2D>(
-            name::player::nodes::animated_sprites);
-        animation_label = main->get_node<godot::Label>(name::player::nodes::animation_label);
-        velocity_label = main->get_node<godot::Label>(name::player::nodes::velocity_label);
-        state_label = main->get_node<godot::Label>(name::player::nodes::state_label);
+            constants::name::player::nodes::animated_sprites);
+        animation_label = main->get_node<godot::Label>(constants::name::player::nodes::animation_label);
+        velocity_label = main->get_node<godot::Label>(constants::name::player::nodes::velocity_label);
+        state_label = main->get_node<godot::Label>(constants::name::player::nodes::state_label);
 
-        die_sfx = this->get_node<godot::AudioStreamPlayer>(name::player::nodes::die_sfx);
-        jump_sfx = this->get_node<godot::AudioStreamPlayer>(name::player::nodes::jump_sfx);
-        landing_sfx = this->get_node<godot::AudioStreamPlayer>(name::player::nodes::landing_sfx);
-        respawn_sfx = this->get_node<godot::AudioStreamPlayer>(name::player::nodes::respawn_sfx);
+        die_sfx = this->get_node<godot::AudioStreamPlayer>(constants::name::player::nodes::die_sfx);
+        jump_sfx = this->get_node<godot::AudioStreamPlayer>(constants::name::player::nodes::jump_sfx);
+        landing_sfx = this->get_node<godot::AudioStreamPlayer>(constants::name::player::nodes::landing_sfx);
+        respawn_sfx = this->get_node<godot::AudioStreamPlayer>(constants::name::player::nodes::respawn_sfx);
 
-        auto* world_border = main->get_node<godot::Area2D>(name::player::nodes::world_border);
+        auto* world_border = main->get_node<godot::Area2D>(constants::name::player::nodes::world_border);
         world_border->connect("body_entered",
-                              godot::Callable(this, name::player::signals::world_border));
+                              godot::Callable(this, constants::name::player::signals::world_border));
         animated_sprites->connect("animation_finished",
-                                  godot::Callable(this, name::player::signals::respawn_finished));
+                                  godot::Callable(this, constants::name::player::signals::respawn_finished));
         die_sfx->connect("finished",
-                         godot::Callable(this, name::player::signals::dying_sfx_finished));
-        this->connect("respawn", godot::Callable(this, name::player::signals::respawn));
+                         godot::Callable(this, constants::name::player::signals::dying_sfx_finished));
+        this->connect("respawn", godot::Callable(this, constants::name::player::signals::respawn));
         set_physics_process(true);
     }
 
@@ -94,13 +94,13 @@ namespace tp
         godot::Vector2 vel = this->get_velocity();
         if (dir == 0.0)
         {
-            animated_sprites->play(name::player::animations::idle);
+            animated_sprites->play(constants::name::player::animations::idle);
             vel.x = static_cast<real_t>(
                 godot::Math::move_toward(static_cast<double>(vel.x), 0.0, GROUND_DEC * delta));
         }
         else
         {
-            animated_sprites->play(name::player::animations::run);
+            animated_sprites->play(constants::name::player::animations::run);
             animated_sprites->set_flip_h(dir < 0);
             vel.x = static_cast<real_t>(godot::Math::move_toward(static_cast<double>(vel.x),
                                                                  dir * MAX_SPEED_X, ACC * delta));
@@ -121,22 +121,22 @@ namespace tp
         // Handle double jumping
         if (utils::input::get()->is_action_just_pressed(utils::input::action::jump) && double_jump)
         {
-            animated_sprites->play(name::player::animations::double_jump);
+            animated_sprites->play(constants::name::player::animations::double_jump);
             jump_sfx->play();
             vel.y = DOUBLE_JUMP_VEL;
             double_jump = false;
             double_jump_pos = this->get_position().y;
         }
         else if (vel.y < 0.0 && animated_sprites->get_animation() !=
-                                    godot::StringName(name::player::animations::double_jump))
+                                    godot::StringName(constants::name::player::animations::double_jump))
         {
-            animated_sprites->play(name::player::animations::jump);
+            animated_sprites->play(constants::name::player::animations::jump);
         }
         else if (vel.y > 0.0 && (animated_sprites->get_animation() !=
-                                     godot::StringName(name::player::animations::double_jump) ||
+                                     godot::StringName(constants::name::player::animations::double_jump) ||
                                  get_position().y >= double_jump_pos))
         {
-            animated_sprites->play(name::player::animations::fall);
+            animated_sprites->play(constants::name::player::animations::fall);
         }
 
         // Horizontal movement
@@ -162,7 +162,7 @@ namespace tp
     {
         if (utils::input::get()->is_action_just_pressed(utils::input::action::jump))
         {
-            animated_sprites->play(name::player::animations::jump);
+            animated_sprites->play(constants::name::player::animations::jump);
             jump_cooldown->start();
             jump_sfx->play();
             this->set_velocity(
@@ -173,7 +173,7 @@ namespace tp
         }
 
         godot::Vector2 vel = this->get_velocity();
-        animated_sprites->play(name::player::animations::wall_jump);
+        animated_sprites->play(constants::name::player::animations::wall_jump);
         vel.y = static_cast<real_t>(godot::Math::move_toward(
             static_cast<double>(vel.y), MAX_SPEED_Y, AIR_ACC_Y * delta * WALL_FRICTION));
         this->set_velocity(vel);
@@ -213,7 +213,7 @@ namespace tp
 
     void Player::die()
     {
-        animated_sprites->play(name::player::animations::disappearing);
+        animated_sprites->play(constants::name::player::animations::disappearing);
         this->set_physics_process(false);
         die_sfx->play();
     }
@@ -266,7 +266,7 @@ namespace tp
     void Player::_on_respawn()
     {
         set_position(spawn_pos);
-        animated_sprites->play(name::player::animations::appearing);
+        animated_sprites->play(constants::name::player::animations::appearing);
         respawn_sfx->play();
     }
 
@@ -278,7 +278,7 @@ namespace tp
     void Player::_on_respawn_animation_finished()
     {
         if (animated_sprites->get_animation() ==
-            godot::StringName(name::player::animations::appearing))
+            godot::StringName(constants::name::player::animations::appearing))
         {
             change_state(States::GROUND);
             set_physics_process(true);
@@ -313,17 +313,17 @@ namespace tp
     void Player::_bind_methods()
     {
         // Bind signals from child nodes
-        godot::ClassDB::bind_method(godot::D_METHOD(name::player::signals::dying_sfx_finished),
+        godot::ClassDB::bind_method(godot::D_METHOD(constants::name::player::signals::dying_sfx_finished),
                                     &Player::_on_dying_sfx_finished);
-        godot::ClassDB::bind_method(godot::D_METHOD(name::player::signals::respawn_finished),
+        godot::ClassDB::bind_method(godot::D_METHOD(constants::name::player::signals::respawn_finished),
                                     &Player::_on_respawn_animation_finished);
         // From external nodes
-        godot::ClassDB::bind_method(godot::D_METHOD(name::player::signals::world_border, "body"),
+        godot::ClassDB::bind_method(godot::D_METHOD(constants::name::player::signals::world_border, "body"),
                                     &Player::_on_world_border_entered);
         godot::ClassDB::bind_method(godot::D_METHOD("die"), &Player::die);
 
         ADD_SIGNAL(godot::MethodInfo("respawn"));
-        godot::ClassDB::bind_method(godot::D_METHOD(name::player::signals::respawn),
+        godot::ClassDB::bind_method(godot::D_METHOD(constants::name::player::signals::respawn),
                                     &Player::_on_respawn);
         godot::ClassDB::bind_method(godot::D_METHOD("set_respawn_pos", "pos"),
                                     &Player::set_respawn_pos);

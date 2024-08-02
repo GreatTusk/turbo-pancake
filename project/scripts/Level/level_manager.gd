@@ -1,5 +1,5 @@
 class_name LevelManager
-extends Node2D
+extends Node
 
 """
 TODO: It feels wasteful to reload the entire level manager when the only node
@@ -26,12 +26,17 @@ func initialize_level(level: Level) -> void:
 	var flamethrowers := level.get_node_or_null("Traps/Flamethrowers") as Node
 	var enemies := level.get_node_or_null("Enemies") as Node
 	var fruits := level.get_node_or_null("Fruits") as Node
-	var tile_map := level.get_node_or_null("TileMap") as TileMapManager
+	var tile_map_layers := level.get_node_or_null("TileMapLayers") as Node
 	
-	# The level must have a tilemap!
-	assert(tile_map)
-	player.request_tile_effect.connect(tile_map._on_request_tile_effect)
-	tile_map.tile_effect_response.connect(player._on_tile_effect_response)
+	# The level must have at least one tilemap layer!
+	assert(tile_map_layers.get_child_count() > 0)
+	
+	for layer in tile_map_layers.get_children():
+		if layer is SpecialTileMapLayer:
+			var cast_layer := layer as SpecialTileMapLayer
+			player.request_tile_effect.connect(cast_layer._on_request_tile_effect)
+			cast_layer.tile_effect_response.connect(player._on_tile_effect_response)
+			cast_layer.particle_change_response.connect(player._on_particle_change_response)
 	
 	# The level must have a start point for the player to be valid!
 	assert(checkpoints)

@@ -1,3 +1,4 @@
+class_name Main
 extends Node
 
 # The main ui and level manager are stored as packed scenes and not as children
@@ -11,7 +12,11 @@ func _ready() -> void:
 		## TODO: Fix the touchscreen controls to the sides of the screen
 		#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
 	instantiate_main_ui()
-	
+	if OS.has_feature("nothreads"):
+		print("no threads")
+	else:
+		print("threads")
+
 func instantiate_main_ui() -> CanvasLayer:
 	var main_ui := main_ui_res.instantiate()
 	self.add_child(main_ui)
@@ -44,7 +49,7 @@ func _on_level_selected(level_scene_path: String) -> void:
 	self.add_child(level_manager)
 	
 func _on_level_selector_pressed() -> void:
-	# The level will always be the first and only child
+	# TODO: CHANGE THIS!!
 	var level_to_delete := self.get_child(0)
 	level_to_delete.queue_free()
 	# TIL when using queue_free() the node is deleted only at the end of the frame, not inmediately

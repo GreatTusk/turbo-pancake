@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbjvwvbxcm7qf"]
+[gd_scene load_steps=18 format=3 uid="uid://dbjvwvbxcm7qf"]
 
 [ext_resource type="Script" path="res://scripts/ui/level_ui.gd" id="1_otma3"]
 [ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/menu/buttons/back.png" id="2_nglyy"]
@@ -13,12 +13,16 @@
 [ext_resource type="Texture2D" uid="uid://j488uq84aa6n" path="res://assets/menu/mobile_controls/right.png" id="11_h1su6"]
 [ext_resource type="Texture2D" uid="uid://baxwuhhna22df" path="res://assets/menu/mobile_controls/up.png" id="12_76mgc"]
 [ext_resource type="Texture2D" uid="uid://d1xqfse7pxhur" path="res://assets/menu/mobile_controls/boost.png" id="13_t7x0d"]
+[ext_resource type="AudioStream" uid="uid://i4tgckcu6lck" path="res://assets/menu/ui/10_UI_Menu_SFX/001_Hover_01.wav" id="14_3xofh"]
+[ext_resource type="AudioStream" uid="uid://ct52lh0vx6tqw" path="res://assets/menu/ui/10_UI_Menu_SFX/013_Confirm_03.wav" id="15_mbnhv"]
+[ext_resource type="AudioStream" uid="uid://d0wwj2p3mnh65" path="res://assets/menu/ui/10_UI_Menu_SFX/092_Pause_04.wav" id="16_bi7j6"]
+[ext_resource type="AudioStream" uid="uid://xm88up75lvg0" path="res://assets/menu/ui/10_UI_Menu_SFX/098_Unpause_04.wav" id="17_uk14g"]
 
 [node name="LevelUI" type="CanvasLayer"]
 layer = 2
 script = ExtResource("1_otma3")
 
-[node name="MenuButton" type="TextureButton" parent="."]
+[node name="MenuButton" type="TextureButton" parent="." groups=["pause"]]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 40.0
@@ -28,17 +32,20 @@ stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="Score" type="Label" parent="."]
-anchors_preset = -1
-anchor_left = 0.9375
-anchor_top = 0.0462963
-anchor_right = 0.973958
-anchor_bottom = 0.12037
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_top = 10.0
+offset_right = -11.0
+offset_bottom = 24.0
 grow_horizontal = 0
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 16
 text = "0"
+horizontal_alignment = 2
+vertical_alignment = 3
 script = ExtResource("3_3iv21")
-metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="VBoxContainer" parent="."]
 anchors_preset = 6
@@ -124,5 +131,19 @@ scale = Vector2(2.09524, 2)
 texture_normal = ExtResource("13_t7x0d")
 action = "boost"
 visibility_mode = 1
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Hover" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("14_3xofh")
+
+[node name="Confirm" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("15_mbnhv")
+
+[node name="Pause" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("16_bi7j6")
+
+[node name="Unpause" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("17_uk14g")
 
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

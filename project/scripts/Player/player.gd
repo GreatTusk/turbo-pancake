@@ -65,7 +65,7 @@ signal state_changed(state: StringName)
 
 # Local signal
 signal respawn
-signal request_tile_effect(player_position: Vector2)
+signal request_tile_effect(player_position: Vector2, particle_index: int)
 
 enum States {
 	GROUND,
@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 
 
 func ground_movement() -> void:
-	request_tile_effect.emit(to_local(self.global_position))
+	request_tile_effect.emit(to_local(self.global_position), particle_queue.particle_texture)
 	# Whether the user pressed jump or a jump had been previously buffered, jump
 	if Input.is_action_just_pressed("jump") || !jump_buffer_timer.is_stopped():
 		jump_lines.play()
@@ -306,5 +306,9 @@ func _on_boost_cooldown_timeout() -> void:
 	
 func _on_tile_effect_response(modifier: float) -> void:
 	ground_dec = STD_GROUND_DEC / modifier
+	
+func _on_particle_change_response(new_particle_index: int) -> void:
+	for particle: GPUParticles2D in particle_queue.get_children():
+		particle.texture = load(particle_queue.TEXTURES[new_particle_index])
 
 #endregion

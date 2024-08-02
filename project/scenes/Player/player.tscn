@@ -29,8 +29,6 @@ scale = Vector2(8, 8)
 sprite_frames = ExtResource("2_33yml")
 animation = &"appearing"
 autoplay = "appearing"
-frame = 6
-frame_progress = 1.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(400, 310)

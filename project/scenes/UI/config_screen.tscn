@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://q7iculvtpi17"]
+[gd_scene load_steps=5 format=3 uid="uid://q7iculvtpi17"]
 
 [ext_resource type="Script" path="res://scripts/ui/music_slider.gd" id="1_h6i6d"]
 [ext_resource type="Script" path="res://scripts/ui/config_screen.gd" id="1_y5n1k"]
 [ext_resource type="Texture2D" uid="uid://cq4upd0evrbkm" path="res://assets/menu/buttons/close.png" id="2_ap3cc"]
+[ext_resource type="Script" path="res://scripts/ui/title_label.gd" id="2_syblx"]
 
 [node name="ConfigScreen" type="Control"]
 layout_mode = 3
@@ -33,21 +34,24 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="AspectRatioContainer/Panel"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.330729
-anchor_right = 0.669271
-anchor_bottom = 0.0925937
-offset_top = 20.0
-offset_right = -1.52588e-05
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_top = 28.3989
+offset_right = 26.0
+offset_bottom = 42.3989
 grow_horizontal = 2
 text = "Settings"
-metadata/_edit_use_anchors_ = true
+script = ExtResource("2_syblx")
 
 [node name="Cancel" type="TextureButton" parent="AspectRatioContainer/Panel"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.983398
+anchor_top = 0.0688604
+anchor_right = 0.983398
+anchor_bottom = 0.0688604
 offset_left = -35.5
 offset_top = 5.5
 offset_right = -5.5
@@ -55,6 +59,7 @@ offset_bottom = 35.5
 grow_horizontal = 0
 texture_normal = ExtResource("2_ap3cc")
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="GridContainer" type="GridContainer" parent="AspectRatioContainer/Panel"]
 layout_mode = 1
@@ -80,17 +85,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.001
-value = 0.595
 script = ExtResource("1_h6i6d")
 audio_bus = 1
-
-[node name="Spacer" type="Control" parent="AspectRatioContainer/Panel/GridContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="Spacer2" type="Control" parent="AspectRatioContainer/Panel/GridContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
 
 [node name="SFX" type="Label" parent="AspectRatioContainer/Panel/GridContainer"]
 layout_mode = 2
@@ -104,7 +100,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.001
-value = 0.732
+value = 1.0
 script = ExtResource("1_h6i6d")
 audio_bus = 2
 
