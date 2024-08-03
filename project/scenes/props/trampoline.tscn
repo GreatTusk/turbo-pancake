@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://brmjdiwta3vrw" path="res://assets/traps/trampoline/idle.png" id="1_emew2"]
 [ext_resource type="Script" path="res://scripts/props/trampoline.gd" id="1_khqgw"]
 [ext_resource type="Texture2D" uid="uid://dq8b6lumnawwq" path="res://assets/traps/trampoline/jump_(28x28).png" id="1_tj6ed"]
-[ext_resource type="AudioStream" uid="uid://dgxy8jx3ip4qo" path="res://assets/sfx/gimmicks/springs.wav" id="3_k1foo"]
+[ext_resource type="AudioStream" uid="uid://dgxy8jx3ip4qo" path="res://assets/sfx/gimmicks/Springs.wav" id="3_k1foo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x2rk0"]
 atlas = ExtResource("1_tj6ed")

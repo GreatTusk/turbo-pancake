@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://dbjvwvbxcm7qf"]
 
 [ext_resource type="Script" path="res://scripts/ui/level_ui.gd" id="1_otma3"]
-[ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/menu/buttons/back.png" id="2_nglyy"]
+[ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/menu/buttons/Back.png" id="2_nglyy"]
 [ext_resource type="Script" path="res://scripts/ui/score_label.gd" id="3_3iv21"]
 [ext_resource type="Script" path="res://scripts/ui/player_animation_label.gd" id="4_tsk05"]
 [ext_resource type="Script" path="res://scripts/ui/player_velocity_label.gd" id="5_t67ed"]
@@ -13,10 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://j488uq84aa6n" path="res://assets/menu/mobile_controls/right.png" id="11_h1su6"]
 [ext_resource type="Texture2D" uid="uid://baxwuhhna22df" path="res://assets/menu/mobile_controls/up.png" id="12_76mgc"]
 [ext_resource type="Texture2D" uid="uid://d1xqfse7pxhur" path="res://assets/menu/mobile_controls/boost.png" id="13_t7x0d"]
-[ext_resource type="AudioStream" uid="uid://i4tgckcu6lck" path="res://assets/menu/ui/10_UI_Menu_SFX/001_Hover_01.wav" id="14_3xofh"]
-[ext_resource type="AudioStream" uid="uid://ct52lh0vx6tqw" path="res://assets/menu/ui/10_UI_Menu_SFX/013_Confirm_03.wav" id="15_mbnhv"]
-[ext_resource type="AudioStream" uid="uid://d0wwj2p3mnh65" path="res://assets/menu/ui/10_UI_Menu_SFX/092_Pause_04.wav" id="16_bi7j6"]
-[ext_resource type="AudioStream" uid="uid://xm88up75lvg0" path="res://assets/menu/ui/10_UI_Menu_SFX/098_Unpause_04.wav" id="17_uk14g"]
+[ext_resource type="AudioStream" uid="uid://i4tgckcu6lck" path="res://assets/menu/ui/10_ui_menu_sfx/001_Hover_01.wav" id="14_3xofh"]
+[ext_resource type="AudioStream" uid="uid://ct52lh0vx6tqw" path="res://assets/menu/ui/10_ui_menu_sfx/013_Confirm_03.wav" id="15_mbnhv"]
+[ext_resource type="AudioStream" uid="uid://d0wwj2p3mnh65" path="res://assets/menu/ui/10_ui_menu_sfx/092_Pause_04.wav" id="16_bi7j6"]
+[ext_resource type="AudioStream" uid="uid://xm88up75lvg0" path="res://assets/menu/ui/10_ui_menu_sfx/098_Unpause_04.wav" id="17_uk14g"]
 
 [node name="LevelUI" type="CanvasLayer"]
 layer = 2

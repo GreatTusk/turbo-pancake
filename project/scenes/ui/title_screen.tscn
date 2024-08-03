@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctrk0xodqt2ld"]
+[gd_scene load_steps=8 format=3 uid="uid://ctrk0xodqt2ld"]
 
 [ext_resource type="Script" path="res://scripts/ui/title_screen.gd" id="1_8dx0d"]
-[ext_resource type="Texture2D" uid="uid://cq4upd0evrbkm" path="res://assets/menu/buttons/close.png" id="2_dgxvn"]
-[ext_resource type="Texture2D" uid="uid://bm5txh14ukr8e" path="res://assets/menu/ui/01_Flat_Theme/Sprites/UI_Flat_Banner_01_Downward.png" id="2_x3k0r"]
-[ext_resource type="Texture2D" uid="uid://1x22aqdikgvi" path="res://assets/menu/buttons/settings.png" id="3_vvpga"]
-[ext_resource type="Texture2D" uid="uid://b5o3lx8fmsevx" path="res://assets/menu/buttons/play.png" id="4_kylpd"]
-[ext_resource type="Texture2D" uid="uid://dpk6uuy762fh2" path="res://assets/menu/buttons/leaderboard.png" id="5_ni6nw"]
+[ext_resource type="Texture2D" uid="uid://cq4upd0evrbkm" path="res://assets/menu/buttons/Close.png" id="2_dgxvn"]
+[ext_resource type="Texture2D" uid="uid://bm5txh14ukr8e" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Banner_01_Downward.png" id="2_x3k0r"]
+[ext_resource type="Texture2D" uid="uid://1x22aqdikgvi" path="res://assets/menu/buttons/Settings.png" id="3_vvpga"]
+[ext_resource type="Texture2D" uid="uid://b5o3lx8fmsevx" path="res://assets/menu/buttons/Play.png" id="4_kylpd"]
+[ext_resource type="Texture2D" uid="uid://dpk6uuy762fh2" path="res://assets/menu/buttons/Leaderboard.png" id="5_ni6nw"]
+[ext_resource type="Script" path="res://scripts/classes/animation_component.gd" id="5_s4eel"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -74,9 +75,19 @@ metadata/_edit_use_anchors_ = true
 [node name="Settings" type="TextureButton" parent="ButtonsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 5
 size_flags_stretch_ratio = 1.5
 texture_normal = ExtResource("3_vvpga")
 stretch_mode = 5
+
+[node name="AnimationComponent" type="Node" parent="ButtonsContainer/Settings"]
+script = ExtResource("5_s4eel")
+hover_time = 0.5
+hover_transition = 10
+hover_easing = 2
+hover_position = Vector2(20, 0)
+hover_scale = Vector2(1.1, 1.1)
+hover_size = Vector2(-10, 0)
 
 [node name="Levels" type="TextureButton" parent="ButtonsContainer"]
 layout_mode = 2
@@ -85,12 +96,30 @@ size_flags_stretch_ratio = 2.5
 texture_normal = ExtResource("4_kylpd")
 stretch_mode = 5
 
+[node name="AnimationComponent2" type="Node" parent="ButtonsContainer/Levels"]
+script = ExtResource("5_s4eel")
+hover_time = 0.5
+hover_transition = 10
+hover_easing = 2
+hover_position = Vector2(20, 0)
+hover_scale = Vector2(1.1, 1.1)
+hover_size = Vector2(-10, 0)
+
 [node name="Achievements" type="TextureButton" parent="ButtonsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 texture_normal = ExtResource("5_ni6nw")
 stretch_mode = 5
+
+[node name="AnimationComponent3" type="Node" parent="ButtonsContainer/Achievements"]
+script = ExtResource("5_s4eel")
+hover_time = 0.5
+hover_transition = 10
+hover_easing = 2
+hover_position = Vector2(20, 0)
+hover_scale = Vector2(1.1, 1.1)
+hover_size = Vector2(-10, 0)
 
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/Settings" to="." method="_on_settings_pressed"]

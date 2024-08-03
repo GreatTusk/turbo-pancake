@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhrev1qarq4rp"
-path="res://.godot/imported/UI_Flat_Textfield_02.png-b4691884a25b6cad3441e79bc7cddb95.ctex"
+path="res://.godot/imported/UI_Flat_Textfield_02.png-c658f0eb2eb7d4bdb829fc28c8792641.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menu/ui/01_Flat_Theme/Sprites/UI_Flat_Textfield_02.png"
-dest_files=["res://.godot/imported/UI_Flat_Textfield_02.png-b4691884a25b6cad3441e79bc7cddb95.ctex"]
+source_file="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Textfield_02.png"
+dest_files=["res://.godot/imported/UI_Flat_Textfield_02.png-c658f0eb2eb7d4bdb829fc28c8792641.ctex"]
 
 [params]
 

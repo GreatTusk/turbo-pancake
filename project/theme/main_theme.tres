@@ -1,11 +1,11 @@
 [gd_resource type="Theme" load_steps=17 format=3 uid="uid://dx5fw2bd51mmc"]
 
-[ext_resource type="Texture2D" uid="uid://dk45up3lprr7l" path="res://assets/menu/ui/01_Flat_Theme/Sprites/UI_Flat_Scrollbar_01.png" id="1_8gr43"]
-[ext_resource type="Texture2D" uid="uid://hhh1r52lrgho" path="res://assets/menu/ui/01_Flat_Theme/Sprites/UI_Flat_Scrollbar_Handle_01.png" id="1_84dpe"]
-[ext_resource type="Texture2D" uid="uid://5csownr4ctvr" path="res://assets/menu/ui/01_Flat_Theme/Sprites/UI_Flat_Frame_01_Horizontal.png" id="1_ca1im"]
-[ext_resource type="Texture2D" uid="uid://2l5xtfdpy271" path="res://assets/menu/ui/01_Flat_Theme/Sprites/UI_Flat_Scrollbar_Handle_02.png" id="2_dqorm"]
-[ext_resource type="Texture2D" uid="uid://btetihjyebx5u" path="res://assets/menu/ui/01_Flat_Theme/Sprites/UI_Flat_Slider_Filler.png" id="3_8dwog"]
-[ext_resource type="Texture2D" uid="uid://f6es1kj0sfd1" path="res://assets/menu/ui/01_Flat_Theme/Sprites/UI_Flat_Slider.png" id="3_m0hqf"]
+[ext_resource type="Texture2D" uid="uid://dk45up3lprr7l" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Scrollbar_01.png" id="1_8gr43"]
+[ext_resource type="Texture2D" uid="uid://hhh1r52lrgho" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Scrollbar_Handle_01.png" id="1_84dpe"]
+[ext_resource type="Texture2D" uid="uid://5csownr4ctvr" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Frame_01_Horizontal.png" id="1_ca1im"]
+[ext_resource type="Texture2D" uid="uid://2l5xtfdpy271" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Scrollbar_Handle_02.png" id="2_dqorm"]
+[ext_resource type="Texture2D" uid="uid://btetihjyebx5u" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Slider_Filler.png" id="3_8dwog"]
+[ext_resource type="Texture2D" uid="uid://f6es1kj0sfd1" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Slider.png" id="3_m0hqf"]
 [ext_resource type="StyleBox" uid="uid://cr7gmuf35jmee" path="res://theme/progress_bar.tres" id="5_ve8ec"]
 [ext_resource type="StyleBox" uid="uid://bqd7p6vkog713" path="res://theme/progress_bar_filler.tres" id="6_kpvya"]
 [ext_resource type="FontFile" uid="uid://h4y2xs3dqje0" path="res://assets/fonts/m6x11.ttf" id="8_cudm0"]
@@ -16,18 +16,18 @@ texture = ExtResource("1_8gr43")
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ugp7"]
 atlas = ExtResource("2_dqorm")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ee60j"]
-load_path = "res://.godot/imported/UI_Flat_Slider_Filler.png-d2b676c587971fb8f72a7c55608828ff.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6432a"]
-texture = SubResource("CompressedTexture2D_ee60j")
-texture_margin_top = 12.0
-texture_margin_bottom = 13.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wla0y"]
+texture = ExtResource("3_8dwog")
+texture_margin_top = 14.0
+texture_margin_bottom = 15.0
 expand_margin_top = 8.0
 expand_margin_bottom = 7.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wla0y"]
-texture = ExtResource("3_8dwog")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wxcim"]
+load_path = "res://.godot/imported/UI_Flat_Slider_Filler.png-f217c15ebbb0b3d961865d9d4b54f7c0.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4wjs"]
+texture = SubResource("CompressedTexture2D_wxcim")
 texture_margin_top = 14.0
 texture_margin_bottom = 15.0
 expand_margin_top = 8.0
@@ -55,8 +55,8 @@ HSlider/constants/grabber_offset = -1
 HSlider/icons/grabber = ExtResource("1_84dpe")
 HSlider/icons/grabber_highlight = SubResource("AtlasTexture_8ugp7")
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = SubResource("StyleBoxTexture_6432a")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_wla0y")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_wla0y")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_g4wjs")
 HSlider/styles/slider = SubResource("StyleBoxTexture_g210m")
 Panel/styles/panel = SubResource("StyleBoxTexture_315iu")
 ProgressBar/styles/background = ExtResource("5_ve8ec")

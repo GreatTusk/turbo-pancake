@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bqjnhe3iairks" path="res://scenes/ui/moving_cave_bg.tscn" id="8_k44ks"]
 [ext_resource type="AudioStream" uid="uid://5w3cd35bd1bj" path="res://assets/music/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav" id="9_32vjk"]
 [ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://scenes/ui/config_screen.tscn" id="11_ctiq4"]
-[ext_resource type="AudioStream" uid="uid://i4tgckcu6lck" path="res://assets/menu/ui/10_UI_Menu_SFX/001_Hover_01.wav" id="11_xyvqc"]
-[ext_resource type="AudioStream" uid="uid://ct52lh0vx6tqw" path="res://assets/menu/ui/10_UI_Menu_SFX/013_Confirm_03.wav" id="12_4rywm"]
+[ext_resource type="AudioStream" uid="uid://i4tgckcu6lck" path="res://assets/menu/ui/10_ui_menu_sfx/001_Hover_01.wav" id="11_xyvqc"]
+[ext_resource type="AudioStream" uid="uid://ct52lh0vx6tqw" path="res://assets/menu/ui/10_ui_menu_sfx/013_Confirm_03.wav" id="12_4rywm"]
 
 [node name="MainUI" type="CanvasLayer"]
 script = ExtResource("1_11lnq")

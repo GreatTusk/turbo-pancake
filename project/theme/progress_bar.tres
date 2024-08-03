@@ -1,9 +1,8 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cr7gmuf35jmee"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u0d0p"]
-load_path = "res://.godot/imported/UI_Flat_Fillbar_01_Hollow.png-81a2337c0f852f26c8ec7aab2bfec1b2.ctex"
+[ext_resource type="Texture2D" uid="uid://d0qkiaixgfcuj" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Fillbar_01_Block.png" id="1_vivcd"]
 
 [resource]
-texture = SubResource("CompressedTexture2D_u0d0p")
+texture = ExtResource("1_vivcd")
 texture_margin_top = 10.0
 texture_margin_bottom = 10.0

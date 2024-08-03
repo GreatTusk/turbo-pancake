@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bk65ag704hkgb"
-path="res://.godot/imported/fall.png-8395c30db59b937c0101d2d9cf8840e6.ctex"
+path="res://.godot/imported/Fall.png-f85f712e8606561a180a124a348a4f82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/bunny/fall.png"
-dest_files=["res://.godot/imported/fall.png-8395c30db59b937c0101d2d9cf8840e6.ctex"]
+source_file="res://assets/enemies/bunny/Fall.png"
+dest_files=["res://.godot/imported/Fall.png-f85f712e8606561a180a124a348a4f82.ctex"]
 
 [params]
 

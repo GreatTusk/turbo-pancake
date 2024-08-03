@@ -1,13 +1,6 @@
 class_name LevelManager
 extends Node
 
-"""
-TODO: It feels wasteful to reload the entire level manager when the only node
-that makes sense to be replaced is the current level that is loaded.
-But at the same time, it feels like returning the player and the level to their
-original state would be more expensive than reloading them.
-""" 
-
 # LevelUI
 @onready var level_ui := $LevelUI as CanvasLayer
 @onready var mobile_controls := level_ui.get_node("MobileControls") as Node2D

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ddjjljeij325p"
-path="res://.godot/imported/029_Decline_09.wav-0b3328b6344970ee498af562b617a8d1.sample"
+path="res://.godot/imported/029_Decline_09.wav-f32a9066bd83e969550f8692a1ff3929.sample"
 
 [deps]
 
-source_file="res://assets/menu/ui/10_UI_Menu_SFX/029_Decline_09.wav"
-dest_files=["res://.godot/imported/029_Decline_09.wav-0b3328b6344970ee498af562b617a8d1.sample"]
+source_file="res://assets/menu/ui/10_ui_menu_sfx/029_Decline_09.wav"
+dest_files=["res://.godot/imported/029_Decline_09.wav-f32a9066bd83e969550f8692a1ff3929.sample"]
 
 [params]
 

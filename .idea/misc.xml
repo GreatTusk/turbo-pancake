@@ -17,11 +17,6 @@
       <file path="$PROJECT_DIR$/src/interactive_items" />
       <file path="$PROJECT_DIR$/src/util" />
     </sourceRoots>
-    <libraryRoots>
-      <file path="$PROJECT_DIR$/extern/godot-cpp" />
-      <file path="$PROJECT_DIR$/extern/godot-engine" />
-      <file path="$PROJECT_DIR$/extern/vcpkg" />
-    </libraryRoots>
     <excludeRoots>
       <file path="$PROJECT_DIR$/target" />
     </excludeRoots>

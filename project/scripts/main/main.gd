@@ -12,10 +12,10 @@ func _ready() -> void:
 		## TODO: Fix the touchscreen controls to the sides of the screen
 		#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
 	instantiate_main_ui()
-	if OS.has_feature("nothreads"):
-		print("no threads")
-	else:
-		print("threads")
+	#if OS.has_feature("nothreads"):
+		#print("no threads")
+	#else:
+		#print("threads")
 
 func instantiate_main_ui() -> CanvasLayer:
 	var main_ui := main_ui_res.instantiate()
@@ -65,7 +65,7 @@ func _on_level_selector_pressed() -> void:
 func _on_level_restarted() -> void:
 	# If the level was restarted, we can assume the level manager is still valid
 	var level_manager := self.get_child(0) 
-	assert(level_manager)
+	assert(level_manager is LevelManager)
 	
 	var level_to_reset: Level
 	for i in range(level_manager.get_child_count() - 1, -1, -1):
@@ -73,27 +73,12 @@ func _on_level_restarted() -> void:
 		if child is Level:
 			level_to_reset = child
 			break
-			
+	assert(level_to_reset)
 	# From here onwards, instead of replacing the level, the entire manager is replaced
 	var level_path := level_to_reset.scene_file_path # String
 	level_manager.call_deferred("free")
 	_on_level_selected(level_path)
 	get_tree().paused = false
-	
-	# Tried to reload only the level, proved to be too difficult
-	
-	#var level_path := level_to_reset.scene_file_path # String
-	#var new_level := (load(level_path) as PackedScene).instantiate()
-	#level_to_reset.call_deferred("free")
-	#level_manager.add_child(new_level)
-	#level_manager.request_ready()
-	#for node in level_manager.get_children():
-		#node.request_ready()
-		#await node.ready
-	#get_tree().paused = false
-	#var player := level_manager.get_node("Player") as PlayableCharacter
-	#player.global_position = player.spawn_pos
-	#(level_manager.level_ui as LevelUI).level_modal.hide()
 
 func _on_next_level_pressed() -> void:
 	change_level(1)
@@ -105,6 +90,6 @@ func change_level(direction: int) -> void:
 	Singleton.current_level += direction
 	var level_path := "res://scenes/levels/level_%s.tscn" % (Singleton.current_level)
 	var level_manager := self.get_child(0) 
-	assert(level_manager)
+	assert(level_manager is LevelManager)
 	level_manager.call_deferred("free")
 	_on_level_selected(level_path)

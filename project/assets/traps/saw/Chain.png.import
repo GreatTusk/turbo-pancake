@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://co1eb041tehy3"
-path="res://.godot/imported/chain.png-bbd100e49061ab305ca30623365eca97.ctex"
+path="res://.godot/imported/Chain.png-f3d00bec6f97b4ce9cf5a6a2a6220995.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/traps/saw/chain.png"
-dest_files=["res://.godot/imported/chain.png-bbd100e49061ab305ca30623365eca97.ctex"]
+source_file="res://assets/traps/saw/Chain.png"
+dest_files=["res://.godot/imported/Chain.png-f3d00bec6f97b4ce9cf5a6a2a6220995.ctex"]
 
 [params]
 

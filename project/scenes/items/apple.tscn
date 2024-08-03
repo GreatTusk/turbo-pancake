@@ -1,14 +1,14 @@
 [gd_scene load_steps=154 format=3 uid="uid://mkxeqvc338kv"]
 
-[ext_resource type="Texture2D" uid="uid://crangl76xubfe" path="res://assets/items/Fruits/Apple.png" id="1_65ph4"]
-[ext_resource type="Texture2D" uid="uid://dyf1mtofdiy60" path="res://assets/items/Fruits/Bananas.png" id="2_he3rs"]
-[ext_resource type="Texture2D" uid="uid://cjplfwekn7a2i" path="res://assets/items/Fruits/Collected.png" id="3_8m4cq"]
-[ext_resource type="Texture2D" uid="uid://ca0qbkqhxna1n" path="res://assets/items/Fruits/Cherries.png" id="3_yo7kt"]
-[ext_resource type="Texture2D" uid="uid://iyadc3jdwf47" path="res://assets/items/Fruits/Kiwi.png" id="4_karcr"]
-[ext_resource type="Texture2D" uid="uid://bqrkhgpi3ueas" path="res://assets/items/Fruits/Melon.png" id="5_wi8wh"]
-[ext_resource type="Texture2D" uid="uid://bdtjcoqhxovhb" path="res://assets/items/Fruits/Orange.png" id="6_qj1ka"]
-[ext_resource type="Texture2D" uid="uid://llgkihrorlcq" path="res://assets/items/Fruits/Pineapple.png" id="7_yxfdw"]
-[ext_resource type="Texture2D" uid="uid://c6h80lfi6ox7v" path="res://assets/items/Fruits/Strawberry.png" id="8_w6l7c"]
+[ext_resource type="Texture2D" uid="uid://crangl76xubfe" path="res://assets/items/fruits/apple.png" id="1_65ph4"]
+[ext_resource type="Texture2D" uid="uid://dyf1mtofdiy60" path="res://assets/items/fruits/bananas.png" id="2_he3rs"]
+[ext_resource type="Texture2D" uid="uid://cjplfwekn7a2i" path="res://assets/items/fruits/collected.png" id="3_8m4cq"]
+[ext_resource type="Texture2D" uid="uid://ca0qbkqhxna1n" path="res://assets/items/fruits/cherries.png" id="3_yo7kt"]
+[ext_resource type="Texture2D" uid="uid://iyadc3jdwf47" path="res://assets/items/fruits/kiwi.png" id="4_karcr"]
+[ext_resource type="Texture2D" uid="uid://bqrkhgpi3ueas" path="res://assets/items/fruits/melon.png" id="5_wi8wh"]
+[ext_resource type="Texture2D" uid="uid://bdtjcoqhxovhb" path="res://assets/items/fruits/orange.png" id="6_qj1ka"]
+[ext_resource type="Texture2D" uid="uid://llgkihrorlcq" path="res://assets/items/fruits/pineapple.png" id="7_yxfdw"]
+[ext_resource type="Texture2D" uid="uid://c6h80lfi6ox7v" path="res://assets/items/fruits/strawberry.png" id="8_w6l7c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xprp3"]
 atlas = ExtResource("1_65ph4")
