@@ -136,14 +136,18 @@ visibility_mode = 1
 
 [node name="Hover" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("14_3xofh")
+bus = &"sfx"
 
 [node name="Confirm" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("15_mbnhv")
+bus = &"sfx"
 
 [node name="Pause" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("16_bi7j6")
+bus = &"sfx"
 
 [node name="Unpause" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("17_uk14g")
+bus = &"sfx"
 
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

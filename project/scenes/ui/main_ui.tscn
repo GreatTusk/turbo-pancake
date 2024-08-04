@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://60iljtrj8nmv"]
+[gd_scene load_steps=14 format=3 uid="uid://60iljtrj8nmv"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_11lnq"]
 [ext_resource type="PackedScene" uid="uid://dv58xv05ojbm0" path="res://scenes/backgrounds/background_selector.tscn" id="2_0ygg0"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bqjnhe3iairks" path="res://scenes/ui/moving_cave_bg.tscn" id="8_k44ks"]
 [ext_resource type="AudioStream" uid="uid://5w3cd35bd1bj" path="res://assets/music/Fire Emblem Thracia 776 - Thracia 776 Fire Emblem Theme - Orchestral Cover 01d5.wav" id="9_32vjk"]
 [ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://scenes/ui/config_screen.tscn" id="11_ctiq4"]
+[ext_resource type="Script" path="res://scripts/audio/bg_music.gd" id="11_jd4j2"]
 [ext_resource type="AudioStream" uid="uid://i4tgckcu6lck" path="res://assets/menu/ui/10_ui_menu_sfx/001_Hover_01.wav" id="11_xyvqc"]
 [ext_resource type="AudioStream" uid="uid://ct52lh0vx6tqw" path="res://assets/menu/ui/10_ui_menu_sfx/013_Confirm_03.wav" id="12_4rywm"]
 
@@ -28,10 +29,10 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.430714
 
-[node name="TileMap" type="TileMap" parent="MainCharacter"]
+[node name="Bridge" type="TileMapLayer" parent="MainCharacter"]
+use_parent_material = true
+tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 18, 0, 1, 0, 0, 0, 2, 0, 7, 0, 1, 0, 19, 0, 1, 0, 0, 0, 0, 0, 7, 0, 1, 0, 18, 0, 1, 0, 0, 0)
 tile_set = ExtResource("6_1mnmq")
-format = 2
-layer_0/tile_data = PackedInt32Array(458753, 1179649, 1, 458754, 1245185, 1, 458752, 1179649, 1)
 
 [node name="TitleScreen" parent="." instance=ExtResource("5_2ouee")]
 
@@ -45,11 +46,14 @@ visible = false
 stream = ExtResource("9_32vjk")
 autoplay = true
 bus = &"music"
+script = ExtResource("11_jd4j2")
 
 [node name="SFX" type="Node" parent="."]
 
 [node name="Hover" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("11_xyvqc")
+bus = &"sfx"
 
 [node name="Confirm" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("12_4rywm")
+bus = &"sfx"

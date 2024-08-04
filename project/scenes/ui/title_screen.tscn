@@ -30,9 +30,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -48.0
-offset_top = 47.0
+offset_top = 40.0
 offset_right = 48.0
-offset_bottom = 61.0
+offset_bottom = 54.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.744181, 0.744181, 0.744181, 1)
@@ -60,66 +60,94 @@ grow_horizontal = 0
 texture_normal = ExtResource("2_dgxvn")
 stretch_mode = 5
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+[node name="ButtonsContainer" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.291667
-anchor_top = 0.259259
-anchor_right = 0.708333
-anchor_bottom = 0.777778
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -44.0
+offset_right = 74.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Settings" type="TextureButton" parent="ButtonsContainer"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -22.0
+offset_right = 40.0
+offset_bottom = 22.0
+grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_vertical = 5
 size_flags_stretch_ratio = 1.5
 texture_normal = ExtResource("3_vvpga")
 stretch_mode = 5
 
 [node name="AnimationComponent" type="Node" parent="ButtonsContainer/Settings"]
 script = ExtResource("5_s4eel")
+from_center = true
 hover_time = 0.5
-hover_transition = 10
-hover_easing = 2
-hover_position = Vector2(20, 0)
-hover_scale = Vector2(1.1, 1.1)
-hover_size = Vector2(-10, 0)
+hover_transition = 6
+hover_easing = 1
+hover_scale = Vector2(0.9, 0.9)
+hover_rotation = -5.0
 
 [node name="Levels" type="TextureButton" parent="ButtonsContainer"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -36.0
+offset_right = 33.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.5
 texture_normal = ExtResource("4_kylpd")
 stretch_mode = 5
 
-[node name="AnimationComponent2" type="Node" parent="ButtonsContainer/Levels"]
+[node name="AnimationComponent3" type="Node" parent="ButtonsContainer/Levels"]
 script = ExtResource("5_s4eel")
+from_center = true
 hover_time = 0.5
-hover_transition = 10
-hover_easing = 2
-hover_position = Vector2(20, 0)
-hover_scale = Vector2(1.1, 1.1)
-hover_size = Vector2(-10, 0)
+hover_transition = 6
+hover_easing = 1
+hover_scale = Vector2(0.9, 0.9)
 
 [node name="Achievements" type="TextureButton" parent="ButtonsContainer"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 texture_normal = ExtResource("5_ni6nw")
 stretch_mode = 5
 
-[node name="AnimationComponent3" type="Node" parent="ButtonsContainer/Achievements"]
+[node name="AnimationComponent2" type="Node" parent="ButtonsContainer/Achievements"]
 script = ExtResource("5_s4eel")
+from_center = true
 hover_time = 0.5
-hover_transition = 10
-hover_easing = 2
-hover_position = Vector2(20, 0)
-hover_scale = Vector2(1.1, 1.1)
-hover_size = Vector2(-10, 0)
+hover_transition = 6
+hover_easing = 1
+hover_scale = Vector2(0.9, 0.9)
+hover_rotation = 5.0
 
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/Settings" to="." method="_on_settings_pressed"]

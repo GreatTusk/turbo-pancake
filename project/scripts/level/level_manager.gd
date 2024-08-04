@@ -36,13 +36,17 @@ func initialize_level(level: Level) -> void:
 	for checkpoint in checkpoints.get_children():
 		if checkpoint is Checkpoint:
 			(checkpoint as Checkpoint).checkpoint_reached.connect(player._on_checkpoint_triggered)
+			var player_start_pos := (checkpoint as Checkpoint).global_position
+			player.set_respawn_pos(player_start_pos)
+			player.global_position = Vector2(player_start_pos.x, player_start_pos.y - player.PLAYER_HEIGHT)
 		elif checkpoint is EndCheckpoint:
 			(checkpoint as EndCheckpoint).level_finished.connect(_on_level_finished)
 			(checkpoint as EndCheckpoint).level_finished.connect(level._on_level_finished)
 		elif checkpoint is StartCheckpoint:
-			var player_start_pos := (checkpoint as StartCheckpoint).global_position
-			player.set_respawn_pos(player_start_pos)
-			player.global_position = Vector2(player_start_pos.x, player_start_pos.y - player.PLAYER_HEIGHT)
+			#var player_start_pos := (checkpoint as StartCheckpoint).global_position
+			#player.set_respawn_pos(player_start_pos)
+			#player.global_position = Vector2(player_start_pos.x, player_start_pos.y - player.PLAYER_HEIGHT)
+			pass
 			
 	if world_border:
 		world_border.connect("kill_player", player._on_kill_player)

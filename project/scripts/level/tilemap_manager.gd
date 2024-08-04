@@ -1,7 +1,7 @@
 class_name SpecialTileMapLayer
 extends TileMapLayer
 
-const TILE_OFFSET: int = 25
+const TILE_OFFSET: int = 0
 
 signal tile_effect_response(modifier: float)
 signal particle_change_response(particle_index: int)

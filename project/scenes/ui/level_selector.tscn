@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4uvnyh1xaqdx"]
 
 [ext_resource type="Script" path="res://scripts/ui/level_selector.gd" id="1_d1b71"]
-[ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/menu/buttons/back.png" id="2_7qopv"]
+[ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/menu/buttons/Back.png" id="2_7qopv"]
 
 [node name="LevelSelector" type="Control"]
 layout_mode = 3

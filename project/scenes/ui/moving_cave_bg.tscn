@@ -9,62 +9,83 @@
 [ext_resource type="Texture2D" uid="uid://dsqesi70k73js" path="res://assets/background/parallax_backgrounds_cave/2.png" id="7_3qw06"]
 [ext_resource type="Texture2D" uid="uid://ca6ey41flk515" path="res://assets/background/parallax_backgrounds_cave/1.png" id="8_pnclo"]
 
-[node name="Cave" type="ParallaxBackground"]
-scroll_base_scale = Vector2(0.2, 0.2)
-scroll_ignore_camera_zoom = true
+[node name="Cave" type="Node2D"]
+z_index = -2
+position = Vector2(384, 0)
 script = ExtResource("1_achg5")
-scroll_speed = 10.0
 
-[node name="Background" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(384, 0)
+[node name="Background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 2
+ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 texture = ExtResource("2_xcue7")
 centered = false
 
-[node name="BG2" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(1.2, 1.2)
-motion_mirroring = Vector2(384, 0)
+[node name="BG2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.24, 0.24)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(6.25, 0)
+repeat_times = 2
+ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG2"]
 texture = ExtResource("3_llov6")
 centered = false
 
-[node name="BG3" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(1.4, 1.4)
-motion_mirroring = Vector2(384, 0)
+[node name="BG3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.28, 0.28)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(7.8125, 0)
+repeat_times = 2
+ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG3"]
 texture = ExtResource("4_dkcv0")
 centered = false
 
-[node name="BG4" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(1.6, 1.6)
-motion_mirroring = Vector2(384, 0)
+[node name="BG4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.32, 0.32)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(9.76563, 0)
+repeat_times = 2
+ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG4"]
 texture = ExtResource("5_ih288")
 centered = false
 
-[node name="BG5" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(1.8, 1.8)
-motion_mirroring = Vector2(384, 0)
+[node name="BG5" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.36, 0.36)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(12.207, 0)
+repeat_times = 2
+ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG5"]
 texture = ExtResource("6_k4ptf")
 centered = false
 
-[node name="BG6" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(2, 2)
-motion_mirroring = Vector2(384, 0)
+[node name="BG6" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(15.2588, 0)
+repeat_times = 2
+ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG6"]
 texture = ExtResource("7_3qw06")
 centered = false
 
-[node name="BG7" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(2.2, 2.2)
-motion_mirroring = Vector2(384, 0)
+[node name="BG7" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.44, 0.44)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(19.0735, 0)
+repeat_times = 2
+ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG7"]
 texture = ExtResource("8_pnclo")

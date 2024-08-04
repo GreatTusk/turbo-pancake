@@ -144,6 +144,7 @@ polygon = PackedVector2Array(-8, -21, -13, -14, -21, -8, -21, 9, -14, 14, -8, 22
 
 [node name="HitFloorSFX" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Body"]
 stream = ExtResource("5_khclj")
+bus = &"sfx"
 
 [connection signal="timeout" from="Path2D/PathFollow2D/Body/StunnedTimer" to="." method="_on_stunned_timer_timeout"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Body/Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -12,6 +12,15 @@ func _ready() -> void:
 	const icons_path := "res://assets/menu/levels/%s.png"
 	var level_count: int = count_files_dir(LEVELS_PATH)
 	Singleton.max_level_count = level_count
+	
+	var animation_comp := AnimationComponent.new()
+	animation_comp.hover_time = 0.5
+	# Tween.TransitionType
+	animation_comp.hover_transition = Tween.TransitionType.TRANS_BACK
+	# Tween.EaseType
+	animation_comp.hover_easing = Tween.EaseType.EASE_IN_OUT
+	animation_comp.hover_scale = Vector2(1.0, 1.0)
+	animation_comp.hover_modulate = Color.WHITE
 
 	for i in range(1, level_count + 1):
 		# Create buttons, set some properties
@@ -25,8 +34,11 @@ func _ready() -> void:
 		
 		# Wire up their pressed signal binding the index to _on_level_button_pressed
 		level_button.pressed.connect(_on_level_button_pressed.bind(i))
+		
+		#level_button.add_child(animation_comp.duplicate())
 		levels_container.add_child(level_button)
 		
+	animation_comp.queue_free()
 # From https://docs.godotengine.org/en/4.0/classes/class_diraccess.html#diraccess
 func count_files_dir(path: String) -> int:
 	var dir := DirAccess.open(path)

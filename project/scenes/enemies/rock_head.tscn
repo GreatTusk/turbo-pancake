@@ -140,6 +140,7 @@ collision_mask = 4
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_wo8s6")
+bus = &"sfx"
 
 [node name="CrushParticles" type="GPUParticles2D" parent="."]
 position = Vector2(0, 16)

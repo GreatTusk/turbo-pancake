@@ -49,13 +49,13 @@ func _on_level_selected(level_scene_path: String) -> void:
 	self.add_child(level_manager)
 	
 func _on_level_selector_pressed() -> void:
-	# TODO: CHANGE THIS!!
-	var level_to_delete := self.get_child(0)
-	level_to_delete.queue_free()
+	var level_manager := self.get_child(0)
+	assert(level_manager is LevelManager)
+	level_manager.queue_free()
 	# TIL when using queue_free() the node is deleted only at the end of the frame, not inmediately
 	# If we don't await for the node to exit the tree unintended behaviour might occur
-	# Another alternative: level_to_delete.call_deferred("free")
-	await level_to_delete.tree_exited
+	# Another alternative: level_manager.call_deferred("free")
+	await level_manager.tree_exited
 	# Recreate the UI and set it so the level selector is visible
 	var main_ui: CanvasLayer = instantiate_main_ui()
 	(main_ui.get_node("TitleScreen") as TitleScreen).hide()
@@ -88,8 +88,9 @@ func _on_previous_level_pressed() -> void:
 
 func change_level(direction: int) -> void:
 	Singleton.current_level += direction
-	var level_path := "res://scenes/levels/level_%s.tscn" % (Singleton.current_level)
+	const levels_folder := "res://scenes/levels/level_%s.tscn"
+	var level_path := levels_folder % (Singleton.current_level)
 	var level_manager := self.get_child(0) 
 	assert(level_manager is LevelManager)
-	level_manager.call_deferred("free")
+	level_manager.free.call_deferred()
 	_on_level_selected(level_path)

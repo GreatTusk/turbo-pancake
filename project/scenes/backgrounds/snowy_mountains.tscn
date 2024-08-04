@@ -7,46 +7,47 @@
 [ext_resource type="Texture2D" uid="uid://c7ucwvp02k577" path="res://assets/background/parallax_backgrounds_snowy_mountains/2.png" id="5_k2in1"]
 [ext_resource type="Texture2D" uid="uid://dq2jvmsasdeqw" path="res://assets/background/parallax_backgrounds_snowy_mountains/1.png" id="6_ckwhw"]
 
-[node name="SnowyMountains" type="ParallaxBackground"]
-scroll_base_scale = Vector2(0.2, 0.2)
-scroll_ignore_camera_zoom = true
+[node name="SnowyMountains" type="Node2D"]
+z_index = -2
+position = Vector2(384, 0)
 script = ExtResource("1_ef2w7")
-scroll_speed = 10.0
+ignore_camera_scroll = false
 
-[node name="Clouds" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(384, 0)
+[node name="Clouds" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Clouds"]
 texture = ExtResource("2_026cy")
 centered = false
 
-[node name="Mountains" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(1.2, 1.2)
-motion_mirroring = Vector2(384, 0)
+[node name="Mountains" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.24, 0.24)
+repeat_size = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Mountains"]
 texture = ExtResource("3_jjmyf")
 centered = false
 
-[node name="BackTrees" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(1.4, 1.4)
-motion_mirroring = Vector2(384, 0)
+[node name="BackTrees" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.28, 0.28)
+repeat_size = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="BackTrees"]
 texture = ExtResource("4_y80l3")
 centered = false
 
-[node name="FrontTrees" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(1.6, 1.6)
-motion_mirroring = Vector2(384, 0)
+[node name="FrontTrees" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.32, 0.32)
+repeat_size = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="FrontTrees"]
 texture = ExtResource("5_k2in1")
 centered = false
 
-[node name="Ground" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(1.8, 1.8)
-motion_mirroring = Vector2(384, 0)
+[node name="Ground" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.36, 0.36)
+repeat_size = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
 texture = ExtResource("6_ckwhw")
