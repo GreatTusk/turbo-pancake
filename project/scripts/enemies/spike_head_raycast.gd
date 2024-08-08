@@ -11,13 +11,7 @@ func _physics_process(_delta: float) -> void:
 		first_collision.emit()
 
 func _on_first_collision() -> void:
-	reajust_raycast_target(self)
+	Singleton.reajust_raycast_target(self)
 	self.set_collision_mask_value(3, false)
 	self.set_collision_mask_value(4, false)
 	self.set_physics_process(false)
-	
-func reajust_raycast_target(raycast: RayCast2D) -> void:
-	var origin: Vector2 = raycast.global_position
-	var collision_point: Vector2 = raycast.get_collision_point()
-	var distance: float = origin.distance_to(collision_point)
-	raycast.target_position.y = distance

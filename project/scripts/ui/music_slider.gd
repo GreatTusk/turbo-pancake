@@ -26,6 +26,13 @@ func _validate_property(property: Dictionary) -> void:
 
 func _on_volume_changed(volume: float) -> void:
 	AudioServer.set_bus_volume_db(audio_bus, linear_to_db(volume))
+	var audio_config: AudioSettings = ResourceLoader.load("res://resources/config/audio_settings.tres")
+	match audio_bus:
+		1:
+			audio_config.bgm_volume = volume
+		2:
+			audio_config.sfx_volume = volume
+	ResourceSaver.save(audio_config, "res://resources/config/audio_settings.tres")
 
 func _on_bus_layout_changed() -> void:
 	_validate_property.call()

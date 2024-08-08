@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/ui/music_slider.gd" id="1_h6i6d"]
 [ext_resource type="Script" path="res://scripts/ui/config_screen.gd" id="1_y5n1k"]
 [ext_resource type="Texture2D" uid="uid://cq4upd0evrbkm" path="res://assets/menu/buttons/Close.png" id="2_ap3cc"]
-[ext_resource type="Script" path="res://scripts/ui/title_label.gd" id="2_syblx"]
+[ext_resource type="Script" path="res://scripts/ui/title_screen/title_label.gd" id="2_syblx"]
 
 [node name="ConfigScreen" type="Control"]
 layout_mode = 3
@@ -71,7 +71,6 @@ anchor_bottom = 0.743059
 grow_horizontal = 2
 grow_vertical = 2
 columns = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="BG" type="Label" parent="AspectRatioContainer/Panel/GridContainer"]
 layout_mode = 2

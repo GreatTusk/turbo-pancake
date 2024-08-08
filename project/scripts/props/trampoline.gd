@@ -7,6 +7,6 @@ extends Node2D
 signal jumped_on
 
 func _on_jump_hitbox_body_entered(_body: Node2D) -> void:
-	sprite.play("launch")
+	sprite.play(&"launch")
 	bounce_sfx.play()
 	jumped_on.emit()

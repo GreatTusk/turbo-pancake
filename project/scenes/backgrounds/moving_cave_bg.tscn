@@ -1,18 +1,18 @@
 [gd_scene load_steps=9 format=3 uid="uid://bqjnhe3iairks"]
 
-[ext_resource type="Script" path="res://scripts/background/moving_parallax_bg.gd" id="1_achg5"]
-[ext_resource type="Texture2D" uid="uid://bpyk84pwt6p1w" path="res://assets/background/parallax_backgrounds_cave/7.png" id="2_xcue7"]
-[ext_resource type="Texture2D" uid="uid://c1yfr7tswrd6i" path="res://assets/background/parallax_backgrounds_cave/6.png" id="3_llov6"]
-[ext_resource type="Texture2D" uid="uid://ibohx0j8aqoj" path="res://assets/background/parallax_backgrounds_cave/5.png" id="4_dkcv0"]
-[ext_resource type="Texture2D" uid="uid://d4bx4imi7syys" path="res://assets/background/parallax_backgrounds_cave/4.png" id="5_ih288"]
-[ext_resource type="Texture2D" uid="uid://crlf3lp5jdxn2" path="res://assets/background/parallax_backgrounds_cave/3.png" id="6_k4ptf"]
-[ext_resource type="Texture2D" uid="uid://dsqesi70k73js" path="res://assets/background/parallax_backgrounds_cave/2.png" id="7_3qw06"]
-[ext_resource type="Texture2D" uid="uid://ca6ey41flk515" path="res://assets/background/parallax_backgrounds_cave/1.png" id="8_pnclo"]
+[ext_resource type="Script" path="res://scripts/background/moving_parallax_bg.gd" id="1_unb25"]
+[ext_resource type="Texture2D" uid="uid://bpyk84pwt6p1w" path="res://assets/background/parallax_backgrounds_cave/7.png" id="2_ctbgp"]
+[ext_resource type="Texture2D" uid="uid://c1yfr7tswrd6i" path="res://assets/background/parallax_backgrounds_cave/6.png" id="3_rlk5c"]
+[ext_resource type="Texture2D" uid="uid://ibohx0j8aqoj" path="res://assets/background/parallax_backgrounds_cave/5.png" id="4_vu87i"]
+[ext_resource type="Texture2D" uid="uid://d4bx4imi7syys" path="res://assets/background/parallax_backgrounds_cave/4.png" id="5_13yq5"]
+[ext_resource type="Texture2D" uid="uid://crlf3lp5jdxn2" path="res://assets/background/parallax_backgrounds_cave/3.png" id="6_ocybi"]
+[ext_resource type="Texture2D" uid="uid://dsqesi70k73js" path="res://assets/background/parallax_backgrounds_cave/2.png" id="7_a5xcn"]
+[ext_resource type="Texture2D" uid="uid://ca6ey41flk515" path="res://assets/background/parallax_backgrounds_cave/1.png" id="8_taarc"]
 
 [node name="Cave" type="Node2D"]
 z_index = -2
 position = Vector2(384, 0)
-script = ExtResource("1_achg5")
+script = ExtResource("1_unb25")
 
 [node name="Background" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.2, 0.2)
@@ -22,7 +22,7 @@ repeat_times = 2
 ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-texture = ExtResource("2_xcue7")
+texture = ExtResource("2_ctbgp")
 centered = false
 
 [node name="BG2" type="Parallax2D" parent="."]
@@ -33,7 +33,7 @@ repeat_times = 2
 ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG2"]
-texture = ExtResource("3_llov6")
+texture = ExtResource("3_rlk5c")
 centered = false
 
 [node name="BG3" type="Parallax2D" parent="."]
@@ -44,7 +44,7 @@ repeat_times = 2
 ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG3"]
-texture = ExtResource("4_dkcv0")
+texture = ExtResource("4_vu87i")
 centered = false
 
 [node name="BG4" type="Parallax2D" parent="."]
@@ -55,7 +55,7 @@ repeat_times = 2
 ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG4"]
-texture = ExtResource("5_ih288")
+texture = ExtResource("5_13yq5")
 centered = false
 
 [node name="BG5" type="Parallax2D" parent="."]
@@ -66,7 +66,7 @@ repeat_times = 2
 ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG5"]
-texture = ExtResource("6_k4ptf")
+texture = ExtResource("6_ocybi")
 centered = false
 
 [node name="BG6" type="Parallax2D" parent="."]
@@ -77,7 +77,7 @@ repeat_times = 2
 ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG6"]
-texture = ExtResource("7_3qw06")
+texture = ExtResource("7_a5xcn")
 centered = false
 
 [node name="BG7" type="Parallax2D" parent="."]
@@ -88,5 +88,5 @@ repeat_times = 2
 ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BG7"]
-texture = ExtResource("8_pnclo")
+texture = ExtResource("8_taarc")
 centered = false

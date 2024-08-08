@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnl325vuvde6k"]
 
-[ext_resource type="Script" path="res://scripts/ui/level_finished.gd" id="1_ji36s"]
-[ext_resource type="Texture2D" uid="uid://ceetpclbadcei" path="res://assets/menu/buttons/previous.png" id="2_0s34l"]
-[ext_resource type="Texture2D" uid="uid://cl31th6uhrsur" path="res://assets/menu/buttons/levels.png" id="4_05ldm"]
-[ext_resource type="Texture2D" uid="uid://cvdiypkgrp12k" path="res://assets/menu/buttons/next.png" id="5_mcrfc"]
-[ext_resource type="Texture2D" uid="uid://dg0e7n4x3hj5o" path="res://assets/menu/buttons/restart.png" id="5_yn7jj"]
+[ext_resource type="Script" path="res://scripts/ui/level/level_finished.gd" id="1_ji36s"]
+[ext_resource type="Texture2D" uid="uid://ceetpclbadcei" path="res://assets/menu/buttons/Previous.png" id="2_0s34l"]
+[ext_resource type="Texture2D" uid="uid://cl31th6uhrsur" path="res://assets/menu/buttons/Levels.png" id="4_05ldm"]
+[ext_resource type="Texture2D" uid="uid://cvdiypkgrp12k" path="res://assets/menu/buttons/Next.png" id="5_mcrfc"]
+[ext_resource type="Texture2D" uid="uid://dg0e7n4x3hj5o" path="res://assets/menu/buttons/Restart.png" id="5_yn7jj"]
 
 [node name="LevelFinished" type="Control"]
 process_mode = 2
@@ -32,60 +32,64 @@ offset_bottom = 67.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Modal"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="LevelCompleted" type="Label" parent="Modal"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0888889
-anchor_top = 0.173
-anchor_right = 0.916
-anchor_bottom = 0.291519
-offset_bottom = -7.355
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.5
+offset_top = 26.5
+offset_right = 43.5
+offset_bottom = 40.5
 grow_horizontal = 2
+size_flags_horizontal = 4
 size_flags_vertical = 1
 text = "Level finished!"
-metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Modal"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.233333
-anchor_top = 0.292593
-anchor_right = 0.766667
-anchor_bottom = 0.9
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -11.0
+offset_right = 24.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
-alignment = 1
-metadata/_edit_use_anchors_ = true
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="PreviousLevel" type="TextureButton" parent="Modal/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("2_0s34l")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="ToLevelSelector" type="TextureButton" parent="Modal/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("4_05ldm")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="RestartLevel" type="TextureButton" parent="Modal/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("5_yn7jj")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="NextLevel" type="TextureButton" parent="Modal/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("5_mcrfc")
-stretch_mode = 5
+stretch_mode = 3
 
 [connection signal="button_down" from="Modal/HBoxContainer/PreviousLevel" to="." method="_on_previous_level_button_down"]
 [connection signal="pressed" from="Modal/HBoxContainer/ToLevelSelector" to="." method="_on_to_level_selector_pressed"]

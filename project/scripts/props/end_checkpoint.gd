@@ -12,5 +12,5 @@ func _on_area_2d_body_entered(_body: PlayableCharacter) -> void:
 	confetti_particles.emitting = true
 	level_completed_sfx.play()
 	level_finished.emit()
-	animated_sprite_2d.play("idle")
+	animated_sprite_2d.play(&"idle")
 	collision_shape_2d.call_deferred("set_disabled", true)

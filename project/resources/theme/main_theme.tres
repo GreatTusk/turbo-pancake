@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://2l5xtfdpy271" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Scrollbar_Handle_02.png" id="2_dqorm"]
 [ext_resource type="Texture2D" uid="uid://btetihjyebx5u" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Slider_Filler.png" id="3_8dwog"]
 [ext_resource type="Texture2D" uid="uid://f6es1kj0sfd1" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Slider.png" id="3_m0hqf"]
-[ext_resource type="StyleBox" uid="uid://cr7gmuf35jmee" path="res://theme/progress_bar.tres" id="5_ve8ec"]
-[ext_resource type="StyleBox" uid="uid://bqd7p6vkog713" path="res://theme/progress_bar_filler.tres" id="6_kpvya"]
+[ext_resource type="StyleBox" uid="uid://cr7gmuf35jmee" path="res://resources/theme/progress_bar.tres" id="5_ve8ec"]
+[ext_resource type="StyleBox" uid="uid://bqd7p6vkog713" path="res://resources/theme/progress_bar_filler.tres" id="6_kpvya"]
 [ext_resource type="FontFile" uid="uid://h4y2xs3dqje0" path="res://assets/fonts/m6x11.ttf" id="8_cudm0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sa2e8"]

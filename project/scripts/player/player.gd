@@ -41,8 +41,8 @@ const AIR_DEC_X: float = 10.0
 const BOOST_IMPULSE: float = 320.0
 
 # External consts
-const WALL_COLL_POS_R: float = 400.0
-const WALL_COLL_POS_L: float = 410.0
+const WALL_COLL_POS_R: float = 1.0
+const WALL_COLL_POS_L: float = 11.0
 const RAYC_COLL_POS_L: float = 45.0
 const RAYC_COLL_POS_R: float = 40.0
 const PLAYER_HEIGHT: float = 10.532
@@ -118,7 +118,7 @@ func _physics_process(delta: float) -> void:
 func ground_movement() -> void:
 	request_tile_effect.emit(to_local(self.global_position), particle_queue.particle_texture)
 	# Whether the user pressed jump or a jump had been previously buffered, jump
-	if Input.is_action_just_pressed("jump") || !jump_buffer_timer.is_stopped():
+	if Input.is_action_just_pressed(&"jump") || !jump_buffer_timer.is_stopped():
 		jump_lines.play()
 		velocity.y = JUMP_VEL
 		# Prevents the jump being re-triggered on the next frame
@@ -127,16 +127,16 @@ func ground_movement() -> void:
 		return
 		
 	# Horizontal movement
-	var direction: float = Input.get_axis("move_left", "move_right")
+	var direction: float = Input.get_axis(&"move_left", &"move_right")
 	if direction != 0.0:
-		animated_sprites.play("run")
+		animated_sprites.play(&"run")
 		animated_sprites.flip_h = direction < 0
 		self.velocity.x = move_toward(self.velocity.x, direction * MAX_SPEED, ACC)
 	else:
-		animated_sprites.play("idle")
+		animated_sprites.play(&"idle")
 		self.velocity.x = move_toward(self.velocity.x, 0.0, ground_dec)
 	
-	if Input.is_action_just_pressed("boost") && boost_cooldown_timer.is_stopped():
+	if Input.is_action_just_pressed(&"boost") && boost_cooldown_timer.is_stopped():
 		boost()
 
 func air_movement(delta: float) -> void:
@@ -145,7 +145,7 @@ func air_movement(delta: float) -> void:
 	adjust_hitbox()
 	
 	# Vertical movement
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed(&"jump"):
 		jump_buffer_timer.start()
 		
 		if !coyote_timer.is_stopped():
@@ -153,7 +153,7 @@ func air_movement(delta: float) -> void:
 			velocity.y = JUMP_VEL
 		
 		if double_jump:
-			animated_sprites.play("double_jump")
+			animated_sprites.play(&"double_jump")
 			jump_lines.play()
 			velocity.y = DOUBLE_JUMP_VEL
 			double_jump = false
@@ -161,30 +161,30 @@ func air_movement(delta: float) -> void:
 			can_boost = boost_unlocked
 			
 	# If not double jumping and going up
-	if velocity.y < 0 && animated_sprites.animation != "double_jump":
-		animated_sprites.play("jump")
+	if velocity.y < 0 && animated_sprites.animation != &"double_jump":
+		animated_sprites.play(&"jump")
 	# If falling and not double jumping, or after double jumping
-	elif velocity.y > 0 && (animated_sprites.animation != "double_jump" || self.position.y >= double_jump_y):
-		animated_sprites.play("fall")
+	elif velocity.y > 0 && (animated_sprites.animation != &"double_jump" || self.position.y >= double_jump_y):
+		animated_sprites.play(&"fall")
 	
 	# Horizontal movement
-	var direction: float = Input.get_axis("move_left", "move_right")
+	var direction: float = Input.get_axis(&"move_left", &"move_right")
 	if direction != 0.0:
 		animated_sprites.flip_h = direction < 0
 		velocity.x = move_toward(self.velocity.x, direction * MAX_SPEED, AIR_ACC_X)
 	else:
 		self.velocity.x = move_toward(self.velocity.x, 0.0, AIR_DEC_X)
 		
-	if Input.is_action_just_pressed("boost") && can_boost && boost_cooldown_timer.is_stopped():
+	if Input.is_action_just_pressed(&"boost") && can_boost && boost_cooldown_timer.is_stopped():
 		boost()
 		
 func wall_movement(delta: float) -> void:
-	animated_sprites.play("wall_jump")
+	animated_sprites.play(&"wall_jump")
 	# Simulate friction when on a wall
 	velocity.y = max(move_toward(velocity.y, MAX_GRAVITY, AIR_ACC_Y * delta * WALL_FRICTION), 0)
 	
-	if Input.is_action_just_pressed("jump"):
-		animated_sprites.play("jump")
+	if Input.is_action_just_pressed(&"jump"):
+		animated_sprites.play(&"jump")
 		# Use of a timer to prevent the player from going up a wall while stuck on it
 		jump_cooldown_timer.start()
 		jump_lines.play()
@@ -224,18 +224,18 @@ func change_state(new_state : States) -> void:
 	enter_state(new_state)
 
 func die() -> void:
-	animated_sprites.play("disappearing")
+	animated_sprites.play(&"disappearing")
 	# Prevent the player from moving
 	set_physics_process(false)
 	die_lines.play()
 
 # Helper functions
 func holding_x_direction() -> bool:
-	return Input.is_action_pressed("move_left") || Input.is_action_pressed("move_right")
+	return Input.is_action_pressed(&"move_left") || Input.is_action_pressed(&"move_right")
 
 func changed_direction() -> bool:
-	return ((Input.is_action_pressed("move_left") && !animated_sprites.flip_h) 
-	|| (Input.is_action_pressed("move_right") && animated_sprites.flip_h))
+	return ((Input.is_action_pressed(&"move_left") && !animated_sprites.flip_h) 
+	|| (Input.is_action_pressed(&"move_right") && animated_sprites.flip_h))
 
 func adjust_hitbox() -> void:
 	collision_shape_2d.position.x = WALL_COLL_POS_L if animated_sprites.flip_h else WALL_COLL_POS_R
@@ -259,7 +259,7 @@ func is_coll_wall() -> bool:
 func boost() -> void:
 	self.velocity.x = (-1 if animated_sprites.flip_h else 1) * BOOST_IMPULSE 
 	respawn_lines.play()
-	animated_sprites.play("jump")
+	animated_sprites.play(&"jump")
 	can_boost = false
 	gravity = 0.0
 	boost_cooldown_timer.start()
@@ -269,23 +269,26 @@ func set_respawn_pos(pos: Vector2) -> void:
 
 func spawn() -> void:
 	self.velocity = Vector2.ZERO
-	animated_sprites.play("appearing")
+	animated_sprites.play(&"appearing")
 	respawn_lines.play()
 
 #region Signal handlers
 
 func _on_kill_player() -> void:
+	# FIXME: turn off physics processing instead maybe
+	self.collision_shape_2d.set_deferred("disable", true)
 	die()
 
 func _on_checkpoint_triggered() -> void:
 	self.spawn_pos = self.global_position
 
 func _on_respawn() -> void:
+	self.collision_shape_2d.disabled = false
 	self.position = spawn_pos
 	spawn()
 
 func _on_respawn_animation_finished() -> void:
-	if animated_sprites.animation == "appearing":
+	if animated_sprites.animation == &"appearing":
 		set_physics_process(true)
 
 func _on_dying_sfx_finished() -> void:
@@ -311,4 +314,10 @@ func _on_particle_change_response(new_particle_index: int) -> void:
 	for particle: GPUParticles2D in particle_queue.get_children():
 		particle.texture = load(particle_queue.TEXTURES[new_particle_index])
 
+func _on_enemy_jumped() -> void:
+	if Input.is_action_pressed(&"jump"):
+		velocity.y = JUMP_VEL * 1.1
+		jump_lines.play()
+	else:
+		velocity.y = JUMP_VEL * 0.7
 #endregion

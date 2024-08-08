@@ -48,7 +48,7 @@ func timer_progress(timer: Timer) -> float:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is TileMap or body is FloatingPlatform:
 		hit_floor = true
-		animated_sprite_2d.play("bottom_hit")
+		animated_sprite_2d.play(&"bottom_hit")
 		hit_floor_sfx.play()
 		offset = 1 - path_follow_2d.progress_ratio
 	elif body is PlayableCharacter:
@@ -57,5 +57,5 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func _on_stunned_timer_timeout() -> void:
 	hit_floor = false
 	current_state = States.ASCENDING
-	animated_sprite_2d.play("blink")
+	animated_sprite_2d.play(&"blink")
 	ascending_timer.start()

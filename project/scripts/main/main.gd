@@ -11,6 +11,10 @@ func _ready() -> void:
 	#if OS.has_feature("mobile"):
 		## TODO: Fix the touchscreen controls to the sides of the screen
 		#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+	var audio_settings: AudioSettings = ResourceLoader.load("res://resources/config/audio_settings.tres")
+	AudioServer.set_bus_volume_db(1, linear_to_db(audio_settings.bgm_volume))
+	AudioServer.set_bus_volume_db(2, linear_to_db(audio_settings.sfx_volume))
+	
 	instantiate_main_ui()
 	#if OS.has_feature("nothreads"):
 		#print("no threads")
@@ -29,11 +33,14 @@ func _on_level_selected(level_scene_path: String) -> void:
 	# Instatiate the level manager. It contains the in-level ui
 	var level_manager: LevelManager = level_manager_res.instantiate() as LevelManager
 	# Go down the tree and connect signals
+	assert(level_manager, "level manager failed")
 	var level_modal := level_manager.get_node("LevelUI/LevelModal") as LevelModal
+	assert(level_modal, "level modal not found")
 	level_modal.level_selector_pressed.connect(_on_level_selector_pressed)
 	level_modal.level_restarted.connect(_on_level_restarted)
 	
 	var level_finished := level_manager.get_node("LevelUI/LevelFinished") as LevelFinished
+	assert(level_finished, "level finished not found")
 	level_finished.level_selector_pressed.connect(_on_level_selector_pressed)
 	level_finished.level_restarted.connect(_on_level_restarted)
 	level_finished.next_level_pressed.connect(_on_next_level_pressed)
@@ -45,6 +52,7 @@ func _on_level_selected(level_scene_path: String) -> void:
 		main_ui.queue_free()
 	
 	var level := (load(level_scene_path) as PackedScene).instantiate() as Level
+	assert(level, "level is not valid")
 	level_manager.add_child(level)
 	self.add_child(level_manager)
 	

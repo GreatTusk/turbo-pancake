@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AudioSettings" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/config/audio_settings.gd" id="1_hqtty"]
+
+[resource]
+script = ExtResource("1_hqtty")
+bgm_volume = 0.0
+sfx_volume = 0.624

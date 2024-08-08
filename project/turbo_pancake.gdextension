@@ -23,4 +23,4 @@ web.release.wasm32 = "res://bin/libturbo_pancake.web.template_release.wasm32.not
 
 [icons]
 
-Fruit = "res://gd_extension_icons/Fruit.svg"
+Fruit = "res://editor_icons/fruit.svg"

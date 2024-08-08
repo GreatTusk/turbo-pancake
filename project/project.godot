@@ -45,13 +45,14 @@ window/vsync/vsync_mode=2
 
 folder_colors={
 "res://assets/": "green",
+"res://resources/": "pink",
 "res://scenes/": "teal",
 "res://scripts/": "blue"
 }
 
 [gui]
 
-theme/custom="res://theme/main_theme.tres"
+theme/custom="res://resources/theme/main_theme.tres"
 theme/custom_font="res://assets/fonts/pixel_operator8.ttf"
 
 [input]

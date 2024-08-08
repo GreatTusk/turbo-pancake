@@ -7,7 +7,6 @@ extends Node
 @onready var score_label := level_ui.get_node("Score") as Label
 @onready var level_finished := level_ui.get_node("LevelFinished") as LevelFinished
 @onready var player := $Player as PlayableCharacter
-var player_ui_ready: bool = false
 	
 func initialize_level(level: Level) -> void:
 	# Level nodes
@@ -36,18 +35,18 @@ func initialize_level(level: Level) -> void:
 	for checkpoint in checkpoints.get_children():
 		if checkpoint is Checkpoint:
 			(checkpoint as Checkpoint).checkpoint_reached.connect(player._on_checkpoint_triggered)
-			var player_start_pos := (checkpoint as Checkpoint).global_position
-			player.set_respawn_pos(player_start_pos)
-			player.global_position = Vector2(player_start_pos.x, player_start_pos.y - player.PLAYER_HEIGHT)
+			#var player_start_pos := (checkpoint as Checkpoint).global_position
+			#player.set_respawn_pos(player_start_pos)
+			#player.global_position = Vector2(player_start_pos.x, player_start_pos.y - player.PLAYER_HEIGHT)
 		elif checkpoint is EndCheckpoint:
 			(checkpoint as EndCheckpoint).level_finished.connect(_on_level_finished)
 			(checkpoint as EndCheckpoint).level_finished.connect(level._on_level_finished)
 		elif checkpoint is StartCheckpoint:
-			#var player_start_pos := (checkpoint as StartCheckpoint).global_position
-			#player.set_respawn_pos(player_start_pos)
-			#player.global_position = Vector2(player_start_pos.x, player_start_pos.y - player.PLAYER_HEIGHT)
-			pass
-			
+			var player_start_pos := (checkpoint as StartCheckpoint).global_position
+			var pos := Vector2(player_start_pos.x, player_start_pos.y - player.PLAYER_HEIGHT)
+			player.set_respawn_pos(pos)
+			player.global_position = pos
+				
 	if world_border:
 		world_border.connect("kill_player", player._on_kill_player)
 	
@@ -72,7 +71,12 @@ func initialize_level(level: Level) -> void:
 			# Contract: all enemies must have a kill_player signal
 			# As there are no interfaces it is not possible to statically abide to this contract
 			for enemy in enemy_type.get_children():
-				enemy.connect("kill_player", player._on_kill_player)
+				if enemy is JumpableEnemy:
+					(enemy as JumpableEnemy).enemy_jumped_on.connect(player._on_enemy_jumped)
+				elif enemy is Spawner:
+					(enemy as Spawner).player = player
+				else:
+					enemy.connect("kill_player", player._on_kill_player)
 	
 	if fruits:
 		for fruit: Fruit in fruits.get_children():

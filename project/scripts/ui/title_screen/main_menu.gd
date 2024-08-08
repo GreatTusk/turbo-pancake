@@ -10,6 +10,7 @@ extends CanvasLayer
 func _ready() -> void:
 	var cancel: TextureButton = config_screen.get_node("AspectRatioContainer/Panel/Cancel")
 	var random_bg: PackedScene = parallax_backgrounds.backgrounds.pick_random()
+	
 	self.add_child(random_bg.instantiate())
 	cancel.pressed.connect(_on_settings_cancel_pressed)
 	title_screen.level_selector_pressed.connect(_switch_to_level_selector)

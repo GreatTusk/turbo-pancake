@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://g81wi5o4f6vy"]
 
-[ext_resource type="Script" path="res://scripts/ui/title_label.gd" id="1_53y8k"]
-[ext_resource type="Texture2D" uid="uid://dw6rddw6pcis0" path="res://assets/menu/ui/01_Flat_Theme/Sprites/UI_Flat_Banner_01_Upward.png" id="2_ebrb4"]
+[ext_resource type="Script" path="res://scripts/ui/title_screen/title_label.gd" id="1_53y8k"]
+[ext_resource type="Texture2D" uid="uid://dw6rddw6pcis0" path="res://assets/menu/ui/01_flat_theme/sprites/UI_Flat_Banner_01_Upward.png" id="2_ebrb4"]
 
 [node name="TitleLabel" type="Control"]
 layout_mode = 3

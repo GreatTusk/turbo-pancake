@@ -8,8 +8,8 @@ signal checkpoint_reached
 
 func _on_hitbox_body_entered(_body: PlayableCharacter) -> void:
 	checkpoint_reached.emit()
-	animated_sprite_2d.play("trigger")
+	animated_sprite_2d.play(&"trigger")
 	
 func _on_animated_sprite_2d_animation_finished() -> void:
 	collision_shape_2d.disabled = true
-	animated_sprite_2d.play("idle")
+	animated_sprite_2d.play(&"idle")

@@ -27,7 +27,7 @@ func change_state(new_state: States) -> void:
 	match new_state:
 		States.FLOOR:
 			crush_particles.emitting = true
-			animated_sprite_2d.play("bottom_hit")
+			animated_sprite_2d.play(&"bottom_hit")
 	initial_state = new_state
 
 func _physics_process(_delta: float) -> void:
@@ -49,10 +49,10 @@ func _on_detection_area_body_entered(_body: PlayableCharacter) -> void:
 
 func _on_detection_area_body_exited(_body: PlayableCharacter) -> void:
 	blink_timer.stop()
-	animated_sprite_2d.play("idle")
+	animated_sprite_2d.play(&"idle")
 
 func _on_blink_timer_timeout() -> void:
-	animated_sprite_2d.play("blink")
+	animated_sprite_2d.play(&"blink")
 
 func _on_direct_detection_body_entered(_body: PlayableCharacter) -> void:
 	self.call_deferred("set", "freeze", false)
