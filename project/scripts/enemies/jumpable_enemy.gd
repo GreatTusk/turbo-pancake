@@ -1,4 +1,4 @@
-@icon("res://gd_extension_icons/jump.svg")
+@icon("res://editor_icons/jump.svg")
 class_name JumpableEnemy
 extends CharacterBody2D
 
@@ -16,6 +16,7 @@ var death_sfx: AudioStreamPlayer2D
 #var collided := false
 
 signal enemy_jumped_on
+signal enemy_defeated(score: int)
 signal stuck(coll_normal: Vector2)
 
 # Function to handle what happens when the enemy is jumped on
@@ -33,6 +34,7 @@ func take_damage(amount: int = 1) -> void:
 
 # Function to handle the enemy's death
 func die() -> void:
+	enemy_defeated.emit(100)
 	self.set_physics_process(false)
 	queue_free()
 
@@ -96,4 +98,9 @@ func _physics_process(delta: float) -> void:
 			var coll_normal: Vector2 = collision.get_normal()
 			if self is Bat:
 				stuck.emit(coll_normal)
+			elif self is BlueBird:
+				if coll_normal.x != 0:
+					animated_sprite.play(&"die")
+				elif coll_normal.y != 0:
+					self.velocity.y = -self.velocity.y
 			# elif self is ...

@@ -3,12 +3,17 @@ class_name VolumeSlider
 extends HSlider
 
 enum AudioBus {}
+
 @export var audio_bus: AudioBus
+@onready var debounce_timer: Timer = $DebounceTimer
+
+var temp_vol: float
 
 func _ready() -> void:
 	self.value_changed.connect(_on_volume_changed)
 	self.mouse_exited.connect(_on_focus_lost)
 	self.value = db_to_linear(AudioServer.get_bus_volume_db(audio_bus))
+	debounce_timer.timeout.connect(_on_debounce_timer_timeout)
 	#AudioServer.bus_renamed.connect(_on_bus_renamed)
 	#AudioServer.bus_layout_changed.connect(_on_bus_layout_changed)
 
@@ -25,14 +30,19 @@ func _validate_property(property: Dictionary) -> void:
 		property.hint_string = options
 
 func _on_volume_changed(volume: float) -> void:
-	AudioServer.set_bus_volume_db(audio_bus, linear_to_db(volume))
-	var audio_config: AudioSettings = ResourceLoader.load("res://resources/config/audio_settings.tres")
+	temp_vol = volume
+	if debounce_timer.is_stopped():
+		debounce_timer.start()
+
+func _on_debounce_timer_timeout() -> void:
+	AudioServer.set_bus_volume_db(audio_bus, linear_to_db(temp_vol))
+	var audio_config: AudioSettings = ResourceLoader.load("user://config/audio_settings.tres")
 	match audio_bus:
 		1:
-			audio_config.bgm_volume = volume
+			audio_config.bgm_volume = temp_vol
 		2:
-			audio_config.sfx_volume = volume
-	ResourceSaver.save(audio_config, "res://resources/config/audio_settings.tres")
+			audio_config.sfx_volume = temp_vol
+	ResourceSaver.save(audio_config, "user://config/audio_settings.tres")
 
 func _on_bus_layout_changed() -> void:
 	_validate_property.call()

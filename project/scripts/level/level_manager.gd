@@ -3,10 +3,12 @@ extends Node
 
 # LevelUI
 @onready var level_ui := $LevelUI as CanvasLayer
-@onready var mobile_controls := level_ui.get_node("MobileControls") as Node2D
+@onready var mobile_controls := level_ui.get_node("MobileControls") as Control
 @onready var score_label := level_ui.get_node("Score") as Label
 @onready var level_finished := level_ui.get_node("LevelFinished") as LevelFinished
 @onready var player := $Player as PlayableCharacter
+
+var defeatable_enemies_copy: Node
 	
 func initialize_level(level: Level) -> void:
 	# Level nodes
@@ -35,6 +37,7 @@ func initialize_level(level: Level) -> void:
 	for checkpoint in checkpoints.get_children():
 		if checkpoint is Checkpoint:
 			(checkpoint as Checkpoint).checkpoint_reached.connect(player._on_checkpoint_triggered)
+			(checkpoint as Checkpoint).checkpoint_reached.connect(_on_update_enemies_copy)
 			#var player_start_pos := (checkpoint as Checkpoint).global_position
 			#player.set_respawn_pos(player_start_pos)
 			#player.global_position = Vector2(player_start_pos.x, player_start_pos.y - player.PLAYER_HEIGHT)
@@ -66,18 +69,18 @@ func initialize_level(level: Level) -> void:
 			flamethrower.connect("hit_flame", player._on_kill_player)
 	
 	if enemies:
-		for enemy_type in enemies.get_children():
-			#if enemy_type.name in ["RockHead", "SpikeHead"]:
-			# Contract: all enemies must have a kill_player signal
-			# As there are no interfaces it is not possible to statically abide to this contract
-			for enemy in enemy_type.get_children():
-				if enemy is JumpableEnemy:
-					(enemy as JumpableEnemy).enemy_jumped_on.connect(player._on_enemy_jumped)
-				elif enemy is Spawner:
-					(enemy as Spawner).player = player
-				else:
-					enemy.connect("kill_player", player._on_kill_player)
-	
+		var defeatable_enemies := enemies.get_node_or_null("DefeatableEnemies")
+		var undefeatable_enemies := enemies.get_node_or_null("UndefeatableEnemies")
+		
+		if defeatable_enemies:
+			defeatable_enemies_copy = defeatable_enemies.duplicate()
+			connect_defeatable_enemies(defeatable_enemies)
+						
+		if undefeatable_enemies:
+			for enemy_species in undefeatable_enemies.get_children():
+				for enemy in enemy_species.get_children():
+						enemy.connect("kill_player", player._on_kill_player)
+
 	if fruits:
 		for fruit: Fruit in fruits.get_children():
 			# Both connect to a method of the same name, but pertain to different nodes
@@ -85,6 +88,7 @@ func initialize_level(level: Level) -> void:
 			fruit.fruit_score_changed.connect(Callable(score_label, "_on_fruit_collected"))
 	
 func _on_level_finished() -> void:
+	(level_ui.get_node("MenuButton") as TextureButton).hide()
 	mobile_controls.hide()
 	player.animated_sprites.stop()
 	player.set_physics_process(false)
@@ -92,13 +96,10 @@ func _on_level_finished() -> void:
 
 func connect_player_and_level() -> void:
 	
-	var level: Level
-	for i in range(self.get_child_count() - 1, -1, -1):
-		var child := self.get_child(i)
-		if child is Level:
-			level = child
-			break
+	var level: Level = Singleton.rfind_node(self, Level)
 	assert(level)
+	
+	player.died.connect(_on_player_died)
 	
 	# Handle connections between the player and the ui
 	player.animation_changed.connect(Callable(level_ui.get_node("Control/Animation"), "_on_animation_changed"))
@@ -117,6 +118,37 @@ func connect_player_and_level() -> void:
 	level_ui.show()
 	initialize_level(level)
 
+func _on_player_died() -> void:
+	if defeatable_enemies_copy:
+		# Find level
+		var level: Level = Singleton.rfind_node(self, Level)
+		assert(level)
+		# Delete enemies
+		var enemies_node := level.get_node("Enemies")
+		var defeatable_enemies := enemies_node.get_node("DefeatableEnemies")
+		enemies_node.remove_child(defeatable_enemies)
+		defeatable_enemies.queue_free()
+		# Add again and reconnect signals
+		var enemies_to_add_back := defeatable_enemies_copy.duplicate()
+		enemies_node.add_child(enemies_to_add_back)
+		connect_defeatable_enemies(enemies_to_add_back)
+
+func connect_defeatable_enemies(enemies: Node) -> void:
+	for enemy_type in enemies.get_children():
+		for enemy in enemy_type.get_children():
+			if enemy is JumpableEnemy:
+				(enemy as JumpableEnemy).enemy_jumped_on.connect(player._on_enemy_jumped)
+				(enemy as JumpableEnemy).enemy_defeated.connect(Callable(score_label, "_on_fruit_collected"))
+			elif enemy is Spawner:
+				(enemy as Spawner).player = player
+				(enemy as Spawner).score_label = score_label
+
+func _on_update_enemies_copy() -> void:
+	if defeatable_enemies_copy:
+		# Find level
+		var level: Level = Singleton.rfind_node(self, Level)
+		assert(level)
+		defeatable_enemies_copy = level.get_node("Enemies/DefeatableEnemies").duplicate()
 
 func _ready() -> void:
 	connect_player_and_level()

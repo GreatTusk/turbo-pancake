@@ -3,16 +3,17 @@ extends CanvasLayer
 
 @onready var level_modal := $LevelModal as LevelModal
 @onready var config_screen := $ConfigScreen as ConfigScreen
-@onready var mobile_controls := $MobileControls as Node2D
+@onready var mobile_controls: Control = $MobileControls
 @onready var hover: AudioStreamPlayer = $SFX/Hover
 @onready var confirm: AudioStreamPlayer = $SFX/Confirm
 @onready var pause: AudioStreamPlayer = $SFX/Pause
 @onready var unpause: AudioStreamPlayer = $SFX/Unpause
 
 func _ready() -> void:
+	mobile_controls.visible = Input.get_connected_joypads().size() == 0
 	level_modal.audio_settings_pressed.connect(_on_audio_settings_pressed)
 	(level_modal.get_node("Modal/Cancel") as TextureButton).pressed.connect(_exit_menu_pressed)
-	
+	# Recursive
 	for button: BaseButton in Singleton.get_children_of_type(self, BaseButton, true):
 		button.mouse_entered.connect(_on_button_action.bind(hover))
 		if button.is_in_group("pause"):

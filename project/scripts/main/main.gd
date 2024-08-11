@@ -7,14 +7,24 @@ extends Node
 @export var level_manager_res: PackedScene
 
 func _ready() -> void:
-	# Ignore return value - not useful here
-	#if OS.has_feature("mobile"):
-		## TODO: Fix the touchscreen controls to the sides of the screen
-		#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
-	var audio_settings: AudioSettings = ResourceLoader.load("res://resources/config/audio_settings.tres")
+	
+	var audio_settings: AudioSettings
+	# Save the default audio settings to user:// if this is the first time running the game
+	if !FileAccess.file_exists("user://config/audio_settings.tres"):
+		DirAccess.make_dir_absolute("user://config")
+		audio_settings = ResourceLoader.load("res://resources/config/audio_settings.tres")
+		ResourceSaver.save(audio_settings, "user://config/audio_settings.tres")
+	else:
+		# Load from user:// if they already exist
+		audio_settings = ResourceLoader.load("user://config/audio_settings.tres")
 	AudioServer.set_bus_volume_db(1, linear_to_db(audio_settings.bgm_volume))
 	AudioServer.set_bus_volume_db(2, linear_to_db(audio_settings.sfx_volume))
 	
+	
+	#if OS.has_feature("mobile"):
+		## TODO: Fix the touchscreen controls to the sides of the screen
+		#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+	# Ignore return value - not useful here
 	instantiate_main_ui()
 	#if OS.has_feature("nothreads"):
 		#print("no threads")
@@ -74,13 +84,7 @@ func _on_level_restarted() -> void:
 	# If the level was restarted, we can assume the level manager is still valid
 	var level_manager := self.get_child(0) 
 	assert(level_manager is LevelManager)
-	
-	var level_to_reset: Level
-	for i in range(level_manager.get_child_count() - 1, -1, -1):
-		var child := level_manager.get_child(i)
-		if child is Level:
-			level_to_reset = child
-			break
+	var level_to_reset: Level = Singleton.rfind_node(level_manager, Level)
 	assert(level_to_reset)
 	# From here onwards, instead of replacing the level, the entire manager is replaced
 	var level_path := level_to_reset.scene_file_path # String

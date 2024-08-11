@@ -21,22 +21,25 @@
 //         this->set_position(spawn_pos);
 //
 //         // Initialize child nodes
-//         jump_cooldown = this->get_node<godot::Timer>(constants::name::player::nodes::jump_cooldown);
-//         left_ray = this->get_node<godot::RayCast2D>(constants::name::player::nodes::left_ray);
-//         right_ray = this->get_node<godot::RayCast2D>(constants::name::player::nodes::right_ray);
-//         down_ray_1 = this->get_node<godot::RayCast2D>(constants::name::player::nodes::down_ray_1);
-//         down_ray_2 = this->get_node<godot::RayCast2D>(constants::name::player::nodes::down_ray_2);
+//         jump_cooldown =
+//         this->get_node<godot::Timer>(constants::name::player::nodes::jump_cooldown); left_ray =
+//         this->get_node<godot::RayCast2D>(constants::name::player::nodes::left_ray); right_ray =
+//         this->get_node<godot::RayCast2D>(constants::name::player::nodes::right_ray); down_ray_1 =
+//         this->get_node<godot::RayCast2D>(constants::name::player::nodes::down_ray_1); down_ray_2
+//         = this->get_node<godot::RayCast2D>(constants::name::player::nodes::down_ray_2);
 //         collision_shape = this->get_node<godot::CollisionShape2D>(
 //             constants::name::player::nodes::collision_shape);
 //         animated_sprites = this->get_node<godot::AnimatedSprite2D>(
 //             constants::name::player::nodes::animated_sprites);
 //         animation_label = main->get_node<godot::Label>(
 //             constants::name::player::nodes::animation_label);
-//         velocity_label = main->get_node<godot::Label>(constants::name::player::nodes::velocity_label);
-//         state_label = main->get_node<godot::Label>(constants::name::player::nodes::state_label);
+//         velocity_label =
+//         main->get_node<godot::Label>(constants::name::player::nodes::velocity_label); state_label
+//         = main->get_node<godot::Label>(constants::name::player::nodes::state_label);
 //
-//         die_sfx = this->get_node<godot::AudioStreamPlayer>(constants::name::player::nodes::die_sfx);
-//         jump_sfx = this->get_node<godot::AudioStreamPlayer>(constants::name::player::nodes::jump_sfx);
+//         die_sfx =
+//         this->get_node<godot::AudioStreamPlayer>(constants::name::player::nodes::die_sfx); jump_sfx
+//         = this->get_node<godot::AudioStreamPlayer>(constants::name::player::nodes::jump_sfx);
 //         landing_sfx = this->get_node<godot::AudioStreamPlayer>(
 //             constants::name::player::nodes::landing_sfx);
 //         respawn_sfx = this->get_node<godot::AudioStreamPlayer>(
@@ -45,14 +48,16 @@
 //         auto* world_border = main->get_node<godot::Area2D>(
 //             constants::name::player::nodes::world_border);
 //         world_border->connect(
-//             "body_entered", godot::Callable(this, constants::name::player::signals::world_border));
+//             "body_entered", godot::Callable(this,
+//             constants::name::player::signals::world_border));
 //         animated_sprites->connect(
 //             "animation_finished",
 //             godot::Callable(this, constants::name::player::signals::respawn_finished));
 //         die_sfx->connect(
-//             "finished", godot::Callable(this, constants::name::player::signals::dying_sfx_finished));
-//         this->connect("respawn", godot::Callable(this, constants::name::player::signals::respawn));
-//         set_physics_process(true);
+//             "finished", godot::Callable(this,
+//             constants::name::player::signals::dying_sfx_finished));
+//         this->connect("respawn", godot::Callable(this,
+//         constants::name::player::signals::respawn)); set_physics_process(true);
 //     }
 //
 //     void Player::_physics_process(const double delta)
@@ -108,7 +113,8 @@
 //             animated_sprites->play(constants::name::player::animations::run);
 //             animated_sprites->set_flip_h(dir < 0);
 //             vel.x = static_cast<real_t>(godot::Math::move_toward(static_cast<double>(vel.x),
-//                                                                  dir * MAX_SPEED_X, ACC * delta));
+//                                                                  dir * MAX_SPEED_X, ACC *
+//                                                                  delta));
 //         }
 //         set_velocity(vel);
 //     }
@@ -121,10 +127,12 @@
 //
 //         // Apply gravity
 //         vel.y = static_cast<real_t>(
-//             godot::Math::move_toward(static_cast<double>(vel.y), MAX_SPEED_Y, AIR_ACC_Y * delta));
+//             godot::Math::move_toward(static_cast<double>(vel.y), MAX_SPEED_Y, AIR_ACC_Y *
+//             delta));
 //
 //         // Handle double jumping
-//         if (utils::input::get()->is_action_just_pressed(utils::input::action::jump) && double_jump)
+//         if (utils::input::get()->is_action_just_pressed(utils::input::action::jump) &&
+//         double_jump)
 //         {
 //             animated_sprites->play(constants::name::player::animations::double_jump);
 //             jump_sfx->play();
@@ -158,7 +166,8 @@
 //         {
 //             animated_sprites->set_flip_h(dir < 0);
 //             vel.x = static_cast<real_t>(godot::Math::move_toward(static_cast<double>(vel.x),
-//                                                                  dir * MAX_SPEED_X, ACC * delta));
+//                                                                  dir * MAX_SPEED_X, ACC *
+//                                                                  delta));
 //         }
 //
 //         // Set the new velocity
@@ -173,7 +182,8 @@
 //             jump_cooldown->start();
 //             jump_sfx->play();
 //             this->set_velocity(
-//                 { static_cast<real_t>(WALL_VEL * (animated_sprites->is_flipped_h() ? 1.0 : -1.0)),
+//                 { static_cast<real_t>(WALL_VEL * (animated_sprites->is_flipped_h() ? 1.0 :
+//                 -1.0)),
 //                   JUMP_VEL });
 //             change_state(States::AIR);
 //             return;
@@ -261,7 +271,8 @@
 //
 //     bool Player::is_on_ground() const
 //     {
-//         return (down_ray_1->is_colliding() || down_ray_2->is_colliding()) && get_velocity().y == 0.0f;
+//         return (down_ray_1->is_colliding() || down_ray_2->is_colliding()) && get_velocity().y ==
+//         0.0f;
 //         // return this->is_on_floor();
 //     }
 //

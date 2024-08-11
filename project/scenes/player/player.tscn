@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfrx0d032inre"]
+[gd_scene load_steps=13 format=3 uid="uid://bfrx0d032inre"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0hecv"]
 [ext_resource type="SpriteFrames" uid="uid://4n1n20a1eh05" path="res://scenes/player/player.tres" id="2_33yml"]
+[ext_resource type="AudioStream" uid="uid://dj0vobhlmpkeg" path="res://assets/sounds/12_Player_Movement_SFX/12_Step_wood_03.wav" id="9_2nnmh"]
 [ext_resource type="PackedScene" uid="uid://bhscpn3mo4rdk" path="res://scenes/particles/landed_particles.tscn" id="10_tx3ro"]
 [ext_resource type="AudioStream" uid="uid://ch7nlq6a2vgxe" path="res://assets/sounds/explosion.wav" id="11_2pmbt"]
 [ext_resource type="AudioStream" uid="uid://bf4ugdsd7e10r" path="res://assets/sounds/jump.wav" id="12_0h6ri"]
@@ -79,6 +80,12 @@ bus = &"sfx"
 
 [node name="Landing_1" type="AudioStreamPlayer" parent="VoiceLines/FallToFloor"]
 stream = ExtResource("15_8t8v4")
+bus = &"sfx"
+
+[node name="Walking" type="Node" parent="VoiceLines"]
+
+[node name="Wood" type="AudioStreamPlayer" parent="VoiceLines/Walking"]
+stream = ExtResource("9_2nnmh")
 bus = &"sfx"
 
 [node name="Timers" type="Node" parent="."]

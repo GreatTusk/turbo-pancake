@@ -166,7 +166,7 @@ scale = Vector2(0.8, 0.8)
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("1_f3nsc")
-initial_velocity = Vector2(-50, 0)
+initial_velocity = Vector2(-50, 40)
 jumped_on_threshold = 6.0
 after_hit_animation = &"flying"
 
@@ -186,6 +186,8 @@ one_shot = true
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("5_nf4ed")
+bus = &"sfx"
 
 [node name="Death" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("6_b5upv")
+bus = &"sfx"

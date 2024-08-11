@@ -48,17 +48,14 @@ vertical_alignment = 3
 script = ExtResource("3_3iv21")
 
 [node name="Control" type="VBoxContainer" parent="."]
-anchors_preset = 6
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
 offset_left = -56.0
-offset_top = -76.0
+offset_top = 32.0
 offset_right = -12.0
-offset_bottom = -44.0
+offset_bottom = 64.0
 grow_horizontal = 0
-grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Animation" type="Label" parent="Control"]
@@ -101,37 +98,6 @@ visible = false
 process_mode = 2
 visible = false
 
-[node name="MobileControls" type="Node2D" parent="."]
-position = Vector2(0, 216)
-
-[node name="Left" type="TouchScreenButton" parent="MobileControls"]
-position = Vector2(16, -68)
-scale = Vector2(3.067, 2.875)
-texture_normal = ExtResource("10_ppcfn")
-action = "move_left"
-visibility_mode = 1
-
-[node name="Right" type="TouchScreenButton" parent="MobileControls"]
-position = Vector2(80, -68)
-scale = Vector2(3.2, 2.875)
-texture_normal = ExtResource("11_h1su6")
-action = "move_right"
-visibility_mode = 1
-
-[node name="Jump" type="TouchScreenButton" parent="MobileControls"]
-position = Vector2(316, -64)
-scale = Vector2(3, 2.9)
-texture_normal = ExtResource("12_76mgc")
-action = "jump"
-visibility_mode = 1
-
-[node name="Boost" type="TouchScreenButton" parent="MobileControls"]
-position = Vector2(252, -64)
-scale = Vector2(2.09524, 2)
-texture_normal = ExtResource("13_t7x0d")
-action = "boost"
-visibility_mode = 1
-
 [node name="SFX" type="Node" parent="."]
 
 [node name="Hover" type="AudioStreamPlayer" parent="SFX"]
@@ -149,5 +115,72 @@ bus = &"sfx"
 [node name="Unpause" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("17_uk14g")
 bus = &"sfx"
+
+[node name="MobileControls" type="Control" parent="."]
+layout_mode = 3
+anchor_top = 0.796
+anchor_right = 1.0
+anchor_bottom = 0.796
+offset_left = 16.0
+offset_top = -27.936
+offset_right = -16.0
+offset_bottom = 28.064
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ButtonsLeft" type="Control" parent="MobileControls"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_right = 123.0
+offset_bottom = 28.0
+grow_vertical = 2
+
+[node name="Left" type="TouchScreenButton" parent="MobileControls/ButtonsLeft"]
+self_modulate = Color(1, 1, 1, 0.509804)
+position = Vector2(4, 4)
+scale = Vector2(3.067, 2.875)
+texture_normal = ExtResource("10_ppcfn")
+action = "move_left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="MobileControls/ButtonsLeft"]
+self_modulate = Color(1, 1, 1, 0.509804)
+position = Vector2(68, 4)
+scale = Vector2(3.2, 2.875)
+texture_normal = ExtResource("11_h1su6")
+action = "move_right"
+visibility_mode = 1
+
+[node name="ButtonsRight" type="Control" parent="MobileControls"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -28.0
+offset_bottom = 28.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Jump" type="TouchScreenButton" parent="MobileControls/ButtonsRight"]
+self_modulate = Color(1, 1, 1, 0.509804)
+position = Vector2(71, 4)
+scale = Vector2(3, 2.9)
+texture_normal = ExtResource("12_76mgc")
+action = "jump"
+visibility_mode = 1
+
+[node name="Boost" type="TouchScreenButton" parent="MobileControls/ButtonsRight"]
+self_modulate = Color(1, 1, 1, 0.509804)
+position = Vector2(7, 4)
+scale = Vector2(2.09524, 2)
+texture_normal = ExtResource("13_t7x0d")
+action = "boost"
+visibility_mode = 1
 
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

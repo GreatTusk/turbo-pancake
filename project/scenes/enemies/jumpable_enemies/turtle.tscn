@@ -447,9 +447,11 @@ disabled = true
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("5_r5swu")
+bus = &"sfx"
 
 [node name="Death" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("6_42q4p")
+bus = &"sfx"
 
 [node name="Timers" type="Node" parent="."]
 

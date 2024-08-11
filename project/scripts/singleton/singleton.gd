@@ -25,3 +25,12 @@ func reajust_raycast_target(raycast: RayCast2D) -> void:
 		distance_vector.y *= -1
 
 	raycast.target_position = distance_vector
+
+func rfind_node(parent: Node, child_class: Variant) -> Node:
+	var node: Node
+	for i in range(parent.get_child_count() - 1, -1, -1):
+		var child := parent.get_child(i)
+		if is_instance_of(child, child_class):
+			node = child
+			break
+	return node

@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_hqtty")
-bgm_volume = 0.0
-sfx_volume = 0.624
+bgm_volume = 0.419
+sfx_volume = 0.383

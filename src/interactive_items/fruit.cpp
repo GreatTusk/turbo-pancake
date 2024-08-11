@@ -35,7 +35,7 @@ namespace tp
         // Notify the player
         this->emit_signal(constants::event::fruit_collected_player);
         // Update the score label
-        this->emit_signal(constants::event::fruit_collected, fruit);
+        this->emit_signal(constants::event::fruit_collected, 100);
         // Play the collected animation
         sprite_2d->play("collected");
     }
@@ -75,6 +75,6 @@ namespace tp
 
         ADD_SIGNAL(godot::MethodInfo(constants::event::fruit_collected_player));
         ADD_SIGNAL(godot::MethodInfo(constants::event::fruit_collected,
-                                     godot::PropertyInfo(godot::Variant::STRING_NAME, "fruit")));
+                                     godot::PropertyInfo(godot::Variant::INT, "score")));
     }
 }

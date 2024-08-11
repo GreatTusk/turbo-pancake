@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var fall_lines := $VoiceLines/FallToFloor/Landing_1 as AudioStreamPlayer
 @onready var respawn_lines := $VoiceLines/Respawn/Respawn_1 as AudioStreamPlayer
 @onready var find_line := $VoiceLines/Find/Find_1 as AudioStreamPlayer
+@onready var wood: AudioStreamPlayer = $VoiceLines/Walking/Wood
 @onready var jump_cooldown_timer := $Timers/JumpCooldownTimer as Timer
 @onready var boost_cooldown_timer := $Timers/BoostCooldown as Timer
 @onready var coyote_timer := $Timers/CoyoteTimer as Timer
@@ -66,6 +67,7 @@ signal state_changed(state: StringName)
 # Local signal
 signal respawn
 signal request_tile_effect(player_position: Vector2, particle_index: int)
+signal died
 
 enum States {
 	GROUND,
@@ -129,10 +131,13 @@ func ground_movement() -> void:
 	# Horizontal movement
 	var direction: float = Input.get_axis(&"move_left", &"move_right")
 	if direction != 0.0:
+		if !wood.playing:
+			wood.play()
 		animated_sprites.play(&"run")
 		animated_sprites.flip_h = direction < 0
 		self.velocity.x = move_toward(self.velocity.x, direction * MAX_SPEED, ACC)
 	else:
+		wood.stop()
 		animated_sprites.play(&"idle")
 		self.velocity.x = move_toward(self.velocity.x, 0.0, ground_dec)
 	
@@ -195,6 +200,7 @@ func wall_movement(delta: float) -> void:
 
 func exit_state(previous_state: States, new_state: States) -> void:
 	# do some cleanup
+	wood.playing = false
 	match previous_state:
 		States.AIR:
 			# If the player is not on the air anymore, reset their ability to double jump
@@ -205,6 +211,7 @@ func exit_state(previous_state: States, new_state: States) -> void:
 				States.GROUND:
 					fall_lines.play()
 		States.GROUND:
+			
 			if new_state == States.AIR:
 				coyote_timer.start()
 				
@@ -224,10 +231,12 @@ func change_state(new_state : States) -> void:
 	enter_state(new_state)
 
 func die() -> void:
+	died.emit()
 	animated_sprites.play(&"disappearing")
 	# Prevent the player from moving
 	set_physics_process(false)
 	die_lines.play()
+	
 
 # Helper functions
 func holding_x_direction() -> bool:
@@ -276,7 +285,8 @@ func spawn() -> void:
 
 func _on_kill_player() -> void:
 	# FIXME: turn off physics processing instead maybe
-	self.collision_shape_2d.set_deferred("disable", true)
+	self.collision_shape_2d.disabled = true
+	#self.collision_shape_2d.set_deferred("disable", true)
 	die()
 
 func _on_checkpoint_triggered() -> void:
@@ -315,7 +325,7 @@ func _on_particle_change_response(new_particle_index: int) -> void:
 		particle.texture = load(particle_queue.TEXTURES[new_particle_index])
 
 func _on_enemy_jumped() -> void:
-	if Input.is_action_pressed(&"jump"):
+	if Input.is_action_pressed(&"jump") || !jump_buffer_timer.is_stopped():
 		velocity.y = JUMP_VEL * 1.1
 		jump_lines.play()
 	else:
