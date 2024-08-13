@@ -1,0 +1,1 @@
+.\scons_web.bat; .\scons_android.bat

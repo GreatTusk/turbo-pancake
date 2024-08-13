@@ -6,8 +6,8 @@ extends Node
 @export var main_ui_res: PackedScene
 @export var level_manager_res: PackedScene
 
+
 func _ready() -> void:
-	
 	var audio_settings: AudioSettings
 	# Save the default audio settings to user:// if this is the first time running the game
 	if !FileAccess.file_exists("user://config/audio_settings.tres"):
@@ -19,17 +19,17 @@ func _ready() -> void:
 		audio_settings = ResourceLoader.load("user://config/audio_settings.tres")
 	AudioServer.set_bus_volume_db(1, linear_to_db(audio_settings.bgm_volume))
 	AudioServer.set_bus_volume_db(2, linear_to_db(audio_settings.sfx_volume))
-	
-	
+
 	#if OS.has_feature("mobile"):
-		## TODO: Fix the touchscreen controls to the sides of the screen
-		#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+	## TODO: Fix the touchscreen controls to the sides of the screen
+	#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
 	# Ignore return value - not useful here
 	instantiate_main_ui()
 	#if OS.has_feature("nothreads"):
-		#print("no threads")
+	#print("no threads")
 	#else:
-		#print("threads")
+	#print("threads")
+
 
 func instantiate_main_ui() -> CanvasLayer:
 	var main_ui := main_ui_res.instantiate()
@@ -38,6 +38,7 @@ func instantiate_main_ui() -> CanvasLayer:
 	var level_selector := main_ui.get_node("LevelSelector") as LevelSelector
 	level_selector.level_selected.connect(_on_level_selected)
 	return main_ui
+
 
 func _on_level_selected(level_scene_path: String) -> void:
 	# Instatiate the level manager. It contains the in-level ui
@@ -48,24 +49,25 @@ func _on_level_selected(level_scene_path: String) -> void:
 	assert(level_modal, "level modal not found")
 	level_modal.level_selector_pressed.connect(_on_level_selector_pressed)
 	level_modal.level_restarted.connect(_on_level_restarted)
-	
+
 	var level_finished := level_manager.get_node("LevelUI/LevelFinished") as LevelFinished
 	assert(level_finished, "level finished not found")
 	level_finished.level_selector_pressed.connect(_on_level_selector_pressed)
 	level_finished.level_restarted.connect(_on_level_restarted)
 	level_finished.next_level_pressed.connect(_on_next_level_pressed)
 	level_finished.previous_level_pressed.connect(_on_previous_level_pressed)
-	
+
 	var main_ui := self.get_node_or_null("MainUI")
 	# Checking so this method can be reused as is when restarting a level as well
 	if main_ui:
 		main_ui.queue_free()
-	
+
 	var level := (load(level_scene_path) as PackedScene).instantiate() as Level
 	assert(level, "level is not valid")
 	level_manager.add_child(level)
 	self.add_child(level_manager)
-	
+
+
 func _on_level_selector_pressed() -> void:
 	var level_manager := self.get_child(0)
 	assert(level_manager is LevelManager)
@@ -80,29 +82,33 @@ func _on_level_selector_pressed() -> void:
 	(main_ui.get_node("LevelSelector") as LevelSelector).show()
 	get_tree().paused = false
 
+
 func _on_level_restarted() -> void:
 	# If the level was restarted, we can assume the level manager is still valid
-	var level_manager := self.get_child(0) 
+	var level_manager := self.get_child(0)
 	assert(level_manager is LevelManager)
 	var level_to_reset: Level = Singleton.rfind_node(level_manager, Level)
 	assert(level_to_reset)
 	# From here onwards, instead of replacing the level, the entire manager is replaced
-	var level_path := level_to_reset.scene_file_path # String
+	var level_path := level_to_reset.scene_file_path  # String
 	level_manager.call_deferred("free")
 	_on_level_selected(level_path)
 	get_tree().paused = false
 
+
 func _on_next_level_pressed() -> void:
 	change_level(1)
 
+
 func _on_previous_level_pressed() -> void:
 	change_level(-1)
+
 
 func change_level(direction: int) -> void:
 	Singleton.current_level += direction
 	const levels_folder := "res://scenes/levels/level_%s.tscn"
 	var level_path := levels_folder % (Singleton.current_level)
-	var level_manager := self.get_child(0) 
+	var level_manager := self.get_child(0)
 	assert(level_manager is LevelManager)
 	level_manager.free.call_deferred()
 	_on_level_selected(level_path)

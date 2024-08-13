@@ -37,7 +37,7 @@ func initialize_level(level: Level) -> void:
 	for checkpoint in checkpoints.get_children():
 		if checkpoint is Checkpoint:
 			(checkpoint as Checkpoint).checkpoint_reached.connect(player._on_checkpoint_triggered)
-			(checkpoint as Checkpoint).checkpoint_reached.connect(_on_update_enemies_copy)
+			(checkpoint as Checkpoint).checkpoint_reached.connect(_on_update_enemies_copy.unbind(1))
 			#var player_start_pos := (checkpoint as Checkpoint).global_position
 			#player.set_respawn_pos(player_start_pos)
 			#player.global_position = Vector2(player_start_pos.x, player_start_pos.y - player.PLAYER_HEIGHT)
@@ -82,11 +82,18 @@ func initialize_level(level: Level) -> void:
 						enemy.connect("kill_player", player._on_kill_player)
 
 	if fruits:
+		var temp_fruit := Fruit.new()
+		var fruit_property_hint: String = temp_fruit.get_property_list()[1]["hint_string"]
+		var possible_fruits := fruit_property_hint.split(",")
+		
 		for fruit: Fruit in fruits.get_children():
+			# EXPERIMENTAL:  Randomize the fruit
+			fruit.fruit = possible_fruits[randi_range(0, possible_fruits.size() - 1)]
 			# Both connect to a method of the same name, but pertain to different nodes
 			fruit.fruit_collected.connect(player._on_fruit_collected)
 			fruit.fruit_score_changed.connect(Callable(score_label, "_on_fruit_collected"))
-	
+		temp_fruit.queue_free()
+		
 func _on_level_finished() -> void:
 	(level_ui.get_node("MenuButton") as TextureButton).hide()
 	mobile_controls.hide()

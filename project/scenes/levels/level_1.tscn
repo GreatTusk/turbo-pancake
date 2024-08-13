@@ -546,38 +546,6 @@ rotation = -1.5708
 position = Vector2(841.04, 273)
 rotation = -1.5708
 
-[node name="Spike77" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
-position = Vector2(744.784, 220)
-rotation = -1.5708
-
-[node name="Spike79" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
-position = Vector2(744.784, 156)
-rotation = -1.5708
-
-[node name="Spike110" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
-position = Vector2(744.807, 80)
-rotation = -1.5708
-
-[node name="Spike78" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
-position = Vector2(744.784, 284)
-rotation = -1.5708
-
-[node name="Spike84" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
-position = Vector2(696, 182)
-rotation = 1.5708
-
-[node name="Spike104" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
-position = Vector2(696, 118)
-rotation = 1.5708
-
-[node name="Spike112" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
-position = Vector2(696, 52)
-rotation = 1.5708
-
-[node name="Spike105" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
-position = Vector2(696, 246)
-rotation = 1.5708
-
 [node name="Spike9" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
 position = Vector2(841.04, 280)
 rotation = -1.5708
@@ -613,9 +581,6 @@ rotation = -1.5708
 [node name="Spike17" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
 position = Vector2(841.04, 336)
 rotation = -1.5708
-
-[node name="Spike22" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
-position = Vector2(893.04, 212)
 
 [node name="Spike30" parent="Traps/Spikes" instance=ExtResource("9_4ns3o")]
 position = Vector2(230.04, 228)
@@ -750,7 +715,7 @@ rotation = -1.5708
 position = Vector2(1145.54, 354.5)
 
 [node name="FloatingPlatform12" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(1217.04, 301)
+position = Vector2(1217.04, 309)
 rotation = -1.5708
 
 [node name="FloatingPlatform14" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
@@ -758,7 +723,7 @@ position = Vector2(1153.04, 278)
 rotation = 1.5708
 
 [node name="FloatingPlatform15" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(1217.04, 232.5)
+position = Vector2(1217.04, 240.5)
 rotation = -1.5708
 
 [node name="FloatingPlatform16" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
@@ -766,31 +731,31 @@ position = Vector2(1153.04, 209.5)
 rotation = 1.5708
 
 [node name="FloatingPlatform2" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(1409.04, 310)
+position = Vector2(1409.04, 302)
 
 [node name="FloatingPlatform3" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(1488.04, 342)
+position = Vector2(1488.04, 334)
 
 [node name="FloatingPlatform4" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
 position = Vector2(1585.04, 308)
 
 [node name="FloatingPlatform5" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(1682.04, 344)
+position = Vector2(1682.04, 336)
 
 [node name="FloatingPlatform6" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(1780.04, 308)
+position = Vector2(1788.04, 308)
 
 [node name="FloatingPlatform7" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(1877.04, 273)
+position = Vector2(1885.04, 281)
 
 [node name="FloatingPlatform8" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(1977.04, 239)
+position = Vector2(1985.04, 255)
 
 [node name="FloatingPlatform9" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(2073.04, 208)
+position = Vector2(2081.04, 232)
 
 [node name="FloatingPlatform10" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
-position = Vector2(2170.04, 175)
+position = Vector2(2177, 208)
 
 [node name="FloatingPlatform18" parent="Props/FloatingPlatforms" instance=ExtResource("12_g1fyk")]
 position = Vector2(2304, 298.5)
@@ -804,10 +769,10 @@ position = Vector2(2352, 227)
 [node name="Checkpoints" type="Node" parent="."]
 
 [node name="Checkpoint" parent="Checkpoints" instance=ExtResource("13_oyunf")]
-position = Vector2(1265.04, 172)
+position = Vector2(1257.04, 204)
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("13_oyunf")]
-position = Vector2(2313.04, 108)
+position = Vector2(2305.04, 140)
 
 [node name="Start" parent="Checkpoints" instance=ExtResource("14_j0iwv")]
 position = Vector2(248, 300)
@@ -825,31 +790,31 @@ position = Vector2(3376, 124)
 position = Vector2(1342.04, 164.2)
 
 [node name="RockHead3" parent="Enemies/UndefeatableEnemies/RockHeads" instance=ExtResource("16_6cjax")]
-position = Vector2(1409.04, 213)
+position = Vector2(1409.04, 205)
 
 [node name="RockHead4" parent="Enemies/UndefeatableEnemies/RockHeads" instance=ExtResource("16_6cjax")]
-position = Vector2(1488.04, 245)
+position = Vector2(1488.04, 237)
 
 [node name="RockHead5" parent="Enemies/UndefeatableEnemies/RockHeads" instance=ExtResource("16_6cjax")]
 position = Vector2(1585.04, 211)
 
 [node name="RockHead6" parent="Enemies/UndefeatableEnemies/RockHeads" instance=ExtResource("16_6cjax")]
-position = Vector2(1682.04, 247)
+position = Vector2(1682.04, 239)
 
 [node name="RockHead7" parent="Enemies/UndefeatableEnemies/RockHeads" instance=ExtResource("16_6cjax")]
-position = Vector2(1780.04, 211)
+position = Vector2(1788.04, 211)
 
 [node name="RockHead8" parent="Enemies/UndefeatableEnemies/RockHeads" instance=ExtResource("16_6cjax")]
-position = Vector2(1877.04, 176)
+position = Vector2(1885.04, 184)
 
 [node name="RockHead9" parent="Enemies/UndefeatableEnemies/RockHeads" instance=ExtResource("16_6cjax")]
-position = Vector2(1977.04, 142)
+position = Vector2(1985.04, 158)
 
 [node name="RockHead10" parent="Enemies/UndefeatableEnemies/RockHeads" instance=ExtResource("16_6cjax")]
-position = Vector2(2073.04, 111)
+position = Vector2(2081.04, 135)
 
 [node name="RockHead11" parent="Enemies/UndefeatableEnemies/RockHeads" instance=ExtResource("16_6cjax")]
-position = Vector2(2170.04, 78)
+position = Vector2(2177, 111)
 
 [node name="SpikeHeads" type="Node" parent="Enemies/UndefeatableEnemies"]
 
@@ -900,11 +865,11 @@ position = Vector2(474.04, 224)
 
 [node name="Apple14" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Melon"
-position = Vector2(738.973, 187)
+position = Vector2(738.973, 197)
 
 [node name="Apple16" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Melon"
-position = Vector2(738.973, 252)
+position = Vector2(738.973, 257)
 
 [node name="Apple19" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Melon"
@@ -920,39 +885,47 @@ position = Vector2(846, 48)
 
 [node name="Apple15" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Melon"
-position = Vector2(738.973, 121)
+position = Vector2(738.973, 137)
 
 [node name="Apple17" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Melon"
-position = Vector2(701.811, 82)
+position = Vector2(701.811, 107)
+
+[node name="Apple36" parent="Fruits" instance=ExtResource("18_auu4r")]
+fruit = &"Melon"
+position = Vector2(701.811, 47)
+
+[node name="Apple35" parent="Fruits" instance=ExtResource("18_auu4r")]
+fruit = &"Melon"
+position = Vector2(739, 77)
 
 [node name="Apple21" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Melon"
-position = Vector2(701.811, 150)
+position = Vector2(701.811, 167)
 
 [node name="Apple22" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Melon"
-position = Vector2(701.811, 214)
+position = Vector2(701.811, 227)
 
 [node name="Apple4" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Orange"
-position = Vector2(1780.54, 290.5)
+position = Vector2(1788.54, 290.5)
 
 [node name="Apple18" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Orange"
-position = Vector2(1877.04, 254.5)
+position = Vector2(1885.04, 262.5)
 
 [node name="Apple23" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Orange"
-position = Vector2(1977.54, 220)
+position = Vector2(1985.54, 236)
 
 [node name="Apple24" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Orange"
-position = Vector2(2073.04, 188)
+position = Vector2(2081.04, 212)
 
 [node name="Apple25" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Orange"
-position = Vector2(2170.04, 155)
+position = Vector2(2177, 188)
 
 [node name="Apple3" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Strawberry"
@@ -984,7 +957,7 @@ position = Vector2(1145.54, 337.5)
 
 [node name="Banana6" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Strawberry"
-position = Vector2(1200, 301)
+position = Vector2(1200, 309)
 
 [node name="Banana7" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Strawberry"
@@ -996,7 +969,7 @@ position = Vector2(1170.04, 210.5)
 
 [node name="Banana8" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Strawberry"
-position = Vector2(1200, 232)
+position = Vector2(1200, 240)
 
 [node name="Banana10" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Cherry"
@@ -1004,11 +977,11 @@ position = Vector2(1342.04, 241.5)
 
 [node name="Banana11" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Cherry"
-position = Vector2(1409.54, 290.5)
+position = Vector2(1409.54, 282.5)
 
 [node name="Banana12" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Cherry"
-position = Vector2(1488, 321.5)
+position = Vector2(1488, 313.5)
 
 [node name="Banana13" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Cherry"
@@ -1016,7 +989,7 @@ position = Vector2(1585.04, 290.5)
 
 [node name="Banana14" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Cherry"
-position = Vector2(1682.04, 326)
+position = Vector2(1682.04, 318)
 
 [node name="Banana2" parent="Fruits" instance=ExtResource("18_auu4r")]
 fruit = &"Banana"

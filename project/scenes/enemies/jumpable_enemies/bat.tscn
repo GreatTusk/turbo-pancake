@@ -349,8 +349,8 @@ radius = 8.0
 height = 24.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7nq70"]
-radius = 11.0
-height = 44.0
+radius = 8.5
+height = 42.5
 
 [node name="Bat" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
@@ -364,7 +364,7 @@ after_hit_animation = &"flying"
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x03ns")
-animation = &"idle"
+animation = &"flying"
 autoplay = "idle"
 
 [node name="CeilingHitbox" type="CollisionShape2D" parent="."]

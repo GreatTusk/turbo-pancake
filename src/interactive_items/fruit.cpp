@@ -26,7 +26,6 @@ namespace tp
         sprite_2d = this->get_node<godot::AnimatedSprite2D>(constants::name::fruit::sprite);
         sprite_2d->connect("animation_finished",
                            godot::Callable(this, constants::event::animation_finished));
-        sprite_2d->play(fruit);
     }
 
     [[signal_slot]]
@@ -49,7 +48,9 @@ namespace tp
     [[property]]
     void Fruit::set_fruit(const godot::StringName& p_fruit)
     {
+        // To be executed only once
         fruit = p_fruit;
+        if (sprite_2d) sprite_2d->play(fruit);
     }
 
     [[property]]
