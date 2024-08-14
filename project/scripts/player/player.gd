@@ -91,6 +91,8 @@ func _physics_process(delta: float) -> void:
 	#emit_signal("animation_changed", animated_sprites.animation)
 	#emit_signal("velocity_changed", str(self.velocity))
 	#emit_signal("state_changed", str(States.keys()[current_state]))
+	if Input.is_action_just_pressed(&"jump"):
+		print("jumped on physics process") 
 	match current_state:
 		States.GROUND:
 			if !is_on_floor():
@@ -100,6 +102,7 @@ func _physics_process(delta: float) -> void:
 		States.AIR:
 			if is_on_floor():
 				change_state(States.GROUND)
+				ground_movement()
 				return
 			# If colliding on wall, pressing either direction, and has not chnaged direction (which would get the player off the wall)
 			elif is_coll_wall() && holding_x_direction() && !changed_direction():
@@ -110,24 +113,15 @@ func _physics_process(delta: float) -> void:
 			# Not pressing against a wall nor holding any direction, nor changed direction
 			if !holding_x_direction() || !is_coll_wall() || changed_direction():
 				change_state(States.AIR)
-				return
 			elif is_on_floor():
 				change_state(States.GROUND)
 				return
 			wall_movement(delta)
 	move_and_slide()
-
+	
 
 func ground_movement() -> void:
 	request_tile_effect.emit(to_local(self.global_position), particle_queue.particle_texture)
-	# Whether the user pressed jump or a jump had been previously buffered, jump
-	if Input.is_action_just_pressed(&"jump") || !jump_buffer_timer.is_stopped():
-		jump_lines.play()
-		velocity.y = JUMP_VEL
-		# Prevents the jump being re-triggered on the next frame
-		jump_buffer_timer.stop()
-		# Return - if we've jumped we're no longer in the ground
-		return
 
 	# Horizontal movement
 	var direction: float = Input.get_axis(&"move_left", &"move_right")
@@ -141,12 +135,23 @@ func ground_movement() -> void:
 		wood.stop()
 		animated_sprites.play(&"idle")
 		self.velocity.x = move_toward(self.velocity.x, 0.0, ground_dec)
-
+	
 	if Input.is_action_just_pressed(&"boost") && boost_cooldown_timer.is_stopped():
 		boost()
+	
+	# Whether the user pressed jump or a jump had been previously buffered, jump
+	if Input.is_action_just_pressed(&"jump") || !jump_buffer_timer.is_stopped():
+		print("and jumped") 
+		jump_lines.play()
+		velocity.y = JUMP_VEL
+		# Prevents the jump being re-triggered on the next frame
+		jump_buffer_timer.stop()
+		# Return - if we've jumped we're no longer in the ground
 
 
 func air_movement(delta: float) -> void:
+	if Input.is_action_just_pressed(&"jump"):
+		print("jumped in the air") 
 	# Applies gravity. It requires delta in the calculation because gravity is an acceleration (px/s2)
 	self.velocity.y = move_toward(velocity.y, gravity, AIR_ACC_Y * delta)
 	adjust_hitbox()
@@ -203,6 +208,7 @@ func wall_movement(delta: float) -> void:
 
 
 func change_state(new_state: States) -> void:
+	
 	# Handle exit logic
 	match current_state:
 		States.AIR:
@@ -211,6 +217,8 @@ func change_state(new_state: States) -> void:
 				States.WALL:
 					can_boost = boost_unlocked
 				States.GROUND:
+					if Input.is_action_just_pressed(&"jump"):
+						print("jumped when going from the air to the ground")
 					fall_lines.play()
 		States.GROUND:
 			wood.playing = false
