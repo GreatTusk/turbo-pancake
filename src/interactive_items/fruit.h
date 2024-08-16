@@ -28,8 +28,8 @@ namespace tp
         // Overriding from Node
         void _ready() override;
         // Getters and setters
-        [[property]] void set_fruit(const godot::StringName& p_fruit);
-        [[property]] godot::StringName get_fruit();
+        // [[property]] void set_fruit(const godot::StringName& p_fruit);
+        // [[property]] godot::StringName get_fruit();
 
     protected:
         static void _bind_methods();
@@ -37,7 +37,7 @@ namespace tp
     private:
         // Pointers to the children of this node
         godot::AnimatedSprite2D* sprite_2d{ nullptr };
-        [[property]] godot::StringName fruit{ "Apple" };
+        // [[property]] godot::StringName fruit{};
     };
 
 }

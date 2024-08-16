@@ -2,15 +2,20 @@ class_name PlayableCharacter
 extends CharacterBody2D
 
 # Child nodes
-@onready var die_lines := $VoiceLines/Die/Die_1 as AudioStreamPlayer
-@onready var jump_lines := $VoiceLines/Jump/Jump_1 as AudioStreamPlayer
-@onready var fall_lines := $VoiceLines/FallToFloor/Landing_1 as AudioStreamPlayer
-@onready var respawn_lines := $VoiceLines/Respawn/Respawn_1 as AudioStreamPlayer
-@onready var find_line := $VoiceLines/Find/Find_1 as AudioStreamPlayer
-@onready var wood: AudioStreamPlayer = $VoiceLines/Walking/Wood
+@onready var die_sfx: AudioStreamPlayer = $SFX/Die/Die_1
+@onready var jump_sfx: AudioStreamPlayer = $SFX/Jump/Jump_1
+@onready var respawn_sfx: AudioStreamPlayer = $SFX/Respawn/Respawn_1
+@onready var find_sfx: AudioStreamPlayer = $SFX/Find/Find_1
+@onready var landing_sfx: AudioStreamPlayer = $SFX/FallToFloor/Landing_1
+
+@onready var walking: Node = $SFX/Walking
+# Default is wood
+@onready var floor_sfx: AudioStreamPlayer = walking.get_child(0)
+
 @onready var jump_cooldown_timer := $Timers/JumpCooldownTimer as Timer
 @onready var boost_cooldown_timer := $Timers/BoostCooldown as Timer
 @onready var coyote_timer := $Timers/CoyoteTimer as Timer
+
 @onready var animated_sprites := $Sprites as AnimatedSprite2D
 @onready var left_cast := $RayCastLeft as RayCast2D
 @onready var right_cast := $RayCastRight as RayCast2D
@@ -18,13 +23,14 @@ extends CharacterBody2D
 @onready var particle_queue := $ParticleQueue as ParticleQueue
 @onready var camera := $Camera2D as Camera2D
 @onready var jump_buffer_timer := $Timers/JumpBufferTimer as Timer
+@onready var fall_through_buffer_timer: Timer = $Timers/FallThroughBufferTimer
 
 @export var double_jump_unlocked: bool = false
 @export var boost_unlocked: bool = false
 
 # TODO: Player moves too fast in the air. Falls too fast. Poor control in the air
 # Player consts
-const WALL_IMPULSE: float = 120.0
+const WALL_IMPULSE: float = 150.0
 const WALL_FRICTION: float = 0.1
 
 const JUMP_VEL: float = -187.0
@@ -46,7 +52,7 @@ const WALL_COLL_POS_R: float = 1.0
 const WALL_COLL_POS_L: float = 11.0
 const RAYC_COLL_POS_L: float = 45.0
 const RAYC_COLL_POS_R: float = 40.0
-const PLAYER_HEIGHT: float = 10.532
+const PLAYER_HEIGHT: float = 9.5
 const TRAMPOLINE_IMPULSE: float = 280.0
 
 # Control flow vars
@@ -58,6 +64,8 @@ var spawn_pos: Vector2:
 var can_boost: bool = boost_unlocked
 var gravity := MAX_GRAVITY
 var ground_dec: float = STD_GROUND_DEC
+var tile_map_offset: Vector2i
+var tile_data: TileDataStruct
 
 # Using signals to communicate to outer nodes
 signal animation_changed(animation: StringName)
@@ -73,6 +81,9 @@ enum States { GROUND, AIR, WALL }
 
 
 func _ready() -> void:
+	tile_data = TileDataStruct.new()
+	tile_data.setup(1.0, false, 0, Color.WHITE)
+	
 	# Connect own signal
 	self.respawn.connect(_on_respawn)
 	self.set_physics_process(false)
@@ -91,8 +102,7 @@ func _physics_process(delta: float) -> void:
 	#emit_signal("animation_changed", animated_sprites.animation)
 	#emit_signal("velocity_changed", str(self.velocity))
 	#emit_signal("state_changed", str(States.keys()[current_state]))
-	if Input.is_action_just_pressed(&"jump"):
-		print("jumped on physics process") 
+
 	match current_state:
 		States.GROUND:
 			if !is_on_floor():
@@ -102,6 +112,7 @@ func _physics_process(delta: float) -> void:
 		States.AIR:
 			if is_on_floor():
 				change_state(States.GROUND)
+				# Get a chance to register the jump - else input is loss between state transitions
 				ground_movement()
 				return
 			# If colliding on wall, pressing either direction, and has not chnaged direction (which would get the player off the wall)
@@ -113,6 +124,7 @@ func _physics_process(delta: float) -> void:
 			# Not pressing against a wall nor holding any direction, nor changed direction
 			if !holding_x_direction() || !is_coll_wall() || changed_direction():
 				change_state(States.AIR)
+				return
 			elif is_on_floor():
 				change_state(States.GROUND)
 				return
@@ -121,37 +133,42 @@ func _physics_process(delta: float) -> void:
 	
 
 func ground_movement() -> void:
-	request_tile_effect.emit(to_local(self.global_position), particle_queue.particle_texture)
-
+	
+	request_tile_effect.emit(self.global_position, tile_map_offset, tile_data)
+	
+	# Whether the user pressed jump or a jump had been previously buffered, jump
+	if Input.is_action_just_pressed(&"jump") || !jump_buffer_timer.is_stopped():
+		jump_sfx.play()
+		velocity.y = JUMP_VEL
+		# Prevents the jump being re-triggered on the next frame
+		jump_buffer_timer.stop()
+		# Return - if we've jumped we're no longer in the ground
+		return
+	elif Input.is_action_just_pressed(&"move_down") || !fall_through_buffer_timer.is_stopped():
+		fall_through_buffer_timer.stop()
+		if tile_data.fall_through:
+			self.set_collision_mask_value(4, false)
+			get_tree().create_timer(0.3).timeout.connect(func() -> void: self.set_collision_mask_value(4, true))
+			
+	
 	# Horizontal movement
 	var direction: float = Input.get_axis(&"move_left", &"move_right")
 	if direction != 0.0:
-		if !wood.playing:
-			wood.play()
+		if !floor_sfx.playing:
+			floor_sfx.play()
 		animated_sprites.play(&"run")
 		animated_sprites.flip_h = direction < 0
 		self.velocity.x = move_toward(self.velocity.x, direction * MAX_SPEED, ACC)
 	else:
-		wood.stop()
+		floor_sfx.stop()
 		animated_sprites.play(&"idle")
 		self.velocity.x = move_toward(self.velocity.x, 0.0, ground_dec)
 	
 	if Input.is_action_just_pressed(&"boost") && boost_cooldown_timer.is_stopped():
 		boost()
-	
-	# Whether the user pressed jump or a jump had been previously buffered, jump
-	if Input.is_action_just_pressed(&"jump") || !jump_buffer_timer.is_stopped():
-		print("and jumped") 
-		jump_lines.play()
-		velocity.y = JUMP_VEL
-		# Prevents the jump being re-triggered on the next frame
-		jump_buffer_timer.stop()
-		# Return - if we've jumped we're no longer in the ground
 
 
 func air_movement(delta: float) -> void:
-	if Input.is_action_just_pressed(&"jump"):
-		print("jumped in the air") 
 	# Applies gravity. It requires delta in the calculation because gravity is an acceleration (px/s2)
 	self.velocity.y = move_toward(velocity.y, gravity, AIR_ACC_Y * delta)
 	adjust_hitbox()
@@ -161,16 +178,18 @@ func air_movement(delta: float) -> void:
 		jump_buffer_timer.start()
 
 		if !coyote_timer.is_stopped():
-			jump_lines.play()
+			jump_sfx.play()
 			velocity.y = JUMP_VEL
 
 		if double_jump:
 			animated_sprites.play(&"double_jump")
-			jump_lines.play()
+			jump_sfx.play()
 			velocity.y = DOUBLE_JUMP_VEL
 			double_jump = false
 			double_jump_y = self.position.y
 			can_boost = boost_unlocked
+	elif Input.is_action_just_pressed(&"move_down"):
+		fall_through_buffer_timer.start()
 
 	# If not double jumping and going up
 	if velocity.y < 0 && animated_sprites.animation != &"double_jump":
@@ -200,7 +219,7 @@ func wall_movement(delta: float) -> void:
 		animated_sprites.play(&"jump")
 		# Use of a timer to prevent the player from going up a wall while stuck on it
 		jump_cooldown_timer.start()
-		jump_lines.play()
+		jump_sfx.play()
 		# Move right or left depending on where the player is facing
 		velocity.x = WALL_IMPULSE * (1 if animated_sprites.flip_h else -1)
 		velocity.y = JUMP_VEL
@@ -217,12 +236,11 @@ func change_state(new_state: States) -> void:
 				States.WALL:
 					can_boost = boost_unlocked
 				States.GROUND:
-					if Input.is_action_just_pressed(&"jump"):
-						print("jumped when going from the air to the ground")
-					fall_lines.play()
+					landing_sfx.play()
 		States.GROUND:
-			wood.playing = false
+			floor_sfx.playing = false
 			if new_state == States.AIR:
+				# here
 				coyote_timer.start()
 
 	# Handle enter logic
@@ -242,12 +260,13 @@ func die() -> void:
 	died.emit()
 
 	# FIXME: turn off physics processing instead maybe
+	#self.set_collision_mask_value(1, false)
 	self.collision_shape_2d.disabled = true
 	#self.collision_shape_2d.set_deferred("disable", true)
 	set_physics_process(false)
 	animated_sprites.play(&"disappearing")
 	# Prevent the player from moving
-	die_lines.play()
+	die_sfx.play()
 
 
 # Helper functions
@@ -273,7 +292,7 @@ func is_coll_wall() -> bool:
 
 func boost() -> void:
 	self.velocity.x = (-1 if animated_sprites.flip_h else 1) * BOOST_IMPULSE
-	respawn_lines.play()
+	respawn_sfx.play()
 	animated_sprites.play(&"jump")
 	can_boost = false
 	gravity = 0.0
@@ -287,7 +306,7 @@ func set_respawn_pos(pos: Vector2) -> void:
 func spawn() -> void:
 	self.velocity = Vector2.ZERO
 	animated_sprites.play(&"appearing")
-	respawn_lines.play()
+	respawn_sfx.play()
 
 
 #region Signal handlers
@@ -303,6 +322,7 @@ func _on_checkpoint_triggered(pos: Vector2) -> void:
 
 func _on_respawn() -> void:
 	self.collision_shape_2d.disabled = false
+	#self.set_collision_mask_value(1, true)
 	self.position = spawn_pos
 	spawn()
 
@@ -318,7 +338,7 @@ func _on_dying_sfx_finished() -> void:
 
 
 func _on_fruit_collected() -> void:
-	find_line.play()
+	find_sfx.play()
 
 
 func _on_fan_collision(velocity_applied: Vector2) -> void:
@@ -333,20 +353,22 @@ func _on_boost_cooldown_timeout() -> void:
 	gravity = MAX_GRAVITY
 
 
-func _on_tile_effect_response(modifier: float) -> void:
-	ground_dec = STD_GROUND_DEC / modifier
-
-
-func _on_particle_change_response(new_particle_index: int) -> void:
-	var new_texture: Texture2D = load(particle_queue.TEXTURES[new_particle_index])
+func _on_particle_texture_changed() -> void:
 	for particle: GPUParticles2D in particle_queue.get_children():
-		particle.texture = new_texture.duplicate()
+		particle.modulate = tile_data.particle_color
+
+func _on_floor_sfx_changed() -> void:
+	floor_sfx.stop()
+	floor_sfx = walking.get_child(tile_data.walking_sfx_idx)
+	
+func _on_dec_changed() -> void:
+	ground_dec = STD_GROUND_DEC / tile_data.movement_modifier
 
 
 func _on_enemy_jumped() -> void:
 	if Input.is_action_pressed(&"jump") || !jump_buffer_timer.is_stopped():
 		velocity.y = JUMP_VEL * 1.1
-		jump_lines.play()
+		jump_sfx.play()
 	else:
 		velocity.y = JUMP_VEL * 0.7
 #endregion

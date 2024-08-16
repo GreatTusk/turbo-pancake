@@ -1,20 +1,31 @@
 class_name SpecialTileMapLayer
 extends TileMapLayer
 
-const TILE_OFFSET: int = 0
+signal particle_change_response
+signal walking_sfx_response
+signal mov_response
 
-signal tile_effect_response(modifier: float)
-signal particle_change_response(particle_index: int)
 
-func _on_request_tile_effect(player_pos: Vector2, particle_index: int) -> void:
+func _on_request_tile_effect(player_pos: Vector2, tile_offset: Vector2i, tile_data: TileDataStruct) -> void:
 	var current_tile: Vector2i = local_to_map(player_pos)
-	current_tile.y += TILE_OFFSET
-	var data := get_cell_tile_data(current_tile)
-	# All SpecialTileMapLayers must have tile data!
-	assert(data)
-	var modifier: float = data.get_custom_data("movement_modifier")
-	var tile_particle_index: int = data.get_custom_data("particle")
-	# Emit a signal back to the player with the modifier value
-	self.tile_effect_response.emit(modifier)
-	if particle_index != tile_particle_index:
-		particle_change_response.emit(tile_particle_index)
+	var data: TileData = get_cell_tile_data(
+		Vector2i(current_tile.x + tile_offset.x, current_tile.y + tile_offset.y))
+
+	if data:
+		var mov_modifier: float = data.get_custom_data("movement_modifier")
+		if mov_modifier != tile_data.movement_modifier:
+			tile_data.fall_through = tile_data.movement_modifier
+			mov_response.emit()
+			
+		var tile_particle_color: Color = data.get_custom_data("particle_color")
+		if tile_data.particle_color != tile_particle_color:
+			tile_data.particle_color = tile_particle_color
+			particle_change_response.emit()
+		
+		# no need to check
+		tile_data.fall_through = data.get_custom_data("fall_through")
+		
+		var walking_sfx_idx: int = data.get_custom_data("walking_sfx_idx")
+		if tile_data.walking_sfx_idx != walking_sfx_idx:
+			tile_data.walking_sfx_idx = walking_sfx_idx
+			walking_sfx_response.emit()

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/godot-roguelite.iml" filepath="$PROJECT_DIR$/.idea/godot-roguelite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Demo.apk.iml" filepath="$PROJECT_DIR$/.idea/Demo.apk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/turbo-pancake.iml" filepath="$PROJECT_DIR$/.idea/turbo-pancake.iml" />
     </modules>
   </component>
 </project>

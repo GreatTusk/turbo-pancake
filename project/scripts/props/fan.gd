@@ -3,7 +3,6 @@ extends Node2D
 
 @export var extra_reach_px: float = 0
 
-@onready var sfx := $SFX/AudioStreamPlayer2D as AudioStreamPlayer2D
 @onready var air_particles := $AirParticles as GPUParticles2D
 @onready var hitbox := $Area2D/Hitbox as CollisionShape2D
 

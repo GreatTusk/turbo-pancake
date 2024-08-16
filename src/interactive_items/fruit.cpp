@@ -5,7 +5,7 @@
 #include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/audio_stream_player.hpp>
 #include <godot_cpp/classes/engine.hpp>
-#include <godot_cpp/variant/string.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
 
 #include "core/attributes.hpp"
 #include "core/constants.hpp"
@@ -16,9 +16,6 @@ namespace tp
 
     void Fruit::_ready()
     {
-        if (godot::Engine::get_singleton()->is_editor_hint())
-            return;
-
         auto* area_2d = this->get_node<godot::Area2D>(constants::name::fruit::area2d);
         area_2d->connect("body_entered", godot::Callable(this, constants::event::body_entered));
 
@@ -26,6 +23,10 @@ namespace tp
         sprite_2d = this->get_node<godot::AnimatedSprite2D>(constants::name::fruit::sprite);
         sprite_2d->connect("animation_finished",
                            godot::Callable(this, constants::event::animation_finished));
+
+        const char* fruits[]{ "Apple", "Banana", "Cherry",    "Kiwi",
+                              "Melon", "Orange", "Pineapple", "Strawberry" };
+        sprite_2d->play({ fruits[godot::UtilityFunctions::randi_range(0, 7)] });
     }
 
     [[signal_slot]]
@@ -45,29 +46,29 @@ namespace tp
         queue_free();
     }
 
-    [[property]]
-    void Fruit::set_fruit(const godot::StringName& p_fruit)
-    {
-        // To be executed only once
-        fruit = p_fruit;
-        if (sprite_2d) sprite_2d->play(fruit);
-    }
-
-    [[property]]
-    godot::StringName Fruit::get_fruit()
-    {
-        return fruit;
-    }
+    // [[property]]
+    // void Fruit::set_fruit(const godot::StringName& p_fruit)
+    // {
+    //     // To be executed only once
+    //     fruit = p_fruit;
+    //     if (sprite_2d) sprite_2d->play(fruit);
+    // }
+    //
+    // [[property]]
+    // godot::StringName Fruit::get_fruit()
+    // {
+    //     return fruit;
+    // }
 
     void Fruit::_bind_methods()
     {
         // Register getter and setters to expose the enum to the editor
-        godot::ClassDB::bind_method(godot::D_METHOD("set_fruit", "fruit"), &Fruit::set_fruit);
-        godot::ClassDB::bind_method(godot::D_METHOD("get_fruit"), &Fruit::get_fruit);
-        ADD_PROPERTY(
-            godot::PropertyInfo(godot::Variant::STRING_NAME, "fruit", godot::PROPERTY_HINT_ENUM,
-                                "Apple,Banana,Cherry,Kiwi,Melon,Orange,Pineapple,Strawberry"),
-            "set_fruit", "get_fruit");
+        // godot::ClassDB::bind_method(godot::D_METHOD("set_fruit", "fruit"), &Fruit::set_fruit);
+        // godot::ClassDB::bind_method(godot::D_METHOD("get_fruit"), &Fruit::get_fruit);
+        // ADD_PROPERTY(
+        //     godot::PropertyInfo(godot::Variant::STRING_NAME, "fruit", godot::PROPERTY_HINT_ENUM,
+        //                         "Apple,Banana,Cherry,Kiwi,Melon,Orange,Pineapple,Strawberry"),
+        //     "set_fruit", "get_fruit");
         // Connect signals
         godot::ClassDB::bind_method(godot::D_METHOD(constants::event::body_entered, "body"),
                                     &Fruit::_on_area_2d_body_entered);

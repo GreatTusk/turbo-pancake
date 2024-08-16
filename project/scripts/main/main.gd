@@ -8,6 +8,7 @@ extends Node
 
 
 func _ready() -> void:
+	#region load audio settings
 	var audio_settings: AudioSettings
 	# Save the default audio settings to user:// if this is the first time running the game
 	if !FileAccess.file_exists("user://config/audio_settings.tres"):
@@ -19,24 +20,18 @@ func _ready() -> void:
 		audio_settings = ResourceLoader.load("user://config/audio_settings.tres")
 	AudioServer.set_bus_volume_db(1, linear_to_db(audio_settings.bgm_volume))
 	AudioServer.set_bus_volume_db(2, linear_to_db(audio_settings.sfx_volume))
-
-	#if OS.has_feature("mobile"):
-	## TODO: Fix the touchscreen controls to the sides of the screen
-	#get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+	#endregion
+	
 	# Ignore return value - not useful here
 	instantiate_main_ui()
-	#if OS.has_feature("nothreads"):
-	#print("no threads")
-	#else:
-	#print("threads")
 
 
 func instantiate_main_ui() -> CanvasLayer:
 	var main_ui := main_ui_res.instantiate()
-	self.add_child(main_ui)
 	# Connect the level selected signal
 	var level_selector := main_ui.get_node("LevelSelector") as LevelSelector
 	level_selector.level_selected.connect(_on_level_selected)
+	self.add_child(main_ui)
 	return main_ui
 
 
@@ -71,11 +66,11 @@ func _on_level_selected(level_scene_path: String) -> void:
 func _on_level_selector_pressed() -> void:
 	var level_manager := self.get_child(0)
 	assert(level_manager is LevelManager)
-	level_manager.queue_free()
+	#self.remove_child.bind(level_manager).call_deferred()
+	#self.remove_child(level_manager)
+	level_manager.free.call_deferred()
 	# TIL when using queue_free() the node is deleted only at the end of the frame, not inmediately
 	# If we don't await for the node to exit the tree unintended behaviour might occur
-	# Another alternative: level_manager.call_deferred("free")
-	await level_manager.tree_exited
 	# Recreate the UI and set it so the level selector is visible
 	var main_ui: CanvasLayer = instantiate_main_ui()
 	(main_ui.get_node("TitleScreen") as TitleScreen).hide()

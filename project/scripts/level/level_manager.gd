@@ -27,10 +27,11 @@ func initialize_level(level: Level) -> void:
 	
 	for layer in tile_map_layers.get_children():
 		if layer is SpecialTileMapLayer:
-			var cast_layer := layer as SpecialTileMapLayer
-			player.request_tile_effect.connect(cast_layer._on_request_tile_effect)
-			cast_layer.tile_effect_response.connect(player._on_tile_effect_response)
-			cast_layer.particle_change_response.connect(player._on_particle_change_response)
+			var safe_cast := layer as SpecialTileMapLayer
+			player.request_tile_effect.connect(safe_cast._on_request_tile_effect)
+			safe_cast.particle_change_response.connect(player._on_particle_texture_changed)
+			safe_cast.walking_sfx_response.connect(player._on_floor_sfx_changed)
+			safe_cast.mov_response.connect(player._on_dec_changed)
 	
 	# The level must have a start point for the player to be valid!
 	assert(checkpoints)
@@ -82,18 +83,11 @@ func initialize_level(level: Level) -> void:
 						enemy.connect("kill_player", player._on_kill_player)
 
 	if fruits:
-		var temp_fruit := Fruit.new()
-		var fruit_property_hint: String = temp_fruit.get_property_list()[1]["hint_string"]
-		var possible_fruits := fruit_property_hint.split(",")
-		
 		for fruit: Fruit in fruits.get_children():
-			# EXPERIMENTAL:  Randomize the fruit
-			fruit.fruit = possible_fruits[randi_range(0, possible_fruits.size() - 1)]
 			# Both connect to a method of the same name, but pertain to different nodes
 			fruit.fruit_collected.connect(player._on_fruit_collected)
 			fruit.fruit_score_changed.connect(Callable(score_label, "_on_fruit_collected"))
-		temp_fruit.queue_free()
-		
+
 func _on_level_finished() -> void:
 	(level_ui.get_node("MenuButton") as TextureButton).hide()
 	mobile_controls.hide()
@@ -106,6 +100,7 @@ func connect_player_and_level() -> void:
 	var level: Level = Singleton.rfind_node(self, Level)
 	assert(level)
 	
+	player.tile_map_offset = level.tilemap_player_offset
 	player.died.connect(_on_player_died)
 	
 	# Handle connections between the player and the ui

@@ -7,6 +7,7 @@ extends Node2D
 @export var top_limit: int = -10000000
 @export var right_limit: int = 10000000
 @export var bottom_limit: int = 10000000
+@export var tilemap_player_offset: Vector2i
 
 
 func _on_level_finished() -> void:

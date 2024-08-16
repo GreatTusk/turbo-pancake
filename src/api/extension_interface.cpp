@@ -21,7 +21,7 @@ namespace tp
         if (init_level != godot::MODULE_INITIALIZATION_LEVEL_SCENE)
             return;
 
-        godot::ClassDB::register_class<Fruit>();
+        GDREGISTER_RUNTIME_CLASS(Fruit);
         initialize_static_objects();
     }
 
