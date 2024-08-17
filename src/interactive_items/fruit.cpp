@@ -18,15 +18,12 @@ namespace tp
     {
         auto* area_2d = this->get_node<godot::Area2D>(constants::name::fruit::area2d);
         area_2d->connect("body_entered", godot::Callable(this, constants::event::body_entered));
-
-        // Sprite2D is used on methods, so its pointer is stored in the class for easy access
         sprite_2d = this->get_node<godot::AnimatedSprite2D>(constants::name::fruit::sprite);
         sprite_2d->connect("animation_finished",
                            godot::Callable(this, constants::event::animation_finished));
 
-        const char* fruits[]{ "Apple", "Banana", "Cherry",    "Kiwi",
-                              "Melon", "Orange", "Pineapple", "Strawberry" };
-        sprite_2d->play({ fruits[godot::UtilityFunctions::randi_range(0, 7)] });
+        sprite_2d->play(
+            { constants::name::fruit::fruit_types[godot::UtilityFunctions::randi_range(0, 7)] });
     }
 
     [[signal_slot]]
@@ -36,7 +33,6 @@ namespace tp
         this->emit_signal(constants::event::fruit_collected_player);
         // Update the score label
         this->emit_signal(constants::event::fruit_collected, 100);
-        // Play the collected animation
         sprite_2d->play("collected");
     }
 

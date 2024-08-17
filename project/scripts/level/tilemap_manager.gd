@@ -16,7 +16,7 @@ func _on_request_tile_effect(player_pos: Vector2, tile_offset: Vector2i, tile_da
 		if mov_modifier != tile_data.movement_modifier:
 			tile_data.fall_through = tile_data.movement_modifier
 			mov_response.emit()
-			
+		
 		var tile_particle_color: Color = data.get_custom_data("particle_color")
 		if tile_data.particle_color != tile_particle_color:
 			tile_data.particle_color = tile_particle_color

@@ -1,3 +1,4 @@
+class_name Flamethrower
 extends Node2D
 
 @onready var animated_sprite_2d := $AnimatedSprite2D as AnimatedSprite2D

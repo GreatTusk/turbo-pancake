@@ -9,7 +9,7 @@ extends Node
 @onready var player := $Player as PlayableCharacter
 
 var defeatable_enemies_copy: Node
-	
+
 func initialize_level(level: Level) -> void:
 	# Level nodes
 	var world_border := level.get_node_or_null("WorldBorder") as Area2D
@@ -21,6 +21,7 @@ func initialize_level(level: Level) -> void:
 	var enemies := level.get_node_or_null("Enemies") as Node
 	var fruits := level.get_node_or_null("Fruits") as Node
 	var tile_map_layers := level.get_node_or_null("TileMapLayers") as Node
+	var shader_canvas := level.get_node_or_null("ShaderCanvas/Lighting") as Lighting
 	
 	# The level must have at least one tilemap layer!
 	assert(tile_map_layers.get_child_count() > 0)
@@ -87,6 +88,28 @@ func initialize_level(level: Level) -> void:
 			# Both connect to a method of the same name, but pertain to different nodes
 			fruit.fruit_collected.connect(player._on_fruit_collected)
 			fruit.fruit_score_changed.connect(Callable(score_label, "_on_fruit_collected"))
+			
+	if shader_canvas:
+		#shader_canvas.get_light_positions = Callable(self._get_light_positions)
+		shader_canvas.get_light_positions = Callable(self._get_player_and_flames_light_pos)
+		shader_canvas.set_process(true)
+		
+
+func _get_player_and_flames_light_pos() -> PackedVector2Array:
+	var arr: PackedVector2Array
+	var light_source: LightSource = player.get_node("LightSource")
+	arr.append(light_source.get_global_transform_with_canvas().origin)
+	# essentially a get_child(2)
+	var level: Level = Singleton.rfind_node(self, Level)
+
+	arr.append_array((level.get_node_or_null("Traps/Flamethrowers").get_children().filter(
+		func(node: Flamethrower) -> bool:
+			return node.animated_sprite_2d.animation == &"on"
+			) as Array).map(
+				func(node: Node2D) -> Vector2: 
+					return node.get_global_transform_with_canvas().origin))
+	
+	return arr
 
 func _on_level_finished() -> void:
 	(level_ui.get_node("MenuButton") as TextureButton).hide()
@@ -154,3 +177,5 @@ func _on_update_enemies_copy() -> void:
 
 func _ready() -> void:
 	connect_player_and_level()
+	#self.remove_child(player)
+	#Singleton.rfind_node(self, Level).add_child(player)

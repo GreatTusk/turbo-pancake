@@ -1,7 +1,6 @@
 class_name Turtle
 extends JumpableEnemy
 
-@onready var spikes_timer: Timer = $Timers/SpikesTimer
 @onready var spikes_hitbox: CollisionPolygon2D = $SpikesHitbox
 @onready var hitbox: CollisionPolygon2D = $Hitbox
 
@@ -12,6 +11,7 @@ func _ready() -> void:
 	hurt_sfx = $SFX/Hurt
 	death_sfx = $SFX/Death
 	animated_sprite.animation_finished.connect(_on_animation_finished)
+	($Timers/SpikesTimer as Timer).start()
 	self.velocity = initial_velocity
 	
 func _physics_process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://c6aclgn8pfqp0"]
+[gd_scene load_steps=25 format=4 uid="uid://c6aclgn8pfqp0"]
 
 [ext_resource type="Script" path="res://scripts/level/level_footprint.gd" id="1_y6cx6"]
 [ext_resource type="PackedScene" uid="uid://dwebwidqfamdi" path="res://scenes/backgrounds/cave.tscn" id="4_6dc0v"]
@@ -20,9 +20,21 @@
 [ext_resource type="PackedScene" uid="uid://mkxeqvc338kv" path="res://scenes/items/fruit.tscn" id="18_auu4r"]
 [ext_resource type="AudioStream" uid="uid://dg3lxjq4ok017" path="res://assets/music/Life in the Mines.mp3" id="19_d2wju"]
 [ext_resource type="Script" path="res://scripts/audio/bg_music.gd" id="20_2fu0e"]
+[ext_resource type="Shader" path="res://resources/shaders/level_1.gdshader" id="21_wyhda"]
+[ext_resource type="Script" path="res://scripts/level/shaders/lighting.gd" id="22_072jy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7aknt"]
 distance = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4qi7"]
+shader = ExtResource("21_wyhda")
+shader_parameter/modulate_color = Color(0.415686, 0.431373, 0.517647, 0.890196)
+shader_parameter/blank_point = Color(0, 0, 0, 0)
+shader_parameter/lights = null
+shader_parameter/number_of_lights = 1
+shader_parameter/band_radius = 32.0
+shader_parameter/band_strength = 0.3
+shader_parameter/light_radius = 48.0
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_y6cx6")
@@ -1029,5 +1041,16 @@ stream = ExtResource("19_d2wju")
 autoplay = true
 bus = &"music"
 script = ExtResource("20_2fu0e")
+
+[node name="ShaderCanvas" type="CanvasLayer" parent="."]
+
+[node name="Lighting" type="ColorRect" parent="ShaderCanvas"]
+material = SubResource("ShaderMaterial_p4qi7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("22_072jy")
 
 [connection signal="body_entered" from="WorldBorder" to="WorldBorder" method="_on_body_entered"]

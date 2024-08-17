@@ -6,6 +6,8 @@ namespace tp::constants
     {
         constexpr auto area2d{ "Area2D" };
         constexpr auto sprite{ "AnimatedSprite2D" };
+        constexpr const char* fruit_types[]{ "Apple", "Banana", "Cherry",    "Kiwi",
+                                             "Melon", "Orange", "Pineapple", "Strawberry" };
     }
 
     namespace event

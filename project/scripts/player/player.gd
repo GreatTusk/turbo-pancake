@@ -50,8 +50,8 @@ const BOOST_IMPULSE: float = 320.0
 # External consts
 const WALL_COLL_POS_R: float = 1.0
 const WALL_COLL_POS_L: float = 11.0
-const RAYC_COLL_POS_L: float = 45.0
-const RAYC_COLL_POS_R: float = 40.0
+const RAYC_COLL_POS_L: float = 45.0 
+const RAYC_COLL_POS_R: float = 40.0 
 const PLAYER_HEIGHT: float = 9.5
 const TRAMPOLINE_IMPULSE: float = 280.0
 
@@ -102,7 +102,6 @@ func _physics_process(delta: float) -> void:
 	#emit_signal("animation_changed", animated_sprites.animation)
 	#emit_signal("velocity_changed", str(self.velocity))
 	#emit_signal("state_changed", str(States.keys()[current_state]))
-
 	match current_state:
 		States.GROUND:
 			if !is_on_floor():
@@ -188,8 +187,18 @@ func air_movement(delta: float) -> void:
 			double_jump = false
 			double_jump_y = self.position.y
 			can_boost = boost_unlocked
+
 	elif Input.is_action_just_pressed(&"move_down"):
 		fall_through_buffer_timer.start()
+		
+	#if is_coll_wall() && (Input.is_action_just_pressed(&"jump") || !jump_buffer_timer.is_stopped()) :
+		#animated_sprites.play(&"jump")
+		## Use of a timer to prevent the player from going up a wall while stuck on it
+		#jump_cooldown_timer.start()
+		#jump_sfx.play()
+		## Move right or left depending on where the player is facing
+		#velocity.x = WALL_IMPULSE * (1 if animated_sprites.flip_h else -1)
+		#velocity.y = JUMP_VEL
 
 	# If not double jumping and going up
 	if velocity.y < 0 && animated_sprites.animation != &"double_jump":

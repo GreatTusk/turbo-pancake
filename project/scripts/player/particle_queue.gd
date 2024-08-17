@@ -5,7 +5,7 @@ extends Node2D
 @export var particle_scene: PackedScene
 @export_enum("Normal", "Ice", "Mud", "Sand") var particle_texture: int = 0
 
-const TEXTURES: Array[String] = [
+const TEXTURES: PackedStringArray = [
 	"res://assets/other/dust_particle.png", 
 	"res://assets/traps/sand_mud_ice/ice_particle.png",
 	"res://assets/traps/sand_mud_ice/mud_particle.png",

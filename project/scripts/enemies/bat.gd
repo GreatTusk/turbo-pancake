@@ -131,8 +131,8 @@ func _on_stuck(collision_normal: Vector2) -> void:
 		move_and_slide()
 
 func restore_ray_casts_length() -> void:
-	var x_vals: Array[float] = [-152, 152, 0, 152, -152]
-	var y_vals: Array[float] = [152, 152, 152, 0, 0]
+	var x_vals: PackedFloat32Array = [-152, 152, 0, 152, -152]
+	var y_vals: PackedFloat32Array = [152, 152, 152, 0, 0]
 	for i in player_raycasts.size():
 		player_raycasts[i].target_position = Vector2(x_vals[i], y_vals[i])
 

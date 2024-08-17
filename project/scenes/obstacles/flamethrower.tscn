@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/obstacles/flamethrower.gd" id="1_6kc05"]
 [ext_resource type="Texture2D" uid="uid://cixk8s8ciacly" path="res://assets/traps/fire/hit_(16x32).png" id="1_anj45"]
-[ext_resource type="Texture2D" uid="uid://2w5ys6vsbbtu" path="res://assets/traps/fire/off.png" id="2_g3pad"]
+[ext_resource type="Texture2D" uid="uid://2w5ys6vsbbtu" path="res://assets/traps/fire/Off.png" id="2_g3pad"]
 [ext_resource type="Texture2D" uid="uid://bo0rvwak3u6bl" path="res://assets/traps/fire/on_(16x32).png" id="3_whdn5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r84jv"]

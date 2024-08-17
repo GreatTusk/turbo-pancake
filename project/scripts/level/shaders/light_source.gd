@@ -1,0 +1,2 @@
+class_name LightSource
+extends Marker2D

@@ -4,7 +4,7 @@ extends Node
 @export_group("Options")
 @export var from_center: bool = false
 @export var parallel: bool = true
-@export var properties: Array[String] = [
+@export var properties: PackedStringArray = [
 	"scale",
 	"position",
 	"rotation",
