@@ -22,42 +22,64 @@
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="false" CONFIG_NAME="Debug" />
-      <configuration PROFILE_NAME="msvc-debug" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/msvc-debug" />
-      <configuration PROFILE_NAME="msvc-release" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/msvc-release" />
-      <configuration PROFILE_NAME="msvc-relwdebinfo" ENABLED="false" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/msvc-relwdebinfo" />
-      <configuration PROFILE_NAME="clang-debug" ENABLED="false" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/clang-debug" />
-      <configuration PROFILE_NAME="clang-release" ENABLED="false" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/clang-release" />
+      <configuration PROFILE_NAME="clang-debug" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/clang-debug" />
+      <configuration PROFILE_NAME="clang-release" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/clang-release" />
+      <configuration PROFILE_NAME="gcc-debug" ENABLED="false" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/gcc-debug" />
+      <configuration PROFILE_NAME="gcc-release" ENABLED="false" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/gcc-release" />
+      <configuration PROFILE_NAME="gcc-relwdebinfo" ENABLED="false" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/gcc-relwdebinfo" />
       <configuration PROFILE_NAME="clang-relwdebinfo" ENABLED="false" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/.out/build/clang-relwdebinfo" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f6e525-43ad-4e64-a8b3-bd91bc20879d" name="Changes" comment="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound">
-      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/03_step_grass_03.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/08_step_rock_02.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/12_step_wood_03.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/14_step_water_02.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/26_swim_submerged_02.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/30_jump_03.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/42_cling_climb_03.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/45_landing_01.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/52_dive_02.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/56_attack_03.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/61_hit_03.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/88_teleport_02.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/turbo_pancake.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/turbo_pancake.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project/project.godot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scenes/levels/level_1.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/levels/level_1.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scenes/obstacles/flamethrower.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/obstacles/flamethrower.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box1/Break.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box1/Break.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box1/Idle.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box1/Idle.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box2/Break.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box2/Break.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box2/Idle.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box2/Idle.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box3/Break.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box3/Break.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box3/Idle.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box3/Idle.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Apple.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Apple.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Bananas.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Bananas.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Cherries.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Cherries.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Collected.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Collected.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Kiwi.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Kiwi.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Melon.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Melon.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Orange.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Orange.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Pineapple.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Pineapple.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Strawberry.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Strawberry.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/traps/fan/Off.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/traps/fan/Off.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/traps/trampoline/Idle.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/traps/trampoline/Idle.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/resources/animated_sprites/fruit.tres" beforeDir="false" afterPath="$PROJECT_DIR$/project/resources/animated_sprites/fruit.tres" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/scenes/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/classes/animation_component.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/classes/animation_component.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/enemies/bat.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/enemies/bat.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/enemies/turtle.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/enemies/turtle.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/level/level_manager.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/level/level_manager.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/level/tilemap_manager.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/level/tilemap_manager.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/obstacles/flamethrower.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/obstacles/flamethrower.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/player/particle_queue.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/player/particle_queue.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/player/player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/player/player.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/constants.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/constants.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interactive_items/fruit.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/interactive_items/fruit.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/props/checkpoint.tres" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/props/checkpoint.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/props/end_checkpoint.tres" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/props/end_checkpoint.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/props/start_checkpoint.tres" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/props/start_checkpoint.tres" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:msvc-debug" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:clang-release" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -108,17 +130,17 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CMakeSettings&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RunManager" selected="CMake Application.turbo_pancake">
-    <configuration name="godot-cpp" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="turbo_pancake" TARGET_NAME="godot-cpp" CONFIG_NAME="msvc-debug">
+    <configuration name="godot-cpp" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="turbo_pancake" TARGET_NAME="godot-cpp" CONFIG_NAME="clang-debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="godot_engine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="turbo_pancake" TARGET_NAME="godot_engine" CONFIG_NAME="msvc-debug">
+    <configuration name="godot_engine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="turbo_pancake" TARGET_NAME="godot_engine" CONFIG_NAME="clang-debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -142,6 +164,7 @@
       <workItem from="1723839786774" duration="9038000" />
       <workItem from="1723915364515" duration="4075000" />
       <workItem from="1723931646654" duration="6000" />
+      <workItem from="1724017031563" duration="267000" />
     </task>
     <task id="LOCAL-00001" summary="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound">
       <option name="closed" value="true" />
@@ -161,6 +184,29 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="turbo_pancake" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound" />

@@ -1,8 +1,8 @@
 [gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://fxdpxdqbboq5"]
 
-[ext_resource type="Texture2D" uid="uid://c0l0xmey1ffyv" path="res://assets/items/checkpoints/checkpoint/checkpoint_(flag_idle)(64x64).png" id="1_iu0h4"]
-[ext_resource type="Texture2D" uid="uid://id7d1mo6eox6" path="res://assets/items/checkpoints/checkpoint/checkpoint_(no_flag).png" id="2_32a12"]
-[ext_resource type="Texture2D" uid="uid://b2uv0b88jq1xn" path="res://assets/items/checkpoints/checkpoint/checkpoint_(flag_out)(64x64).png" id="3_3v1kt"]
+[ext_resource type="Texture2D" uid="uid://bwtp0gk1qacms" path="res://assets/items/checkpoints/checkpoint/checkpoint_(flag_idle)(64x64).png" id="1_iu0h4"]
+[ext_resource type="Texture2D" uid="uid://dpxcil1ajp85g" path="res://assets/items/checkpoints/checkpoint/checkpoint_(no_flag).png" id="2_32a12"]
+[ext_resource type="Texture2D" uid="uid://djha4als31lqo" path="res://assets/items/checkpoints/checkpoint/checkpoint_(flag_out)(64x64).png" id="3_3v1kt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_auc0w"]
 atlas = ExtResource("1_iu0h4")
