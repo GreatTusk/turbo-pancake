@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dbjvwvbxcm7qf"]
+[gd_scene load_steps=17 format=3 uid="uid://dbjvwvbxcm7qf"]
 
 [ext_resource type="Script" path="res://scripts/ui/level/level_ui.gd" id="1_otma3"]
 [ext_resource type="Texture2D" uid="uid://by5q4732tldx5" path="res://assets/menu/buttons/Back.png" id="2_nglyy"]
@@ -9,11 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://2nmlqgkwuq0g" path="res://scenes/ui/level/level_modal.tscn" id="7_7j2la"]
 [ext_resource type="PackedScene" uid="uid://bnl325vuvde6k" path="res://scenes/ui/level/level_finished.tscn" id="8_nv7mw"]
 [ext_resource type="PackedScene" uid="uid://q7iculvtpi17" path="res://scenes/ui/config_screen.tscn" id="9_d5pk6"]
-[ext_resource type="Texture2D" uid="uid://20u2601o6mde" path="res://assets/menu/mobile_controls/left.png" id="10_ppcfn"]
-[ext_resource type="Texture2D" uid="uid://j488uq84aa6n" path="res://assets/menu/mobile_controls/right.png" id="11_h1su6"]
 [ext_resource type="Texture2D" uid="uid://baxwuhhna22df" path="res://assets/menu/mobile_controls/up.png" id="12_76mgc"]
 [ext_resource type="Texture2D" uid="uid://d1xqfse7pxhur" path="res://assets/menu/mobile_controls/boost.png" id="13_t7x0d"]
 [ext_resource type="AudioStream" uid="uid://i4tgckcu6lck" path="res://assets/menu/ui/10_ui_menu_sfx/001_Hover_01.wav" id="14_3xofh"]
+[ext_resource type="PackedScene" uid="uid://dm6q0abakck7u" path="res://addons/touch_joypad/scenes/joystick.tscn" id="14_t6gpc"]
 [ext_resource type="AudioStream" uid="uid://ct52lh0vx6tqw" path="res://assets/menu/ui/10_ui_menu_sfx/013_Confirm_03.wav" id="15_mbnhv"]
 [ext_resource type="AudioStream" uid="uid://d0wwj2p3mnh65" path="res://assets/menu/ui/10_ui_menu_sfx/092_Pause_04.wav" id="16_bi7j6"]
 [ext_resource type="AudioStream" uid="uid://xm88up75lvg0" path="res://assets/menu/ui/10_ui_menu_sfx/098_Unpause_04.wav" id="17_uk14g"]
@@ -122,54 +121,15 @@ anchor_top = 0.796
 anchor_right = 1.0
 anchor_bottom = 0.796
 offset_left = 16.0
-offset_top = -27.936
+offset_top = -35.936
 offset_right = -16.0
-offset_bottom = 28.064
+offset_bottom = 20.064
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ButtonsLeft" type="Control" parent="MobileControls"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -44.0
-offset_right = 104.0
-offset_bottom = 24.0
-grow_vertical = 2
-
-[node name="Left" type="TouchScreenButton" parent="MobileControls/ButtonsLeft"]
-self_modulate = Color(1, 1, 1, 0.509804)
-position = Vector2(7, 13)
-scale = Vector2(2, 1.875)
-texture_normal = ExtResource("10_ppcfn")
-action = "move_left"
-visibility_mode = 1
-
-[node name="Right" type="TouchScreenButton" parent="MobileControls/ButtonsLeft"]
-self_modulate = Color(1, 1, 1, 0.509804)
-position = Vector2(61, 13)
-scale = Vector2(2, 1.797)
-texture_normal = ExtResource("11_h1su6")
-action = "move_right"
-visibility_mode = 1
-
-[node name="Jump2" type="TouchScreenButton" parent="MobileControls/ButtonsLeft"]
-self_modulate = Color(1, 1, 1, 0.509804)
-position = Vector2(32, -8)
-scale = Vector2(2, 1.933)
-texture_normal = ExtResource("12_76mgc")
-action = "jump"
-visibility_mode = 1
-
-[node name="Down" type="TouchScreenButton" parent="MobileControls/ButtonsLeft"]
-self_modulate = Color(1, 1, 1, 0.509804)
-position = Vector2(65, 67)
-rotation = 3.14159
-scale = Vector2(2, 1.933)
-texture_normal = ExtResource("12_76mgc")
-action = "move_down"
-visibility_mode = 1
+[node name="Joystick" parent="MobileControls" instance=ExtResource("14_t6gpc")]
+position = Vector2(48, 19)
+scale = Vector2(0.8, 0.8)
 
 [node name="ButtonsRight" type="Control" parent="MobileControls"]
 layout_mode = 1

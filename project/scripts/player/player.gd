@@ -54,6 +54,8 @@ const RAYC_COLL_POS_L: float = 45.0
 const RAYC_COLL_POS_R: float = 40.0 
 const PLAYER_HEIGHT: float = 9.5
 const TRAMPOLINE_IMPULSE: float = 280.0
+const CAMERA_MAX_OFFSET: float = -80.0
+const CAMERA_OFFSET_SPEED: float = 5.0
 
 # Control flow vars
 var double_jump: bool = double_jump_unlocked
@@ -107,12 +109,12 @@ func _physics_process(delta: float) -> void:
 			if !is_on_floor():
 				change_state(States.AIR)
 				return
-			ground_movement()
+			ground_movement(delta)
 		States.AIR:
 			if is_on_floor():
 				change_state(States.GROUND)
 				# Get a chance to register the jump - else input is loss between state transitions
-				ground_movement()
+				ground_movement(delta)
 				return
 			# If colliding on wall, pressing either direction, and has not chnaged direction (which would get the player off the wall)
 			elif is_coll_wall() && holding_x_direction() && !changed_direction():
@@ -128,10 +130,14 @@ func _physics_process(delta: float) -> void:
 				change_state(States.GROUND)
 				return
 			wall_movement(delta)
+			
+	if !Input.is_action_pressed(&"look_up"):
+		camera.offset.y = lerp(camera.offset.y, 0.0, CAMERA_OFFSET_SPEED * delta)
+		
 	move_and_slide()
 	
 
-func ground_movement() -> void:
+func ground_movement(delta: float) -> void:
 	
 	request_tile_effect.emit(self.global_position, tile_map_offset, tile_data)
 	
@@ -143,13 +149,12 @@ func ground_movement() -> void:
 		jump_buffer_timer.stop()
 		# Return - if we've jumped we're no longer in the ground
 		return
-	elif Input.is_action_just_pressed(&"move_down") || !fall_through_buffer_timer.is_stopped():
+	elif Input.is_action_pressed(&"move_down") || !fall_through_buffer_timer.is_stopped():
 		fall_through_buffer_timer.stop()
 		if tile_data.fall_through:
 			self.set_collision_mask_value(4, false)
 			get_tree().create_timer(0.3).timeout.connect(func() -> void: self.set_collision_mask_value(4, true))
-			
-	
+
 	# Horizontal movement
 	var direction: float = Input.get_axis(&"move_left", &"move_right")
 	if direction != 0.0:
@@ -162,7 +167,10 @@ func ground_movement() -> void:
 		floor_sfx.stop()
 		animated_sprites.play(&"idle")
 		self.velocity.x = move_toward(self.velocity.x, 0.0, ground_dec)
-	
+		# Only look up if not moving
+		if Input.is_action_pressed(&"look_up"):
+			camera.offset.y = lerp(camera.offset.y, CAMERA_MAX_OFFSET, CAMERA_OFFSET_SPEED * delta)
+			
 	if Input.is_action_just_pressed(&"boost") && boost_cooldown_timer.is_stopped():
 		boost()
 
@@ -188,7 +196,7 @@ func air_movement(delta: float) -> void:
 			double_jump_y = self.position.y
 			can_boost = boost_unlocked
 
-	elif Input.is_action_just_pressed(&"move_down"):
+	elif Input.is_action_pressed(&"move_down"):
 		fall_through_buffer_timer.start()
 		
 	#if is_coll_wall() && (Input.is_action_just_pressed(&"jump") || !jump_buffer_timer.is_stopped()) :

@@ -69,6 +69,7 @@ func _on_level_selector_pressed() -> void:
 	#self.remove_child.bind(level_manager).call_deferred()
 	#self.remove_child(level_manager)
 	level_manager.free.call_deferred()
+	await level_manager.tree_exited
 	# TIL when using queue_free() the node is deleted only at the end of the frame, not inmediately
 	# If we don't await for the node to exit the tree unintended behaviour might occur
 	# Recreate the UI and set it so the level selector is visible
@@ -86,7 +87,8 @@ func _on_level_restarted() -> void:
 	assert(level_to_reset)
 	# From here onwards, instead of replacing the level, the entire manager is replaced
 	var level_path := level_to_reset.scene_file_path  # String
-	level_manager.call_deferred("free")
+	level_manager.free.call_deferred()
+	await level_manager.tree_exited
 	_on_level_selected(level_path)
 	get_tree().paused = false
 

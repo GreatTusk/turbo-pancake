@@ -10,7 +10,7 @@ extends CanvasLayer
 @onready var unpause: AudioStreamPlayer = $SFX/Unpause
 
 func _ready() -> void:
-	mobile_controls.visible = Input.get_connected_joypads().size() == 0
+	mobile_controls.visible = Input.get_connected_joypads().size() == 0 && DisplayServer.is_touchscreen_available()
 	level_modal.audio_settings_pressed.connect(_on_audio_settings_pressed)
 	(level_modal.get_node("Modal/Cancel") as TextureButton).pressed.connect(_exit_menu_pressed)
 	# Recursive
@@ -20,6 +20,8 @@ func _ready() -> void:
 			button.pressed.connect(_on_button_action.bind(pause))
 		elif button.is_in_group("unpause"):
 			button.pressed.connect(_on_button_action.bind(unpause))
+		elif button.is_in_group("exclude_from_buttons"):
+			continue
 		else:
 			button.pressed.connect(_on_button_action.bind(confirm))
 

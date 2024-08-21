@@ -32,51 +32,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f6e525-43ad-4e64-a8b3-bd91bc20879d" name="Changes" comment="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound">
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/03_step_grass_03.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/08_step_rock_02.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/12_step_wood_03.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/14_step_water_02.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/26_swim_submerged_02.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/30_jump_03.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/42_cling_climb_03.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/45_landing_01.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/52_dive_02.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/56_attack_03.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/61_hit_03.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/88_teleport_02.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/turbo_pancake.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/turbo_pancake.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box1/Break.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box1/Break.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box1/Idle.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box1/Idle.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box2/Break.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box2/Break.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box2/Idle.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box2/Idle.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box3/Break.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box3/Break.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/boxes/box3/Idle.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/boxes/box3/Idle.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Apple.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Apple.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Bananas.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Bananas.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Cherries.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Cherries.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Collected.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Collected.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Kiwi.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Kiwi.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Melon.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Melon.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Orange.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Orange.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Pineapple.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Pineapple.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/items/fruits/Strawberry.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/items/fruits/Strawberry.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/traps/fan/Off.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/traps/fan/Off.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/assets/traps/trampoline/Idle.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/project/assets/traps/trampoline/Idle.png.import" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/resources/animated_sprites/fruit.tres" beforeDir="false" afterPath="$PROJECT_DIR$/project/resources/animated_sprites/fruit.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/03_Step_grass_03.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/08_Step_rock_02.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/12_Step_wood_03.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/14_Step_water_02.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/26_Swim_Submerged_02.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/30_Jump_03.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/42_Cling_climb_03.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/45_Landing_01.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/52_Dive_02.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/56_Attack_03.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/61_Hit_03.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/assets/sounds/12_Player_Movement_SFX/88_Teleport_02.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/levels/level_2.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/levels/level_2.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/scenes/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/player/player.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scenes/props/checkpoint.tres" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/props/checkpoint.tres" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scenes/props/end_checkpoint.tres" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/props/end_checkpoint.tres" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scenes/props/start_checkpoint.tres" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/props/start_checkpoint.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/ui/level/gameui.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/ui/level/gameui.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/ui/title_screen/title_screen.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/ui/title_screen/title_screen.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scripts/level/level_manager.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/level/level_manager.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scripts/main/main.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/main/main.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scripts/player/player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/player/player.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scripts/ui/level/level_ui.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/ui/level/level_ui.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interactive_items/fruit.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/interactive_items/fruit.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:clang-release" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:clang-debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -165,6 +151,9 @@
       <workItem from="1723915364515" duration="4075000" />
       <workItem from="1723931646654" duration="6000" />
       <workItem from="1724017031563" duration="267000" />
+      <workItem from="1724017314301" duration="825000" />
+      <workItem from="1724121308553" duration="427000" />
+      <workItem from="1724206774406" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound">
       <option name="closed" value="true" />
@@ -174,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723774175431</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound">
+      <option name="closed" value="true" />
+      <created>1724017361229</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724017361229</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

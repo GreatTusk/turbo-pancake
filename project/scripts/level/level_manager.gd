@@ -177,5 +177,3 @@ func _on_update_enemies_copy() -> void:
 
 func _ready() -> void:
 	connect_player_and_level()
-	#self.remove_child(player)
-	#Singleton.rfind_node(self, Level).add_child(player)

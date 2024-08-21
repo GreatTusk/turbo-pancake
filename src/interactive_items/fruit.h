@@ -24,7 +24,6 @@ namespace tp
         ~Fruit() override = default;
         [[signal_slot]] void _on_area_2d_body_entered(const godot::CharacterBody2D* body);
         [[signal_slot]] void _on_animation_finished();
-
         // Overriding from Node
         void _ready() override;
         // Getters and setters
