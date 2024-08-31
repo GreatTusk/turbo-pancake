@@ -7,7 +7,7 @@ uniform int number_of_lights = 1;
 uniform float band_radius = 54;
 uniform float band_strength = 0.3;
 uniform sampler2D screen_texture : hint_screen_texture, filter_nearest;
-uniform float light_radius = 64.0;
+uniform float light_radius = 60.0;
 
 float distance_to_light(vec2 coords)
 {

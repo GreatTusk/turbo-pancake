@@ -1,24 +1,25 @@
-class_name VirtualJoystickk
+class_name VirtualJoystick
 extends Node2D
 
 @export var deadzone: float = 15.0
 @export var touchscreen_only := true
 
-@onready var button: Button = $Button
-@onready var knob: Sprite2D = $Knob
+@onready var knob: TouchScreenButton = $Knob
+@onready var knob_texture: Sprite2D = $Knob/KnobTexture
+@onready var button_radius: float = (knob.shape as CircleShape2D).radius
 
 const RETURN_SPEED: float = 50.0
 const X_DIRECTION_THRESHOLD: float = 0.35
 
 var pressing := false
-var max_length: float = 50
+var max_length: float = 50.0
 var y_event := InputEventAction.new()
 var x_event := InputEventAction.new()
 
 
 func _ready() -> void:
-	button.button_down.connect(func() -> void: pressing = true)
-	button.button_up.connect(func() -> void: pressing = false)
+	knob.pressed.connect(func() -> void: pressing = true)
+	knob.released.connect(func() -> void: pressing = false)
 	max_length *= self.scale.x
 
 func _process(delta: float) -> void:
@@ -27,27 +28,30 @@ func _process(delta: float) -> void:
 		handle_knob()
 	else:
 		# Return the knob to its position
-		knob.global_position = knob.global_position.lerp(self.global_position, delta * RETURN_SPEED)
+		knob_texture.global_position = knob_texture.global_position.lerp(self.global_position, delta * RETURN_SPEED)
 		x_event.pressed = false
 		y_event.pressed = false
 
 
 func handle_knob() -> void:
+	# FIXME
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	var direction: Vector2 = mouse_pos - self.global_position
-	
-	# Calculates the distance between the mouse position and the joystick's center
-	if direction.length() <= max_length:
-		# If the mouse is within limits, the knob is moved to that position
-		knob.global_position = mouse_pos
-	else:
-		# If it is further away, calculate where it should be placed
-		direction = direction.normalized() * max_length
-		knob.global_position = self.global_position + direction
+	# This is not a fix
+	if mouse_pos.x < DisplayServer.screen_get_size().x / 2.0:
+		var direction: Vector2 = mouse_pos - self.global_position
+		
+		# Calculates the distance between the mouse position and the joystick's center
+		if direction.length() <= max_length:
+			# If the mouse is within limits, the knob is moved to that position
+			knob_texture.global_position = mouse_pos
+		else:
+			# If it is further away, calculate where it should be placed
+			direction = direction.normalized() * max_length
+			knob_texture.global_position = self.global_position + direction
 
 
 func calculate_direction() -> Vector2:
-	var direction: Vector2 = knob.global_position - self.global_position
+	var direction: Vector2 = knob_texture.global_position - self.global_position
 	return Vector2.ZERO if direction.length() < deadzone else direction.normalized()
 
 

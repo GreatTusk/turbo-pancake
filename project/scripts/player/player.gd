@@ -116,14 +116,15 @@ func _physics_process(delta: float) -> void:
 				# Get a chance to register the jump - else input is loss between state transitions
 				ground_movement(delta)
 				return
-			# If colliding on wall, pressing either direction, and has not chnaged direction (which would get the player off the wall)
-			elif is_coll_wall() && holding_x_direction() && !changed_direction():
+			# If colliding on wall and holding either direction
+			elif is_coll_wall() && holding_x_direction():
 				change_state(States.WALL)
 				return
 			air_movement(delta)
 		States.WALL:
 			# Not pressing against a wall nor holding any direction, nor changed direction
-			if !holding_x_direction() || !is_coll_wall() || changed_direction():
+			#if !holding_x_direction() || !is_coll_wall() || changed_direction():
+			if !is_coll_wall():
 				change_state(States.AIR)
 				return
 			elif is_on_floor():
@@ -240,6 +241,8 @@ func wall_movement(delta: float) -> void:
 		# Move right or left depending on where the player is facing
 		velocity.x = WALL_IMPULSE * (1 if animated_sprites.flip_h else -1)
 		velocity.y = JUMP_VEL
+		change_state(States.AIR)
+	elif Input.is_action_just_pressed(&"move_down"):
 		change_state(States.AIR)
 
 

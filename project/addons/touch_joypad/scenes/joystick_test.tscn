@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm43ywq0pkk0j"]
+
+[ext_resource type="Script" path="res://addons/touch_joypad/code/joystick_test.gd" id="1_thxhs"]
+[ext_resource type="Texture2D" uid="uid://c7almgw3ae37n" path="res://addons/touch_joypad/art/joyring.png" id="2_3ade8"]
+[ext_resource type="Texture2D" uid="uid://tyy5ns22l5yl" path="res://addons/touch_joypad/art/joyknobpng.png" id="3_qmme6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpy3j"]
+radius = 52.0
+
+[node name="Joystick" type="Node2D"]
+script = ExtResource("1_thxhs")
+
+[node name="Ring" type="Sprite2D" parent="."]
+scale = Vector2(0.055, 0.055)
+texture = ExtResource("2_3ade8")
+
+[node name="Knob" type="TouchScreenButton" parent="."]
+shape = SubResource("CircleShape2D_wpy3j")
+
+[node name="KnobTexture" type="Sprite2D" parent="Knob"]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("3_qmme6")

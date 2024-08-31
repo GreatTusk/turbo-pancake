@@ -137,7 +137,7 @@ func connect_player_and_level() -> void:
 	player.camera.limit_right = level.right_limit
 	player.camera.limit_left = level.left_limit
 	
-	if OS.has_feature("mobile"):
+	if OS.has_feature("mobile") || OS.has_feature("web_android") || OS.has_feature("web_ios"):
 		player.camera.zoom = Vector2(1.2, 1.2)
 
 	level_ui.show()
