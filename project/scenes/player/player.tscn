@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfrx0d032inre"]
+[gd_scene load_steps=18 format=3 uid="uid://bfrx0d032inre"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0hecv"]
 [ext_resource type="SpriteFrames" uid="uid://4n1n20a1eh05" path="res://scenes/player/player.tres" id="2_33yml"]
@@ -16,30 +16,38 @@
 [ext_resource type="Script" path="res://scripts/player/particle_queue.gd" id="18_qks7l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmiy4"]
-size = Vector2(149, 189)
+size = Vector2(18, 23)
+
+[sub_resource type="Gradient" id="Gradient_ococc"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w8pn5"]
+gradient = SubResource("Gradient_ococc")
+width = 32
+height = 32
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
-position = Vector2(-1.19209e-07, 4.54747e-13)
-scale = Vector2(0.1, 0.1)
 collision_layer = 2
 collision_mask = 29
 script = ExtResource("1_0hecv")
 boost_unlocked = true
 
 [node name="Sprites" type="AnimatedSprite2D" parent="." groups=["light"]]
-position = Vector2(8, -32)
-scale = Vector2(8, 8)
 sprite_frames = ExtResource("2_33yml")
 animation = &"idle"
 autoplay = "appearing"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(1, -1.90735e-06)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_cmiy4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-29, 62)
 limit_left = 0
 limit_top = 0
 limit_bottom = 380
@@ -127,27 +135,30 @@ one_shot = true
 wait_time = 0.2
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(1, 2)
-scale = Vector2(2, 2)
-target_position = Vector2(40, 0)
+position = Vector2(0, 4)
+target_position = Vector2(10, 0)
 collision_mask = 4
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(11, 2)
+position = Vector2(0, 4)
 rotation = -3.14159
-scale = Vector2(2, 2)
-target_position = Vector2(45, -0.00012207)
+target_position = Vector2(10, 0)
 collision_mask = 4
 
 [node name="ParticleQueue" type="Node2D" parent="."]
-position = Vector2(1, 92)
+position = Vector2(0, 15)
 script = ExtResource("18_qks7l")
 particle_scene = ExtResource("10_tx3ro")
 
 [node name="LightSource" type="Marker2D" parent="." groups=["light"]]
-position = Vector2(10, -4.54747e-12)
 gizmo_extents = 114.4
 script = ExtResource("14_2hsdo")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, 4)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_w8pn5")
 
 [connection signal="animation_finished" from="Sprites" to="." method="_on_respawn_animation_finished"]
 [connection signal="finished" from="SFX/Die/Die_1" to="." method="_on_dying_sfx_finished"]

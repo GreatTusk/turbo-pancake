@@ -31,17 +31,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f6e525-43ad-4e64-a8b3-bd91bc20879d" name="Changes" comment="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+    <list default="true" id="01f6e525-43ad-4e64-a8b3-bd91bc20879d" name="Changes" comment="slight adjustments, still working on the virtual joystick">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extern/godot-engine" beforeDir="false" afterPath="$PROJECT_DIR$/extern/godot-engine" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extern/godot-engine/platform/android/export/export_plugin.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/extern/godot-engine/platform/android/export/export_plugin.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/addons/touch_joypad/code/joystick.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/addons/touch_joypad/code/joystick.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/resources/shaders/level_1.gdshader" beforeDir="false" afterPath="$PROJECT_DIR$/project/resources/shaders/level_1.gdshader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scenes/ui/level/gameui.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/ui/level/gameui.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/level/level_manager.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/level/level_manager.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/items/fruit.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/items/fruit.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/obstacles/flamethrower.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/obstacles/flamethrower.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scripts/obstacles/flamethrower.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/obstacles/flamethrower.gd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/scripts/player/player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/player/player.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/scripts/ui/level/level_ui.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/ui/level/level_ui.gd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +141,12 @@
       <workItem from="1724649201610" duration="825000" />
       <workItem from="1724719500535" duration="649000" />
       <workItem from="1725126684461" duration="1293000" />
-      <workItem from="1725133052531" duration="1655000" />
+      <workItem from="1725133052531" duration="1692000" />
+      <workItem from="1725391068228" duration="3000" />
+      <workItem from="1725842907520" duration="3000" />
+      <workItem from="1725916674339" duration="2000" />
+      <workItem from="1725934156668" duration="1000" />
+      <workItem from="1726758301090" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound">
       <option name="closed" value="true" />
@@ -162,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724017361229</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="slight adjustments, still working on the virtual joystick">
+      <option name="closed" value="true" />
+      <created>1725135213048</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1725135213048</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +208,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound" />
+    <MESSAGE value="slight adjustments, still working on the virtual joystick" />
+    <option name="LAST_COMMIT_MESSAGE" value="slight adjustments, still working on the virtual joystick" />
   </component>
 </project>

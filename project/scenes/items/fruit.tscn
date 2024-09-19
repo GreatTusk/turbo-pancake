@@ -1,9 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://mkxeqvc338kv"]
+[gd_scene load_steps=5 format=3 uid="uid://mkxeqvc338kv"]
 
 [ext_resource type="SpriteFrames" uid="uid://cdr43qtv1fe5u" path="res://resources/animated_sprites/fruit.tres" id="1_r8t26"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6rwna"]
 radius = 6.0
+
+[sub_resource type="Gradient" id="Gradient_1exik"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_346mw"]
+gradient = SubResource("Gradient_1exik")
+width = 16
+height = 16
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.542735, 0)
 
 [node name="Fruit" type="Fruit"]
 
@@ -16,3 +29,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_6rwna")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_346mw")

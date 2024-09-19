@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8wucedv0nlss"]
+[gd_scene load_steps=17 format=3 uid="uid://c8wucedv0nlss"]
 
 [ext_resource type="Script" path="res://scripts/obstacles/flamethrower.gd" id="1_6kc05"]
 [ext_resource type="Texture2D" uid="uid://cixk8s8ciacly" path="res://assets/traps/fire/hit_(16x32).png" id="1_anj45"]
@@ -81,6 +81,19 @@ size = Vector2(12, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brb8e"]
 size = Vector2(16, 16)
 
+[sub_resource type="Gradient" id="Gradient_7ftf0"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qk7sp"]
+gradient = SubResource("Gradient_7ftf0")
+width = 8
+height = 8
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.487179, 0)
+
 [node name="Flamethrower" type="Node2D"]
 script = ExtResource("1_6kc05")
 
@@ -113,6 +126,13 @@ debug_color = Color(0, 0.625364, 0.520859, 0.42)
 
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -7)
+scale = Vector2(3.61244, 3.5)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_qk7sp")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="PlayerFinder" to="." method="_on_player_finder_body_entered"]

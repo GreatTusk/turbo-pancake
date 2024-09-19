@@ -49,9 +49,9 @@ const BOOST_IMPULSE: float = 320.0
 
 # External consts
 const WALL_COLL_POS_R: float = 1.0
-const WALL_COLL_POS_L: float = 11.0
-const RAYC_COLL_POS_L: float = 45.0 
-const RAYC_COLL_POS_R: float = 40.0 
+const WALL_COLL_POS_L: float = 1.0
+const RAYC_COLL_POS_L: float = 10.0 
+const RAYC_COLL_POS_R: float = 10.0 
 const PLAYER_HEIGHT: float = 9.5
 const TRAMPOLINE_IMPULSE: float = 280.0
 const CAMERA_MAX_OFFSET: float = -80.0
@@ -179,7 +179,7 @@ func ground_movement(delta: float) -> void:
 func air_movement(delta: float) -> void:
 	# Applies gravity. It requires delta in the calculation because gravity is an acceleration (px/s2)
 	self.velocity.y = move_toward(velocity.y, gravity, AIR_ACC_Y * delta)
-	adjust_hitbox()
+	#adjust_hitbox()
 
 	# Vertical movement
 	if Input.is_action_just_pressed(&"jump"):

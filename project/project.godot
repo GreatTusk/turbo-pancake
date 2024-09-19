@@ -38,9 +38,9 @@ gdscript/warnings/enum_variable_without_default=0
 
 window/size/viewport_width=384
 window/size/viewport_height=216
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
 
 [file_customization]
@@ -136,10 +136,6 @@ look_up={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)
 ]
 }
-
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
