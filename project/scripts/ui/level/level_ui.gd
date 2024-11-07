@@ -9,6 +9,10 @@ extends CanvasLayer
 @onready var pause: AudioStreamPlayer = $SFX/Pause
 @onready var unpause: AudioStreamPlayer = $SFX/Unpause
 
+
+
+
+
 func _ready() -> void:
 	if !DisplayServer.is_touchscreen_available() || Input.get_connected_joypads().size() != 0:
 		# Show by default, only hide if there are no controllers connected and we're on mobile
@@ -29,7 +33,8 @@ func _ready() -> void:
 			continue
 		else:
 			button.pressed.connect(_on_button_action.bind(confirm))
-
+	
+	
 func _on_audio_settings_pressed() -> void:
 	config_screen.show()
 

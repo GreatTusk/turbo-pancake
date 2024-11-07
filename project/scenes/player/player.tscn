@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfrx0d032inre"]
+[gd_scene load_steps=16 format=3 uid="uid://bfrx0d032inre"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0hecv"]
 [ext_resource type="SpriteFrames" uid="uid://4n1n20a1eh05" path="res://scenes/player/player.tres" id="2_33yml"]
@@ -17,19 +17,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmiy4"]
 size = Vector2(18, 23)
-
-[sub_resource type="Gradient" id="Gradient_ococc"]
-interpolation_mode = 2
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_w8pn5"]
-gradient = SubResource("Gradient_ococc")
-width = 32
-height = 32
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -153,12 +140,6 @@ particle_scene = ExtResource("10_tx3ro")
 [node name="LightSource" type="Marker2D" parent="." groups=["light"]]
 gizmo_extents = 114.4
 script = ExtResource("14_2hsdo")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(0, 4)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_w8pn5")
 
 [connection signal="animation_finished" from="Sprites" to="." method="_on_respawn_animation_finished"]
 [connection signal="finished" from="SFX/Die/Die_1" to="." method="_on_dying_sfx_finished"]

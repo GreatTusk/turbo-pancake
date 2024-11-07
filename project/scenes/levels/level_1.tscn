@@ -42,7 +42,7 @@ left_limit = 0
 top_limit = 0
 right_limit = 3456
 bottom_limit = 380
-tilemap_player_offset = Vector2i(-1, 10)
+tilemap_player_offset = Vector2i(1, 11)
 
 [node name="CaveParallaxBackground" parent="." instance=ExtResource("4_6dc0v")]
 position = Vector2(0, 0)
@@ -1052,5 +1052,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("22_072jy")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="WorldBorder" to="WorldBorder" method="_on_body_entered"]

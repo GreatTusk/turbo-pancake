@@ -16,46 +16,86 @@ var max_length: float = 50.0
 var y_event := InputEventAction.new()
 var x_event := InputEventAction.new()
 
+var touch_index := -1 # Track the touch affecting the joystick
+var is_dragging := false # Track if the user is dragging the knob
+
 
 func _ready() -> void:
-	knob.pressed.connect(func() -> void: pressing = true)
-	knob.released.connect(func() -> void: pressing = false)
 	max_length *= self.scale.x
 
 func _process(delta: float) -> void:
-	parse_input(calculate_direction())
-	if pressing:
-		handle_knob()
-	else:
+	parse_input()
+	
+	#if pressing:
+		#handle_knob()
+	#else:
+	if touch_index == -1:
 		# Return the knob to its position
 		knob_texture.global_position = knob_texture.global_position.lerp(self.global_position, delta * RETURN_SPEED)
 		x_event.pressed = false
 		y_event.pressed = false
 
+func _input(event: InputEvent) -> void:
+	#print(event)
+	#if event is InputEventScreenTouch:
+		##print(event.position.distance_to(self.global_position))
+		#if event.index == 0:
+			## Touch event is within self.area
+			#pressing = event.position.distance_to(self.global_position) <= button_radius
+			#if !event.pressed:
+				#pressing = falseh affecting the joystick
 
-func handle_knob() -> void:
-	# FIXME
-	var mouse_pos: Vector2 = get_global_mouse_position()
-	# This is not a fix
-	if mouse_pos.x < DisplayServer.screen_get_size().x / 2.0:
-		var direction: Vector2 = mouse_pos - self.global_position
-		
-		# Calculates the distance between the mouse position and the joystick's center
-		if direction.length() <= max_length:
-			# If the mouse is within limits, the knob is moved to that position
-			knob_texture.global_position = mouse_pos
-		else:
-			# If it is further away, calculate where it should be placed
-			direction = direction.normalized() * max_length
-			knob_texture.global_position = self.global_position + direction
+	if event is InputEventScreenTouch:
+		if event.pressed and touch_index == -1:
+			# Check if the touch is within the joystick area
+			if event.position.distance_to(self.global_position) <= button_radius:
+				touch_index = event.index
+				pressing = true
+				is_dragging = false
+				# Move the knob to the touched position immediately (handling a tap)
+				handle_knob(event.position)
+		elif !event.pressed and event.index == touch_index:
+			# When the touch ends, reset the state
+			pressing = false
+			touch_index = -1
+			#is_dragging = false
+
+	elif event is InputEventScreenDrag and event.index == touch_index:
+		# Handle joystick dragging with the specific touch
+		is_dragging = true
+		handle_knob(event.position)
 
 
-func calculate_direction() -> Vector2:
+#func handle_knob() -> void:
+	## FIXME
+	#var mouse_pos: Vector2 = get_global_mouse_position()
+	## This is not a fix
+	#if mouse_pos.x < DisplayServer.window_get_size().x / 2.0:
+		#print(DisplayServer.window_get_size())
+		#var direction: Vector2 = mouse_pos - self.global_position
+		#
+		## Calculates the distance between the mouse position and the joystick's center
+		#if direction.length() <= max_length:
+			## If the mouse is within limits, the knob is moved to that position
+			#knob_texture.global_position = mouse_pos
+		#else:
+			## If it is further away, calculate where it should be placed
+			#direction = direction.normalized() * max_length
+			#knob_texture.global_position = self.global_position + direction
+
+func handle_knob(pos: Vector2) -> void:
+	var direction: Vector2 = pos - self.global_position
+
+	if direction.length() <= max_length:
+		knob_texture.global_position = pos
+	else:
+		direction = direction.normalized() * max_length
+		knob_texture.global_position = self.global_position + direction
+
+func parse_input() -> void:
 	var direction: Vector2 = knob_texture.global_position - self.global_position
-	return Vector2.ZERO if direction.length() < deadzone else direction.normalized()
-
-
-func parse_input(direction: Vector2) -> void:
+	direction = Vector2.ZERO if direction.length() < deadzone else direction.normalized()
+	
 	# Register left or right only when direction.x > 0.35.
 	# This means that direction.y will only be registered when over abs(93~)
 	if abs(direction.x) > X_DIRECTION_THRESHOLD:

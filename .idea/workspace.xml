@@ -3,6 +3,12 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="9" type="long" />
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+  </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
 }</component>
@@ -31,14 +37,18 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f6e525-43ad-4e64-a8b3-bd91bc20879d" name="Changes" comment="slight adjustments, still working on the virtual joystick">
+    <list default="true" id="01f6e525-43ad-4e64-a8b3-bd91bc20879d" name="Changes" comment="tinkered with lighting a little">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/addons/touch_joypad/code/joystick_test.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/addons/touch_joypad/code/joystick_test.gd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project/project.godot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/scenes/items/fruit.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/items/fruit.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/levels/level_1.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/levels/level_1.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/scenes/obstacles/flamethrower.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/obstacles/flamethrower.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/scenes/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/player/player.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scenes/ui/level/gameui.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/project/scenes/ui/level/gameui.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/scripts/obstacles/flamethrower.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/obstacles/flamethrower.gd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/scripts/player/player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/player/player.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/scripts/ui/level/level_ui.gd" beforeDir="false" afterPath="$PROJECT_DIR$/project/scripts/ui/level/level_ui.gd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +57,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:clang-debug" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/extern/godot-engine" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -63,8 +73,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/F776/source/repos/turbo-pancake/src/interactive_items/fruit.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/F776/source/repos/turbo-pancake/src/interactive_items/fruit.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/interactive_items/fruit.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -92,7 +101,7 @@
     &quot;cf.advertisement.text.overridden&quot;: &quot;true&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;4.3&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;turbo__pancake&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -146,7 +155,8 @@
       <workItem from="1725842907520" duration="3000" />
       <workItem from="1725916674339" duration="2000" />
       <workItem from="1725934156668" duration="1000" />
-      <workItem from="1726758301090" duration="5000" />
+      <workItem from="1726758301090" duration="77000" />
+      <workItem from="1731002428871" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound">
       <option name="closed" value="true" />
@@ -172,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725135213048</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="tinkered with lighting a little">
+      <option name="closed" value="true" />
+      <created>1726758363780</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726758363780</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +227,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="upgraded to 4.3 and added custom data to the tileset, custom particle colors and sound" />
     <MESSAGE value="slight adjustments, still working on the virtual joystick" />
-    <option name="LAST_COMMIT_MESSAGE" value="slight adjustments, still working on the virtual joystick" />
+    <MESSAGE value="tinkered with lighting a little" />
+    <option name="LAST_COMMIT_MESSAGE" value="tinkered with lighting a little" />
   </component>
 </project>
